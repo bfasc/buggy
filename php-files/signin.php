@@ -39,13 +39,14 @@ $result = $stmt->fetchColumn();
 //     Outputs - none (void)
 $values = [$_POST['email']];
 
-$sql = "SELECT userid FROM userinfo WHERE email = ?";
+$sql = "SELECT userid,  FROM userinfo WHERE email = ?";
 $stmt = $db->prepare($sql);
 $stmt->execute($values);
 $result = $stmt->fetchColumn();
 
-$_SESSION['userID'] = $result;
-
+$_SESSION['userID'] = $result[0];
+$_SESSION['accountType'] = $result[1];
+/*COMPLETE*/
 
 $db = NULL;
 ?>

@@ -1,0 +1,108 @@
+/*=====Fonts=====*/
+/*  IMPORTS  */
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&family=Titillium+Web&family=Ubuntu&display=swap");
+/*variables*/
+/*mix-ins*/
+/*BASIC*/
+img {
+  max-width: 100%; }
+
+* {
+  box-sizing: border-box; }
+
+a {
+  display: block; }
+
+#sidebar {
+  width: 275px;
+  position: fixed;
+  background: #3C4A54;
+  color: #FFFFFF;
+  padding: 25px;
+  height: 100vh;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; }
+  #sidebar a {
+    width: 100%;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-family: "PT Sans", sans-serif;
+    text-decoration: none; }
+
+.button {
+  background-color: #E75858;
+  padding: 10px 15px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 36px;
+  margin: 10px;
+  text-transform: uppercase;
+  font-family: "PT Sans", sans-serif;
+  font-weight: bold; }
+
+footer {
+  height: 100px;
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  padding-left: 285px;
+  background: #3C4A54;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; }
+
+.main {
+  position: relative;
+  padding-left: 275px;
+  width: 100%; }
+
+/*SPLASH PAGE*/
+#splash header {
+  width: 100%;
+  height: 100vh;
+  background-image: url(../img/bg.jpg);
+  background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; }
+  #splash header p, #splash header h2 {
+    font-family: "PT Sans", sans-serif;
+    font-size: 36px;
+    text-align: center;
+    width: 850px; }
+  #splash header h2 {
+    font-weight: bold;
+    text-transform: uppercase; }
+
+#splash section {
+  width: 100%;
+  text-align: center;
+  padding: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center; }
+  #splash section h1 {
+    text-transform: uppercase;
+    color: #E75858;
+    font-size: 54px;
+    letter-spacing: 10px;
+    font-weight: normal;
+    width: 100%; }
+  #splash section .third {
+    width: 30%;
+    margin: 5% 0; }
+
+/* Tablet */
+/* Mobile */
+
+/*# sourceMappingURL=style.css.map */
