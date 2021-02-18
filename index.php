@@ -14,13 +14,3 @@ $query_builder = TRUE;
 //$conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 
 $mysqli = new mysqli('us-cdbr-east-03.cleardb.com', 'b27268e1e174f3', 'a5769c7d', 'heroku_ea94c1083a34040');
-
-echo "Hello buggy project!!";
-echo "hello";
-echo "hello Elizabeth";
-
-$result = $mysqli->query("SELECT * FROM userinfo");
-if ($result->num_rows) {
-    $row = $result->fetch_array();
-    echo print_r($row);
-}
