@@ -33,10 +33,15 @@ $TitilliumWeb: 'Ubuntu', sans-serif;
 img {max-width: 100%;}
 * {box-sizing: border-box;}
 a {display: block;}
+body {
+    @include flexRow;
+    justify-content: flex-start;
+}
 
 #sidebar {
     width: 275px;
     position: fixed;
+    top: 0;
     background: $bluegray;
     color: $white;
     padding: 25px;
@@ -92,6 +97,7 @@ footer {
     position: relative;
     padding-left: 275px;
     width: 100%;
+    background-color: $lightgray;
 }
 /*SPLASH PAGE*/
 #splash header {
@@ -113,11 +119,14 @@ footer {
 
     }
 }
-#splash section {
-    width: 100%;
-    text-align: center;
+.main section {
     padding: 25px;
     @include flexRow;
+    width: 100%;
+    min-height: 100vh;
+}
+#splash section {
+    text-align: center;
     h1 {
         text-transform: uppercase;
         color: $red;

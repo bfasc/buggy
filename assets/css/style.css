@@ -13,9 +13,17 @@ img {
 a {
   display: block; }
 
+body {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start; }
+
 #sidebar {
   width: 275px;
   position: fixed;
+  top: 0;
   background: #3C4A54;
   color: #FFFFFF;
   padding: 25px;
@@ -71,7 +79,8 @@ footer {
 .main {
   position: relative;
   padding-left: 275px;
-  width: 100%; }
+  width: 100%;
+  background-color: #EEEEEE; }
 
 /*SPLASH PAGE*/
 #splash header {
@@ -93,14 +102,17 @@ footer {
     font-weight: bold;
     text-transform: uppercase; }
 
-#splash section {
-  width: 100%;
-  text-align: center;
+.main section {
   padding: 25px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  align-items: center; }
+  align-items: center;
+  width: 100%;
+  min-height: 100vh; }
+
+#splash section {
+  text-align: center; }
   #splash section h1 {
     text-transform: uppercase;
     color: #E75858;

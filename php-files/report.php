@@ -27,4 +27,37 @@
             $db = NULL;
         }
     }
+
+    /* Function Name: addBugReport
+    * Description: insert bug report into table
+    * Parameters: firstName (string - reporter fname), lastName (string - reporter lname), projectID (int), email (string - reporter email), details (string, bug details)
+    * Return Value: boolean T/F on success
+    */
+    function addBugReport($firstName, $lastName, $projectID, $email, $details){
+        try {
+            $db = db_connect();
+
+            // Prepared statement
+            $stmt = $db->prepare("INSERT INTO bugreportinfo (associatedProjectID, firstName, lastName, reporterEmail, bugDescription) VALUES (?, ?, ?, ?, ?)");
+            // Binding of those values to be entered
+            $values = [
+                $projectID,
+                $firstName,
+                $lastName,
+                $email,
+                $details
+            ];
+            // Executing the SQL statement
+            if (!$stmt->execute($values)) {
+                return FALSE;
+            } else {
+                return TRUE;
+            }
+        } catch (Exception $e){
+            return FALSE;
+        } finally {
+            $db = NULL;
+        }
+    }
+
 ?>
