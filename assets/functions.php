@@ -48,7 +48,7 @@
 
           <!-- JQUERY
           –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-          <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+          <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 
           <!-- FONT AWESOME ----------------------->
           <script src='https://kit.fontawesome.com/a062562745.js' crossorigin='anonymous'></script>
