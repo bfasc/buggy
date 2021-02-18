@@ -7,7 +7,7 @@
     <?php printSidebar("notloggedin", "/"); ?>
     <div class="main" id="splash">
         <header>
-            <img src="img/LOGO_MAIN.png">
+            <img src="assets/img/LOGO_MAIN.png">
             <h2>Collaborative & Intuitive Workspace</h2>
 
             <p>Buggy provides your team with an easy and efficient method to knock
@@ -20,7 +20,7 @@
             <h1>Why choose buggy?</h1>
             <div class="third">
                 <div>
-                    <img src="img/SignUp.png">
+                    <img src="assets/img/SignUp.png">
                     <h3>Easy Setup</h3>
                 </div>
                 <p>It takes only a few minutes to create a Buggy account. Once
@@ -30,7 +30,7 @@
             </div>
             <div class="third">
                 <div>
-                    <img src="img/Collaboration.png">
+                    <img src="assets/img/Collaboration.png">
                     <h3>Team Focused</h3>
                 </div>
                 <p>The Buggy interface revolves around collaboration among the
@@ -40,7 +40,7 @@
             </div>
             <div class="third">
                 <div>
-                    <img src="img/intuitive.png">
+                    <img src="assets/img/intuitive.png">
                     <h3>Intuitive Interface</h3>
                 </div>
                 <p>One of the main goals of Buggy’s interface is to help users
@@ -55,7 +55,7 @@
             <h1>Easy to set up, easy to use.</h1>
             <div class="whole">
                 <div class="section-img">
-                    <img src="img/bugreport.png">
+                    <img src="assets/img/bugreport.png">
                 </div>
                 <p>Once you’ve created an account for your team and added a
                     Project, a report.buggy.com custom link will be generated.
