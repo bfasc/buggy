@@ -26,12 +26,22 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: space-between; }
-  #sidebar a {
+  #sidebar #nav {
     width: 100%;
-    text-transform: uppercase;
-    color: #FFFFFF;
-    font-family: "PT Sans", sans-serif;
-    text-decoration: none; }
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    align-items: flex-start; }
+    #sidebar #nav a {
+      text-transform: uppercase;
+      color: #FFFFFF;
+      font-family: "PT Sans", sans-serif;
+      text-decoration: none;
+      margin: 40px 0; }
+  #sidebar .current {
+    border-bottom: solid #E75858 2px;
+    padding-bottom: 5px; }
 
 .button {
   background-color: #E75858;

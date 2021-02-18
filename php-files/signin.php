@@ -1,52 +1,69 @@
 <?php
-$db = new PDO("mysql:host=us-cdbr-east-03.cleardb.com;dbname=b27268e1e174f3", "a5769c7d", "heroku_ea94c1083a34040");
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+/* Function Name: checkVerified
+ * Description: check if user’s email is verified
+ * Parameters: email (string, form email)
+ * Return Value: boolean T/F
+ */
+function checkVerified($email) {
+    try {
+        $db = db_connect();
+        $values = [$email];
+        $sql = "SELECT * FROM userinfo WHERE verified = 1 AND email = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
+        $result = $stmt->fetchColumn();
+        return $result;
+    } catch (Exception $e) {
+        return NULL;
+    } finally {
+        $db = NULL;
+    }
 
+}
 
-// checkVerified - check if user’s email is verified
-//     Inputs - form email
-//     Outputs - boolean T/F
-$values = [$_POST['email']];
+/* Function Name: emailExists
+ * Description: check if email is in database
+ * Parameters: email (string, form email)
+ * Return Value: boolean T/F
+ */
+function emailExists($email) {
+    try {
+        $db = db_connect();
+        $values = [$_POST['email']];
 
-$sql = "SELECT * FROM userinfo WHERE verified = 1 AND email = ?";
-$stmt = $db->prepare($sql);
-$stmt->execute($values);
-$result = $stmt->fetchColumn();
+        $sql = "SELECT * FROM userinfo WHERE email = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
+        $result = $stmt->fetchColumn();
+        if($result) return TRUE;
+        else return FALSE;
+    } catch (Exception $e) {
+        return FALSE;
+    } finally {
+        $db = NULL;
+    }
+}
 
-// emailExists - check if email is in database
-//     Inputs - form email
-//     Outputs - boolean T/F
-$values = [$_POST['email']];
-
-$sql = "SELECT * FROM userinfo WHERE email = ?";
-$stmt = $db->prepare($sql);
-$stmt->execute($values);
-$result = $stmt->fetchColumn();
-
-// checkLogin - check if user’s email and pw matches
-//     Inputs - form email
-//     Outputs - boolean T/F
-$values = [$_POST['email'], $_POST['password']];
-
-$sql = "SELECT * FROM userinfo WHERE email = ? AND password = ?";
-$stmt = $db->prepare($sql);
-$stmt->execute($values);
-$result = $stmt->fetchColumn();
-
-
-// signIn - start session with userID from db
-//     Inputs - form email, form pw
-//     Outputs - none (void)
-$values = [$_POST['email']];
-
-$sql = "SELECT userid,  FROM userinfo WHERE email = ?";
-$stmt = $db->prepare($sql);
-$stmt->execute($values);
-$result = $stmt->fetchColumn();
-
-$_SESSION['userID'] = $result[0];
-$_SESSION['accountType'] = $result[1];
-/*COMPLETE*/
+/* Function Name: checkLogin
+ * Description: check if user’s email and pw matches
+ * Parameters: email (string, form email), password (string, form password)
+ * Return Value: array with userid and account type
+ */
+function checkLogin($email, $password) {
+    try {
+        $db = db_connect();
+        $values = [$email, $password];
+        $sql = "SELECT id, accountType FROM userinfo WHERE email = ? AND password = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (Exception $e) {
+        return NULL;
+    } finally {
+        $db = NULL;
+    }
+}
 
 $db = NULL;
 ?>

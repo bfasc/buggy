@@ -44,12 +44,21 @@ a {display: block;}
     z-index: 100;
     @include flexColumn;
     justify-content: space-between;
-    a {
+    #nav {
         width: 100%;
-        text-transform: uppercase;
-        color: $white;
-        font-family: $PTSans;
-        text-decoration: none;
+        @include flexColumn;
+        align-items: flex-start;
+        a {
+            text-transform: uppercase;
+            color: $white;
+            font-family: $PTSans;
+            text-decoration: none;
+            margin: 40px 0;
+        }
+    }
+    .current {
+        border-bottom: solid $red 2px;
+        padding-bottom: 5px;
     }
 }
 

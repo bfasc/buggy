@@ -59,14 +59,30 @@
 
     /* Function Name: printSidebar
      * Description: print the sidebar section for HTML depending on page type
-     * Parameters: type (string, can be notloggedin, developer, manager, or report)
+     * Parameters: type (string, can be notloggedin, developer, manager, or report), current (current page)
      * Return Value: none (void)
      */
-    function printSidebar($type) {
+    function printSidebar($type, $current) {
         print("<div id='sidebar'>");
         switch ($type) {
             case "notloggedin":
-
+                print("
+                    <section id='nav'>
+                        <a href='/'>Home</a>
+                        <a href='about'>About Us</a>
+                        <a href='purchase'>Get Buggy</a>
+                        <a href='more'>Learn More</a>
+                        <a href='signin'>Sign In</a>
+                    </section>
+                    <section id='side-info'>
+                        <img src='assets/img/LOGO_FOOTER.png'>
+                        <div id='info-links'>
+                            <a href='tos'>TOS</a>
+                            <a href='privacypolicy'>Privacy Policy</a>
+                            <a>&copy; " . date("Y") . "</a>
+                        </div>
+                    </section>
+                ");
                 break;
             case "developer":
 
@@ -81,6 +97,14 @@
                 print("<a>Sorry, there was an error in the sidebar.</a>");
         }
         print("</div>"); //end sidebar
+
+        //JS to add current attribute
+        print("
+        <script>
+            var current = $(\"a[href='$current']\");
+            current.addClass('current');
+        </script>
+        ");
     }
 
     /* Function Name: printFooter
@@ -92,7 +116,14 @@
         print("<footer>");
         switch ($type) {
             case "basic":
-
+                print("
+                <!--GITHUB-->
+                <!--TWITTER-->
+                <!--LINKEDIN-->
+                <a href='contact'>Contact Us</a>
+                <a>Buggy</a>
+                <a>All Rights Reserved</a>
+                ");
                 break;
             case "report":
                 print("

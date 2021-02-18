@@ -43,7 +43,7 @@
 ?>
 
 <body>
-    <?php printSidebar("report"); ?>
+    <?php printSidebar("report", NULL); ?>
     <div class="main">
         <section id="developer">
             <?php
