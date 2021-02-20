@@ -63,6 +63,12 @@
      * Return Value: none (void)
      */
     function printSidebar($type, $current) {
+        if($type == "notloggedin") { //redirect to home page if logged in
+            if(isset($_SESSION['userID']) && !empty($_SESSION['userID'])){
+                header ("Location: tickets");
+                exit ();
+            }
+        }
         print("<div id='sidebar'>");
         switch ($type) {
             case "notloggedin":
@@ -148,5 +154,159 @@
          $headers .= "x-trustifi-key: fff5a5665045679658eb6fb15d4f4310c663a2c4cec5b848\r\n";
          $headers .= "x-trustifi-secret: 0d2c56496d8da831621cd31d3e663953\r\n";
          mail($to, $subject, $content, $headers);
+     }
+
+     /* Function Name: emailExists
+      * Description: check if email is in database
+      * Parameters: email (string, form email)
+      * Return Value: boolean T/F
+      */
+     function emailExists($email) {
+         try {
+             $db = db_connect();
+             $values = [$email];
+
+             $sql = "SELECT * FROM userinfo WHERE email = ?";
+             $stmt = $db->prepare($sql);
+             $stmt->execute($values);
+             $result = $stmt->fetchColumn();
+             if($result) return TRUE;
+             else return FALSE;
+         } catch (Exception $e) {
+             return FALSE;
+         } finally {
+             $db = NULL;
+         }
+     }
+
+     /* Function Name: checkVerified
+      * Description: check if user’s email is verified
+      * Parameters: email (string, form email)
+      * Return Value: boolean T/F
+      */
+     function checkVerified($email) {
+         try {
+             $db = db_connect();
+             $values = [$email];
+             $sql = "SELECT * FROM userinfo WHERE verified = 1 AND email = ?";
+             $stmt = $db->prepare($sql);
+             $stmt->execute($values);
+             $result = $stmt->fetchColumn();
+             return $result;
+         } catch (Exception $e) {
+             return NULL;
+         } finally {
+             $db = NULL;
+         }
+     }
+
+     /* Function Name: companyCodeExists
+      * Description: check if company code already exists in database
+      * Parameters: code (int, 10-digit integer)
+      * Return Value: boolean T/F
+      */
+     function companyCodeExists($code) {
+         try {
+             $db = db_connect();
+             $values = [$code];
+             $sql = "SELECT * FROM companyinfo WHERE companyCode = ?";
+             $stmt = $db->prepare($sql);
+             $stmt->execute($values);
+             $result = $stmt->fetchColumn();
+             return $result;
+         } catch (Exception $e) {
+             return NULL;
+         } finally {
+             $db = NULL;
+         }
+
+     }
+
+     /* Function Name: generateRandomCode
+      * Description: generate a random 10-digit code
+      * Parameters: none
+      * Return Value: int random code
+      */
+     function generateRandomCode()
+     {
+         $numbers = range(0, 9);
+         shuffle($numbers);
+         for ($i = 0; $i < 10; $i++) {
+             global $digits; // global meaning that a variable that is defined being global is able to be used inside of a local function
+             $digits .= $numbers[$i]; // concatentation assingment meaning each random number is added onto the previous making one big number in the end
+         }
+         return $digits;
+     }
+
+
+
+     /* ============== GETS ================== */
+
+
+     /* Function Name: getCompanyID
+      * Description: get company ID corresponding to unique code
+      * Parameters: companyCode (string, company code)
+      * Return Value: company ID
+      */
+     function getCompanyID($companyCode) {
+         try {
+             $db = db_connect();
+             $values = [$companyCode];
+
+             $sql = "SELECT id FROM companyinfo WHERE companyCode = ?";
+             $stmt = $db->prepare($sql);
+             $stmt->execute($values);
+             $result = $stmt->fetchColumn();
+             return $result;
+         } catch (Exception $e) {
+             return NULL;
+         } finally {
+             $db = NULL;
+         }
+     }
+
+     /* Function Name: getUserID
+      * Description: get user ID corresponding to email
+      * Parameters: email (string, email)
+      * Return Value: user ID
+      */
+     function getUserID($email) {
+         try {
+             $db = db_connect();
+             $values = [$email];
+
+             $sql = "SELECT id FROM userinfo WHERE email = ?";
+             $stmt = $db->prepare($sql);
+             $stmt->execute($values);
+             $result = $stmt->fetchColumn();
+             return $result;
+         } catch (Exception $e) {
+             return NULL;
+         } finally {
+             $db = NULL;
+         }
+     }
+
+
+     /* Function Name: getAccountType
+      * Description: check account type of account ID
+      * Parameters: userID (int, user id)
+      * Return Value: account type associated (string)
+      */
+     function getAccountType($userID) {
+         try {
+             $db = db_connect();
+             $values = [$userID];
+
+             $sql = "SELECT accountType FROM userinfo WHERE id = ?";
+             $stmt = $db->prepare($sql);
+             $stmt->execute($values);
+             $result = $stmt->fetchColumn();
+             return $result;
+         } catch (Exception $e) {
+             return NULL;
+         } finally {
+             $db = NULL;
+         }
      }
 ?>

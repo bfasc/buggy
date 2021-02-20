@@ -1,10 +1,7 @@
 <?php
+    //TODO: ADD JS VALIDATION
     REQUIRE_ONCE 'assets/functions.php';
     REQUIRE_ONCE 'php-files/signin.php';
-    if(isset($_SESSION['userID']) && !empty($_SESSION['userID'])){
-        header ("Location: tickets");
-        exit ();
-    }
     printHead("Sign In | Buggy - Let's Code Together");
 
     $response = "";
@@ -34,20 +31,71 @@
     <?php printSidebar("notloggedin", "signin"); ?>
     <div class="main">
         <?php print $response; ?>
-        <h1>Sign in to your Buggy account</h1>
+        <div class="forms">
+            <h1>Sign In</h1>
+            <p>Sign in to your Buggy account</p>
+            <div id="signin">
+                <form action="" method="post" autocomplete="off">
+                    <div class="tab-content">
+                        <div class="field-row">
+                            <div class="field-wrap">
+                                <label>
+                                    Email<span class="req">*</span>
+                                </label>
+                                <input type="email" name="email">
+                            </div>
+                            <div class="field-wrap">
+                                <label>
+                                    Password<span class="req">*</span>
+                                </label>
+                                <input type="password" name="password">
+                            </div>
+                        </div>
+                        <input type="submit" class="button button-block" value="Sign in">
+                    </div>
+                </form>
+            </div>
+        </div>
         <section>
-            <form id="signup" method="post" action="">
-                <input type="email" name="email" placeholder="Email">
-                <input type="password" name="password" placeholder="Password">
-                <input type="submit" value="Sign in">
-            </form>
-
             <h3>Don't have an account?</h3>
             <a href="purchase" class="button">Get Buggy for your team</a>
             <h3>Does your team already have buggy?</h3>
             <a href="signup#developer" class="button">Sign Up with a Developer account</a>
         </section>
     </div>
+
+    <script>
+        /*Form Script*/
+        $('.forms').find('input, textarea').on('keyup blur focus', function (e) {
+          var $this = $(this),
+              label = $this.prev('label');
+
+        	  if (e.type === 'keyup') {
+        			if ($this.val() === '') {
+                  label.removeClass('active highlight');
+                } else {
+                  label.addClass('active highlight');
+                }
+            } else if (e.type === 'blur') {
+            	if( $this.val() === '' ) {
+            		label.removeClass('active highlight');
+        			} else {
+        		    label.removeClass('highlight');
+        			}
+            } else if (e.type === 'focus') {
+
+              if( $this.val() === '' ) {
+            		label.removeClass('highlight');
+        			}
+              else if( $this.val() !== '' ) {
+        		    label.addClass('highlight');
+        			}
+            }
+
+        });
+    </script>
+
+
     <?php printFooter("basic"); ?>
 
 </body>

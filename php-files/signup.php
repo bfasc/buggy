@@ -1,38 +1,122 @@
 <?php
-$db = new PDO("mysql:host=us-cdbr-east-03.cleardb.com;dbname=b27268e1e174f3", "a5769c7d", "heroku_ea94c1083a34040");
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+/* Function Name: createDevUser
+ * Description: create row in user info table for developer account
+ * Parameters: email (string - form email), firstname (string - form firstname), lastname (string - form lastname), password (string - form password), companyCode (string - form company code)
+ * Return Value: boolean T/F on success
+ */
+function createDevUser($email, $firstName, $lastName, $password, $companyCode) {
+    try {
+        $db = db_connect();
+        $hash = md5( rand(0,1000) ); //verification code
+        $values = [
+            $email,
+            $firstName,
+            $lastName,
+            $password,
+            getCompanyID($companyCode),
+            "developer",
+            $hash
+        ];
+        $sql = "INSERT INTO userinfo (email, firstName, lastName, password, associatedCompany, accountType, verificationCode) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
+
+        $subject = "Please verify your Buggy account";
+        $content = "Thank you for signing up for your Buggy account! Please click the link below to verify your account.<br>
+        <a href='http://wwww.https://project-buggy.herokuapp.com/verify?code=$hash&email=$email'>Click Here to verify your account</a>";
+        sendEmail($subject, $_POST['email'], "project-buggy@trustifi.com", $content);
+        return TRUE;
+    } catch (Exception $e) {
+        return FALSE;
+    } finally {
+        $db = NULL;
+    }
+}
+
+/* Function Name: createManUser
+ * Description: create row in user info table for management account
+ * Parameters: email (string - form email), firstname (string - form firstname), lastname (string - form lastname), password (string - form password), companyName (string - form company name), companyPhone (string - form company phone #), companyStreet (string - form company street addr), companyCity (string - form company city), companyState (string - form company state), companyZip (int -form company zip code)
+ * Return Value: boolean T/F on success
+ */
+function createManUser($email, $firstName, $lastName, $password, $companyName, $companyPhone, $companyStreet, $companyCity, $companyState, $companyCountry, $companyZip) {
+    try {
+        $db = db_connect();
+        // Create Company in DB
+        $companyCode = createCompany($companyName, $companyPhone, $companyStreet, $companyCity, $companyState, $companyCountry, $companyZip);
+        if(!$companyCode) return FALSE;
 
 
-// emailExists - check if email is in database
-//    Inputs - form email
-//    Outputs - boolean T/F
-$values = [$_POST['email']];
+        // Create user in DB
+        $hash = md5( rand(0,1000) ); //verification code
+        $values = [
+            $email,
+            $firstName,
+            $lastName,
+            $password,
+            getCompanyID($companyCode),
+            "management",
+            $hash
+        ];
+        $sql = "INSERT
+        INTO userinfo (email, firstName, lastName, password, associatedCompany, accountType, verificationCode)
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
 
-$sql = "SELECT * FROM userinfo WHERE email = ?";
-$stmt = $db->prepare($sql);
-$stmt->execute($values);
-$result = $stmt->fetchColumn();
+        //Add new management account to company's db row
+        $values = [$db->lastInsertID(), $companyCode];
+        $sql = "UPDATE companyinfo
+        SET managementAccountAssociated = ?
+        WHERE companyCode = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
 
-// createUser as developer - create row in user info table
-//    Inputs -  form email, form firstname, form lastname, form password, getCompanyID(form company code), assigned projects (determined by signup type), account type (determined by signup type), verification code (randomly generated)
-//    Outputs - boolean T/F depending on success
-$hash = md5( rand(0,1000) ); //verification code
-
-$values = [
-    $_POST['email'],
-    $_POST['firstName'],
-    $_POST['lastName'],
-    $_POST['password'],
-    getCompanyID($_POST['companyCode']),
-    NULL,
-    "developer",
-    $hash
-];
-$sql = "INSERT INTO userinfo (email, firstName, lastName, password, associatedCompany, assignedProjects, accountType, verificationCode) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-$stmt = $db->prepare($sql);
-$stmt->execute($values);
+        $subject = "Please verify your Buggy account";
+        $content = "Thank you for signing up for your Buggy account! Please click the link below to verify your account.<br>
+        <a href='http://wwww.https://project-buggy.herokuapp.com/verify?code=$hash&email=$email'>Click Here to verify your account</a>";
+        sendEmail($subject, $_POST['email'], "project-buggy@trustifi.com", $content);
+        return TRUE;
+    } catch (Exception $e) {
+        return FALSE;
+    } finally {
+        $db = NULL;
+    }
+}
 
 
-
-$db = null;
+/* Function Name: createCompany
+ * Description: create row in company info table for company
+ * Parameters: companyName (string - form company name), companyPhone (string - form company phone #), companyStreet (string - form company street addr), companyCity (string - form company city), companyState (string - form company state), companyZip (int -form company zip code)
+ * Return Value: new row's company code column
+ */
+function createCompany($companyName, $companyPhone, $companyStreet, $companyCity, $companyState, $companyCountry, $companyZip) {
+    try {
+        $db = db_connect();
+        $companyCode = generateRandomCode();
+        while(companyCodeExists($companyCode)) {
+            $companyCode = generateRandomCode();
+        }
+        // Create user in DB
+        $hash = md5( rand(0,1000) ); //verification code
+        $values = [
+            $companyCode,
+            $companyName,
+            $companyStreet,
+            $companyCity,
+            $companyState,
+            $companyZip,
+            $companyCountry,
+            $companyPhone
+        ];
+        $sql = "INSERT INTO companyinfo (companyCode, companyName, streetAddress, city, state, zip, country, phoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
+        return $companyCode;
+    } catch (Exception $e) {
+        return FALSE;
+    } finally {
+        $db = NULL;
+    }
+}
 ?>

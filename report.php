@@ -1,4 +1,5 @@
 <?php
+    //TODO: ADD JS VALIDATION
     REQUIRE_ONCE 'assets/functions.php';
     REQUIRE_ONCE 'php-files/report.php';
 
