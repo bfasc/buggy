@@ -57,6 +57,24 @@
         ");
     }
 
+    /* Function Name: printHeader
+     * Description: print the header section for HTML if user is logged in
+     * Parameters: userID (session user ID)
+     * Return Value: none (void)
+     */
+    function printHeader($userID) {
+        $firstName = getUserInfo($userID, "firstName");
+        $ticketNum = 0; //TODO : GET TICKET NUMBER
+        print("<header>
+                    <img src='assets/img/LOGO_MAIN.png'>
+                    <div>
+                        <h2>Hello, $firstName</h2>
+                        <p>You have <a id='ticketnum'>$ticketNum</a> unfinished tickets.</p>
+                    </div>
+                </header>
+        ");
+    }
+
     /* Function Name: printSidebar
      * Description: print the sidebar section for HTML depending on page type
      * Parameters: type (string, can be notloggedin, developer, manager, or report), current (current page)
@@ -66,6 +84,15 @@
         if($type == "notloggedin") { //redirect to home page if logged in
             if(isset($_SESSION['userID']) && !empty($_SESSION['userID'])){
                 header ("Location: tickets");
+                exit ();
+            }
+            if(isset($_SESSION['userID']) && !empty($_SESSION['userID']) && (getUserInfo($_SESSION['userID'], "accountType") == "developer" && $type == "management")){//redirect to homepage if dev tries to access man page
+                header ("Location: tickets");
+                exit ();
+            }
+        } else { //redirect to signin page if logged in
+            if(!isset($_SESSION['userID']) && empty($_SESSION['userID'])){
+                header ("Location: signin");
                 exit ();
             }
         }
@@ -93,8 +120,28 @@
             case "developer":
 
                 break;
-            case "manager":
-
+            case "management":
+                print("
+                <section id='nav'>
+                    <a href='tickets'>Your Tickets</a>
+                    <a href='projects'>Your Projects</a>
+                    <a href='alltickets'>All Tickets</a>
+                    <a href='accountmanagement'>Manage Account</a>
+                    <a href='companymanagement'>Manage Company</a>
+                    <a href='employeemanagement'>Manage Employees</a>
+                    <a href='approval'>Bug Approval</a>
+                    <a href='notifications'>Notifications</a>
+                    <a href='signout'>Sign Out</a>
+                </section>
+                <section id='side-info'>
+                    <img src='assets/img/LOGO_FOOTER.png'>
+                    <div id='info-links'>
+                        <a href='tos'>TOS</a><i class='fas fa-circle'></i>
+                        <a href='privacypolicy'>Privacy Policy</a><i class='fas fa-circle'></i>
+                        <a>&copy; " . date("Y") . "</a>
+                    </div>
+                </section>
+                ");
                 break;
             case "report":
                 print("<a href='https://project-buggy.herokuapp.com/''><img src='assets/img/LOGO_MAIN.png'></a>");
@@ -123,12 +170,17 @@
         switch ($type) {
             case "basic":
                 print("
+                <div class='links'>
                 <!--GITHUB-->
                 <!--TWITTER-->
                 <!--LINKEDIN-->
+                </div>
+
                 <a href='contact'>Contact Us</a>
-                <a>Buggy</a>
-                <a>All Rights Reserved</a>
+                <div class='logo'>
+                    <a class='emphasis'>Buggy</a>
+                    <a>All Rights Reserved</a>
+                </div>
                 ");
                 break;
             case "report":
@@ -288,6 +340,94 @@
      }
 
 
+     /* Function Name: getUserInfo
+      * Description: get user info belonging to the corresponding user ID
+      * Parameters: userID (user ID), column (db column to grab)
+      * Return Value: user info
+      */
+     function getUserInfo($userID, $column) {
+         try {
+             $db = db_connect();
+             $values = [$userID];
+
+             $sql = "SELECT $column FROM userinfo WHERE id = ?";
+             $stmt = $db->prepare($sql);
+             $stmt->execute($values);
+             $result = $stmt->fetchColumn();
+             return $result;
+         } catch (Exception $e) {
+             return NULL;
+         } finally {
+             $db = NULL;
+         }
+     }
+
+     /* Function Name: getCompanyInfo
+      * Description: get company info belonging to the corresponding company ID
+      * Parameters: companyID (company ID), column (db column to grab)
+      * Return Value: company info
+      */
+     function getCompanyInfo($companyID, $column) {
+         try {
+             $db = db_connect();
+             $values = [$companyID];
+
+             $sql = "SELECT $column FROM companyinfo WHERE id = ?";
+             $stmt = $db->prepare($sql);
+             $stmt->execute($values);
+             $result = $stmt->fetchColumn();
+             return $result;
+         } catch (Exception $e) {
+             return NULL;
+         } finally {
+             $db = NULL;
+         }
+     }
+
+     /* Function Name: getProjectInfo
+      * Description: get project info belonging to the corresponding project ID
+      * Parameters: projectID (project ID), column (db column to grab)
+      * Return Value: project info
+      */
+     function getProjectInfo($projectID, $column) {
+         try {
+             $db = db_connect();
+             $values = [$projectID];
+
+             $sql = "SELECT $column FROM projectinfo WHERE id = ?";
+             $stmt = $db->prepare($sql);
+             $stmt->execute($values);
+             $result = $stmt->fetchColumn();
+             return $result;
+         } catch (Exception $e) {
+             return NULL;
+         } finally {
+             $db = NULL;
+         }
+     }
+
+     /* Function Name: getBugreportInfo
+      * Description: get bug report info belonging to the corresponding bug report id
+      * Parameters: reportID (project ID), column (db column to grab)
+      * Return Value: report info
+      */
+     function getBugReportInfo($reportID, $column) {
+         try {
+             $db = db_connect();
+             $values = [$reportID];
+
+             $sql = "SELECT $column FROM bugreportinfo WHERE id = ?";
+             $stmt = $db->prepare($sql);
+             $stmt->execute($values);
+             $result = $stmt->fetchColumn();
+             return $result;
+         } catch (Exception $e) {
+             return NULL;
+         } finally {
+             $db = NULL;
+         }
+     }
+
      /* Function Name: getAccountType
       * Description: check account type of account ID
       * Parameters: userID (int, user id)
@@ -305,6 +445,29 @@
              return $result;
          } catch (Exception $e) {
              return NULL;
+         } finally {
+             $db = NULL;
+         }
+     }
+
+     /* Function Name: getAllProjects
+      * Description: get all projects assigned to user
+      * Parameters: userID (int, user id)
+      * Return Value: array with all project IDs
+      */
+     function getAllProjects($userID) {
+         try {
+             $db = db_connect();
+             $companyID = getUserInfo($userID, "associatedCompany");
+             $values = [$companyID];
+
+             $sql = "SELECT id FROM projectinfo WHERE associatedCompany = ?";
+             $stmt = $db->prepare($sql);
+             $stmt->execute($values);
+             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+             return $result;
+         } catch (Exception $e) {
+             return [];
          } finally {
              $db = NULL;
          }

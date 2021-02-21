@@ -56,7 +56,7 @@
                 </form>
             </div>
         </div>
-        <section>
+        <section id="signin">
             <h3>Don't have an account?</h3>
             <a href="purchase" class="button">Get Buggy for your team</a>
             <h3>Does your team already have buggy?</h3>
