@@ -13,6 +13,7 @@ $query_builder = TRUE;
 // Connect to DB
 //$conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 
+<<<<<<< HEAD
 $mysqli = new mysqli('us-cdbr-east-03.cleardb.com', 'b27268e1e174f3', 'a5769c7d', 'heroku_ea94c1083a34040');
 
 
@@ -42,3 +43,6 @@ $mysqli = new mysqli('us-cdbr-east-03.cleardb.com', 'b27268e1e174f3', 'a5769c7d'
 </body>
 
 </html>
+=======
+$mysqli = new mysqli('us-cdbr-east-03.cleardb.com', 'b27268e1e174f3', 'a5769c7d', 'heroku_ea94c1083a34040');
+>>>>>>> 14b6f2bd3c4d2d31b93577deb77cd98dd6a7e95f
