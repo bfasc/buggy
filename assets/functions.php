@@ -81,6 +81,12 @@
      * Return Value: none (void)
      */
     function printSidebar($type, $current) {
+
+        //special sidebar css
+        if($type == "report") $report = "report";
+        else $report = "";
+
+
         if($type == "notloggedin") { //redirect to home page if logged in
             if(isset($_SESSION['userID']) && !empty($_SESSION['userID'])){
                 header ("Location: tickets");
@@ -96,7 +102,8 @@
                 exit ();
             }
         }
-        print("<div id='sidebar'>");
+        print("<div class='wrap'>");
+        print("<div class='sidebar $report'>");
         switch ($type) {
             case "notloggedin":
                 print("
@@ -144,7 +151,7 @@
                 ");
                 break;
             case "report":
-                print("<a href='https://project-buggy.herokuapp.com/''><img src='assets/img/LOGO_MAIN.png'></a>");
+                print("<a href='https://project-buggy.herokuapp.com/'><img src='assets/img/LOGO_MAIN.png'></a>");
                 break;
             default:
                 print("<a>Sorry, there was an error in the sidebar.</a>");
@@ -166,6 +173,7 @@
      * Return Value: none (void)
      */
     function printFooter($type) {
+        print("</div>"); //end wrap
         print("<footer>");
         switch ($type) {
             case "basic":
@@ -185,8 +193,14 @@
                 break;
             case "report":
                 print("
-                    <p>This form is powered by <a href='https://project-buggy.herokuapp.com/' class='button'>Buggy</a></p>
-                    <p><a class='emphasis'>Buggy</a> All Rights Reserved</p>
+                    <div class='poweredby'>
+                        <p>This form is powered by <a href='https://project-buggy.herokuapp.com/'>Buggy</a>
+                            </p>
+                    </div>
+                    <div class='logo report'>
+                        <a class='emphasis'>Buggy</a>
+                        <a>All Rights Reserved</a>
+                    </div>
                 ");
                 break;
             default:
@@ -201,6 +215,9 @@
      * Return Value: none (void)
      */
      function sendEmail($subject, $to, $from, $content) {
+         //replace apos and quot with html code so it's parsed correctly
+         $content = str_replace($content, "'", "&#39;");
+         $content = str_replace($content, "\"", "&#34;");
          // $headers = 'From:' . $from . "\r\n";
          // $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
          // mail($to, $subject, $content, $headers);

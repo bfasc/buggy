@@ -63,13 +63,45 @@
                 }
                 else {
             ?>
-            <h2>Report a bug for <?php print $projectName; ?></h2>
-            <form id="signup" method="post" action="">
-                <input type="text" name="firstName" placeholder="First Name" required>
-                <input type="text" name="lastName" placeholder="Last Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <textarea name="details" required>Description of Bug</textarea>
-                <input type="submit" value="Submit Bug">
+
+
+            <div class="forms">
+                <h1>Report A Bug</h1>
+                <p>Report a bug for <?php print $projectName; ?></p>
+                <div id="signin">
+                    <form id="signup" method="post" action="" autocomplete="off">
+                        <div class="tab-content">
+                            <div class="field-row">
+                                <div class="field-wrap">
+                                    <label>
+                                        First Name<span class="req">*</span>
+                                    </label>
+                                    <input type="text" name="firstName" required>
+                                </div>
+                                <div class="field-wrap">
+                                    <label>
+                                        Last Name<span class="req">*</span>
+                                    </label>
+                                    <input type="text" name="lastName" required>
+                                </div>
+                            </div>
+                            <div class="field-wrap">
+                                <label>
+                                    Email<span class="req">*</span>
+                                </label>
+                                <input type="email" name="email" required>
+                            </div>
+                            <div class="field-wrap">
+                                <label>
+                                    Description of Bug<span class="req">*</span>
+                                </label>
+                                <textarea name="details" required></textarea>
+                            </div>
+                            <input type="submit" class="button button-block" value="Submit Bug">
+                        </div>
+                    </form>
+                </div>
+            </div>
             </form>
         </section>
         <?php } //END ELSE STMT FOR ERROR FETCHING COMPANY INFO ?>

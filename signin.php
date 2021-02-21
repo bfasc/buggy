@@ -58,7 +58,7 @@
         </div>
         <section id="signin">
             <h3>Don't have an account?</h3>
-            <a href="purchase" class="button">Get Buggy for your team</a>
+            <a href="signup#management" class="button">Get Buggy for your team</a>
             <h3>Does your team already have buggy?</h3>
             <a href="signup#developer" class="button">Sign Up with a Developer account</a>
         </section>

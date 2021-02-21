@@ -250,7 +250,16 @@
                 $('#companyCode').val(companyCode);
                 $('#companyCode').prev('label').addClass('active');
             }
+
+            //if management is selected
+            if(window.location.hash == "#management") {
+                $('.tab').removeClass('active');
+                $('.tab a[href*="#management"]').parent().addClass('active');
+                $('#developer').hide();
+                $('#management').show();
+            }
         });
+        
         $('.forms').find('input, textarea').on('keyup blur focus', function (e) {
           var $this = $(this),
               label = $this.prev('label');

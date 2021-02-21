@@ -34,12 +34,16 @@ img {max-width: 100%;}
 * {box-sizing: border-box;}
 a {display: block;}
 textarea {resize: none;}
-body {
+body {height: 100vh; padding-bottom: 100px;}
+.wrap {
+    width: 100%;
+    min-height: 100vh;
     @include flexRow;
     justify-content: flex-start;
+    background-color: $lightgray;
 }
 
-#sidebar {
+.sidebar {
     width: 275px;
     position: fixed;
     top: 0;
@@ -97,6 +101,10 @@ body {
             }
         }
 }
+.sidebar.report {
+    background-color: $lightgray;
+    height: auto;
+}
 
 .button {
     background-color: $red;
@@ -137,6 +145,27 @@ footer {
     .links {
         width: 50%;
     }
+    .poweredby {
+        width: 60%;
+        @include flexRow;
+        justify-content: flex-start;
+        a, p {
+            display: inline-block;
+            margin: 0;
+            font-size: 32px;
+            text-transform: uppercase;
+            font-weight: lighter;
+            font-family: $Ubuntu;
+            letter-spacing: 5px;
+        }
+        p { color: $white; }
+        p a {
+            color: $red;
+            border-bottom: solid $red 2px;
+        }
+    }
+    .logo.report a{font-size: 16px;}
+    .logo.report a.emphasis {font-size: 24px;}
     .logo {
         width: 40%;
         @include flexRow;
@@ -148,7 +177,6 @@ footer {
     padding-left: 275px;
     width: 100%;
     background-color: $lightgray;
-    min-height: 100vh;
     section {
         padding: 25px;
         @include flexRow;
