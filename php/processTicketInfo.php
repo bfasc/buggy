@@ -31,6 +31,8 @@ $name = '';
 //     $stmt->close();
 // }
 
+// new code dumb to commit changes
+
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $query = "DELETE FROM ticketinfo WHERE id = ?";
