@@ -216,11 +216,10 @@
      */
      function sendEmail($subject, $to, $from, $content) {
          //replace apos and quot with html code so it's parsed correctly
-         $content = str_replace($content, "'", "&#39;");
-         $content = str_replace($content, "\"", "&#34;");
-         // $headers = 'From:' . $from . "\r\n";
-         // $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-         // mail($to, $subject, $content, $headers);
+         $content = str_replace("'", "", $content);
+         $content = str_replace('"', "", $content);
+
+
          $curl = curl_init();
          curl_setopt_array($curl, array(
              CURLOPT_URL =>  "https://be.trustifi.com/api/i/v1/email",
