@@ -8,6 +8,7 @@ $lastEditedDate = '';
 $approval = '';
 $assignedDevelopers = '';
 $rejectionReason = '';
+$name = '';
 
 // if (isset($_POST['submit'])) {
 //     // Prepared statement
@@ -50,21 +51,22 @@ if (isset($_GET['edit'])) {
     $result = $stmt->get_result();
     if ($result->num_rows) {
         $row = $result->fetch_array();
+        $name = $row['name'];
         $lastEditedDate = $row['lastEditedDate'];
-        $approval = $row['approval'];
         $assignedDevelopers = $row['assignedDevelopers'];
     }
 }
 
 if (isset($_POST['update'])) {
 
+    $name = $_POST['name'];
+    $ticketStatus = $_POST['ticketStatus'];
     $lastEditedDate = $_POST['lastEditedDate'];
-    $approval = $_POST['approval'];
     $assignedDevelopers = $_POST['assignedDevelopers'];
 
-    $query = "UPDATE ticketinfo SET lastEditedDate=?, approval=?, assignedDevelopers=? WHERE id=?";
+    $query = "UPDATE ticketinfo SET name=?, status=?, lastEditedDate=?, assignedDevelopers=? WHERE id=?";
     $stmt = $mysqli->prepare($query);
-    $stmt->bind_param('sssi', $lastEditedDate, $approval, $assignedDevelopers, $id);
+    $stmt->bind_param('ssssi', $name, $ticketStatus, $lastEditedDate, $assignedDevelopers, $id);
     $stmt->execute();
     echo '<script>alert("Record has Been Updated")</script>';
 
@@ -73,74 +75,74 @@ if (isset($_POST['update'])) {
     header("location: ../html/ticketForm.php");
 }
 
-if (isset($_GET['approve'])) {
-    $id = $_GET['approve'];
-    $approved = 'true';
-    if (isset($_POST['submit'])) {
-        submission($id, $mysqli, $lastEditedDate, $assignedDevelopers, 1);
-    }
-}
+// if (isset($_GET['approve'])) {
+//     $id = $_GET['approve'];
+//     $approved = 'true';
+//     if (isset($_POST['submit'])) {
+//         submission($id, $mysqli, $lastEditedDate, $assignedDevelopers, 1);
+//     }
+// }
 
-if (isset($_GET['reject'])) {
-    $id = $_GET['reject'];
-    $approved = 'false';
-    if (isset($_POST['submit'])) {
+// if (isset($_GET['reject'])) {
+//     $id = $_GET['reject'];
+//     $approved = 'false';
+//     if (isset($_POST['submit'])) {
 
-        $query = "SELECT id, associatedProjectID FROM bugreportinfo WHERE id = ?";
-        $state = $mysqli->prepare($query);
-        $state->bind_param('i', $id);
-        $state->execute();
-        $result = $state->get_result();
-        $value = $result->fetch_object();
+//         $query = "SELECT id, associatedProjectID FROM bugreportinfo WHERE id = ?";
+//         $state = $mysqli->prepare($query);
+//         $state->bind_param('i', $id);
+//         $state->execute();
+//         $result = $state->get_result();
+//         $value = $result->fetch_object();
 
-        // Setting values
-        $rejectionReason = $_POST['rejectionReason'];
-        $approval = 0;
-        $associatedBugID = $value->id;
-        $associatedProjectID = $value->associatedProjectID;
+//         // Setting values
+//         $rejectionReason = $_POST['rejectionReason'];
+//         $approval = 0;
+//         $associatedBugID = $value->id;
+//         $associatedProjectID = $value->associatedProjectID;
 
-        // Prepared statement
-        $stmt = $mysqli->prepare("INSERT INTO ticketinfo (associatedBugID, associatedProjectID, approval, rejectionReason) VALUES (?, ?, ?, ?)");
-        // Binding of those values to be entered
-        $stmt->bind_param("iiss", $associatedBugID, $associatedProjectID, $approval, $rejectionReason);
+//         // Prepared statement
+//         $stmt = $mysqli->prepare("INSERT INTO ticketinfo (associatedBugID, associatedProjectID, approval, rejectionReason) VALUES (?, ?, ?, ?)");
+//         // Binding of those values to be entered
+//         $stmt->bind_param("iiss", $associatedBugID, $associatedProjectID, $approval, $rejectionReason);
 
-        // Executing the SQL statement
-        if (!$stmt->execute()) {
-            header("location: ../html/error.php");
-        } else {
-            header("location: ../html/success.php");
-        }
+//         // Executing the SQL statement
+//         if (!$stmt->execute()) {
+//             header("location: ../html/error.php");
+//         } else {
+//             header("location: ../html/success.php");
+//         }
 
-        $stmt->close();
-    }
-}
+//         $stmt->close();
+//     }
+// }
 
-function submission($id, $mysqli, $lastEditedDate, $assignedDevelopers, $approval)
-{
-    $query = "SELECT id, associatedProjectID FROM bugreportinfo WHERE id = ?";
-    $state = $mysqli->prepare($query);
-    $state->bind_param('i', $id);
-    $state->execute();
-    $result = $state->get_result();
-    $value = $result->fetch_object();
+// function submission($id, $mysqli, $lastEditedDate, $assignedDevelopers, $approval)
+// {
+//     $query = "SELECT id, associatedProjectID FROM bugreportinfo WHERE id = ?";
+//     $state = $mysqli->prepare($query);
+//     $state->bind_param('i', $id);
+//     $state->execute();
+//     $result = $state->get_result();
+//     $value = $result->fetch_object();
 
-    // Setting values
-    $lastEditedDate = $_POST['lastEditedDate'];
-    $assignedDevelopers = $_POST['assignedDevelopers'];
-    $associatedBugID = $value->id;
-    $associatedProjectID = $value->associatedProjectID;
+//     // Setting values
+//     $lastEditedDate = $_POST['lastEditedDate'];
+//     $assignedDevelopers = $_POST['assignedDevelopers'];
+//     $associatedBugID = $value->id;
+//     $associatedProjectID = $value->associatedProjectID;
 
-    // Prepared statement
-    $stmt = $mysqli->prepare("INSERT INTO ticketinfo (associatedBugID, associatedProjectID, lastEditedDate, approval, assignedDevelopers) VALUES (?, ?, ?, ?, ?)");
-    // Binding of those values to be entered
-    $stmt->bind_param("iisss", $associatedBugID, $associatedProjectID, $lastEditedDate, $approval, $assignedDevelopers);
+//     // Prepared statement
+//     $stmt = $mysqli->prepare("INSERT INTO ticketinfo (associatedBugID, associatedProjectID, lastEditedDate, approval, assignedDevelopers) VALUES (?, ?, ?, ?, ?)");
+//     // Binding of those values to be entered
+//     $stmt->bind_param("iisss", $associatedBugID, $associatedProjectID, $lastEditedDate, $approval, $assignedDevelopers);
 
-    // Executing the SQL statement
-    if (!$stmt->execute()) {
-        header("location: ../html/error.php");
-    } else {
-        header("location: ../html/success.php");
-    }
+//     // Executing the SQL statement
+//     if (!$stmt->execute()) {
+//         header("location: ../html/error.php");
+//     } else {
+//         header("location: ../html/success.php");
+//     }
 
-    $stmt->close();
-}
+//     $stmt->close();
+// }

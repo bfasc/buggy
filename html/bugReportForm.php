@@ -13,7 +13,7 @@
 
 <body>
     <?php require_once '../php/processBugReportInfo.php'; ?>
-    <div class="container">
+    <!-- <div class="container">
         <?php
         $mysqli = new mysqli('us-cdbr-east-03.cleardb.com', 'b27268e1e174f3', 'a5769c7d', 'heroku_ea94c1083a34040');
         $result = $mysqli->query("SELECT * FROM bugreportinfo") or die($mysqli->error);
@@ -44,35 +44,35 @@
                     </tr>
                 <?php endwhile; ?>
             </table>
-        </div>
-        <form action="" method="POST">
-            <label for="">First Name</label>
-            <input type="text" name="firstName" placeholder="First Name" value="<?php echo $firstName; ?>" required>
-            <br>
-            <label for="">Last Name</label>
-            <input type="text" name="lastName" placeholder="Last Name" value="<?php echo $lastName; ?>" required>
-            <br>
-            <label for="">Email</label>
-            <input type="email" name="reporterEmail" placeholder="Email" value="<?php echo $reporterEmail; ?>" required>
-            <br>
-            <label for="">Associated Project</label>
-            <select name="projectName" id="projectName">
-                <?php
-                $project = $mysqli->query("SELECT projectName FROM projectinfo");
-                while ($row = $project->fetch_assoc()) : ?>
-                    <option value="<?php echo $row['projectName']; ?>"><?php echo $row['projectName']; ?></option>
-                <?php endwhile; ?>
-            </select>
-            <br>
-            <label for="">Bug Description</label>
-            <textarea name="bugDescription" id="bugDescription" cols="30" rows="10"><?php echo $bugDescription; ?></textarea>
-            <br>
-            <?php if ($update == true) : ?>
-                <button class="btn btn-info" type="submit" name="update">Update</button>
-            <?php else : ?>
-                <button type="submit" name="submit">Submit</button>
-            <?php endif; ?>
-        </form>
+        </div> -->
+    <form action="" method="POST">
+        <label for="">First Name</label>
+        <input type="text" name="firstName" placeholder="First Name" value="<?php echo $firstName; ?>" required>
+        <br>
+        <label for="">Last Name</label>
+        <input type="text" name="lastName" placeholder="Last Name" value="<?php echo $lastName; ?>" required>
+        <br>
+        <label for="">Email</label>
+        <input type="email" name="reporterEmail" placeholder="Email" value="<?php echo $reporterEmail; ?>" required>
+        <br>
+        <label for="">Associated Project</label>
+        <select name="projectName" id="projectName">
+            <?php
+            $project = $mysqli->query("SELECT projectName FROM projectinfo");
+            while ($row = $project->fetch_assoc()) : ?>
+                <option value="<?php echo $row['projectName']; ?>"><?php echo $row['projectName']; ?></option>
+            <?php endwhile; ?>
+        </select>
+        <br>
+        <label for="">Bug Description</label>
+        <textarea name="bugDescription" id="bugDescription" cols="30" rows="10"><?php echo $bugDescription; ?></textarea>
+        <br>
+        <!-- <?php if ($update == true) : ?>
+            <button class="btn btn-info" type="submit" name="update">Update</button>
+        <?php else : ?> -->
+        <button type="submit" name="submit">Submit</button>
+        <!-- <?php endif; ?> -->
+    </form>
 </body>
 
 </html>

@@ -38,6 +38,7 @@ $mysqli = new mysqli('us-cdbr-east-03.cleardb.com', 'b27268e1e174f3', 'a5769c7d'
     <a href="./html/companyForm.php">Create Company</a>
     <a href="./html/projectForm.php">Create Project</a>
     <a href="./html/ticketForm.php">Ticket Info</a>
+    <a href="./html/bugReports.php">View Bug Reports</a>
 </body>
 
 </html>

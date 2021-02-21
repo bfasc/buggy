@@ -44,47 +44,47 @@ if (isset($_POST['submit'])) {
     //header("location: ../index.php");
 }
 
-if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-    $query = "DELETE FROM bugreportinfo WHERE id = ?";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param('i', $id);
-    $stmt->execute();
-    $stmt->close();
-    echo '<script>alert("Record has Been Deleted")</script>';
-}
+// if (isset($_GET['delete'])) {
+//     $id = $_GET['delete'];
+//     $query = "DELETE FROM bugreportinfo WHERE id = ?";
+//     $stmt = $mysqli->prepare($query);
+//     $stmt->bind_param('i', $id);
+//     $stmt->execute();
+//     $stmt->close();
+//     echo '<script>alert("Record has Been Deleted")</script>';
+// }
 
-if (isset($_GET['edit'])) {
-    $id = $_GET['edit'];
-    $update = true;
-    $query = "SELECT * FROM bugreportinfo WHERE id = ?";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param('i', $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows) {
-        $row = $result->fetch_array();
-        $firstName = $row['firstName'];
-        $lastName = $row['lastName'];
-        $reporterEmail = $row['reporterEmail'];
-        $bugDescription = $row['bugDescription'];
-    }
-}
+// if (isset($_GET['edit'])) {
+//     $id = $_GET['edit'];
+//     $update = true;
+//     $query = "SELECT * FROM bugreportinfo WHERE id = ?";
+//     $stmt = $mysqli->prepare($query);
+//     $stmt->bind_param('i', $id);
+//     $stmt->execute();
+//     $result = $stmt->get_result();
+//     if ($result->num_rows) {
+//         $row = $result->fetch_array();
+//         $firstName = $row['firstName'];
+//         $lastName = $row['lastName'];
+//         $reporterEmail = $row['reporterEmail'];
+//         $bugDescription = $row['bugDescription'];
+//     }
+// }
 
-if (isset($_POST['update'])) {
-    //$id = $_POST['id'];
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $reporterEmail = $_POST['reporterEmail'];
-    $bugDescription = $_POST['bugDescription'];
+// if (isset($_POST['update'])) {
+//     //$id = $_POST['id'];
+//     $firstName = $_POST['firstName'];
+//     $lastName = $_POST['lastName'];
+//     $reporterEmail = $_POST['reporterEmail'];
+//     $bugDescription = $_POST['bugDescription'];
 
-    $query = "UPDATE bugreportinfo SET firstName=?, lastName=?, reporterEmail=?, bugDescription=? WHERE id=?";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param('ssssi', $firstName, $lastName, $reporterEmail, $bugDescription, $id);
-    $stmt->execute();
-    echo '<script>alert("Record has Been Updated")</script>';
+//     $query = "UPDATE bugreportinfo SET firstName=?, lastName=?, reporterEmail=?, bugDescription=? WHERE id=?";
+//     $stmt = $mysqli->prepare($query);
+//     $stmt->bind_param('ssssi', $firstName, $lastName, $reporterEmail, $bugDescription, $id);
+//     $stmt->execute();
+//     echo '<script>alert("Record has Been Updated")</script>';
 
-    $stmt->close();
+//     $stmt->close();
 
-    header("location: ../html/bugReportForm.php");
-}
+//     header("location: ../html/bugReportForm.php");
+// }

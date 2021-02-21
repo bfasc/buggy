@@ -16,71 +16,69 @@
     <div class="container">
         <?php
         $mysqli = new mysqli('us-cdbr-east-03.cleardb.com', 'b27268e1e174f3', 'a5769c7d', 'heroku_ea94c1083a34040');
-        $result = $mysqli->query("SELECT * FROM ticketinfo") or die($mysqli->error);
-        $bugs = $mysqli->query("SELECT * FROM bugreportinfo") or die($mysqli->error);
+        $result = $mysqli->query("SELECT ticketinfo.id, ticketinfo.name, ticketinfo.status, ticketinfo.lastEditedDate, ticketinfo.assignedDevelopers, bugreportinfo.firstName, bugreportinfo.lastName, bugreportinfo.reporterEmail, bugreportinfo.bugDescription FROM ticketinfo INNER JOIN bugreportinfo ON ticketinfo.associatedBugID = bugreportinfo.id AND bugreportinfo.approval = 1") or die($mysqli->error);
         ?>
 
         <div class="row justify-content-center">
-            <h1 style="text-align: center;">Bug Reports</h1>
+            <h1 style="text-align: center;">Tickets</h1>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Email</th>
+                        <th>Ticket Name</th>
                         <th>Bug Description</th>
-                        <th>Last Edited Date</th>
-                        <th>Approved</th>
+                        <th>Ticket Status</th>
                         <th>Assigned Developers</th>
+                        <th>Last Edited Date</th>
+                        <th>Reporter First Name</th>
+                        <th>Reporter Last Name</th>
+                        <th>Reporter Email</th>
                         <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <?php
-                while ($row = $bugs->fetch_assoc()) : ?>
+                while ($row = $result->fetch_assoc()) : ?>
                     <tr>
-                        <td><?php echo $row['reporterEmail']; ?></td>
+                        <td><?php echo $row['name']; ?></td>
                         <td><?php echo $row['bugDescription']; ?></td>
+                        <td><?php echo $row['status']; ?></td>
+                        <td><?php echo $row['assignedDevelopers']; ?></td>
+                        <td><?php echo $row['lastEditedDate']; ?></td>
+                        <td><?php echo $row['firstName']; ?></td>
+                        <td><?php echo $row['lastName']; ?></td>
+                        <td><?php echo $row['reporterEmail']; ?></td>
                         <td>
-                            <a href="ticketForm.php?approve=<?php echo $row['id']; ?>" class="btn btn-info">Approve</a>
-                            <a href="ticketForm.php?reject=<?php echo $row['id']; ?>" class="btn btn-danger">Reject</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-                <?php
-                while ($dataRow = $result->fetch_assoc()) : ?>
-                    <tr>
-                        <td><?php echo $dataRow['lastEditedDate']; ?></td>
-                        <?php if ($dataRow['approval'] == 0) : ?>
-                            <td>No</td>
-                        <?php else : ?>
-                            <td>Yes</td>
-                        <?php endif; ?>
-                        <td><?php echo $dataRow['assignedDevelopers']; ?></td>
-                        <td>
-                            <a href="ticketForm.php?edit=<?php echo $dataRow['id']; ?>" class="btn btn-info">Edit</a>
-                            <a href="ticketForm.php?delete=<?php echo $dataRow['id']; ?>" class="btn btn-danger">Delete</a>
+                            <a href="ticketForm.php?edit=<?php echo $row['id']; ?>" class="btn btn-info">Edit</a>
+                            <a href="ticketForm.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
             </table>
             <form action="" method="POST">
-                <?php if ($approved == 'true') : ?>
-                    <label for="">Last Edited Date</label>
-                    <input type="date" name="lastEditedDate" placeholder="Start Date" value="<?php echo $lastEditedDate; ?>" required><br>
+                <?php if ($update == true) : ?>
+                    <label for="">Ticket Name</label>
+                    <input type="text" name="name" id="name" placeholder="Ticket Name" value="<?php echo $name; ?>">
+                    <br>
+                    <label for="">Ticket Status</label>
+                    <select id="ticketStatus" name="ticketStatus">
+                        <option value="Not started">Not started</option>
+                        <option value="Needs Review">Needs Review</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Complete">Complete</option>
+                    </select>
+                    <br>
                     <label for="">Assigned Developers</label>
                     <textarea name="assignedDevelopers" id="assignedDevelopers" cols="30" rows="10"><?php echo $assignedDevelopers; ?></textarea>
                     <br>
-                    <button type="submit" name="submit">Submit</button>
-                <?php elseif ($approved == 'false') : ?>
-                    <label for="">Reason for Rejection</label>
-                    <textarea name="rejectionReason" id="rejectionReason" cols="30" rows="10"><?php echo $rejectionReason; ?></textarea>
+                    <label for="">Last Edited Date</label>
+                    <input type="date" name="lastEditedDate" placeholder="Start Date" value="<?php echo $lastEditedDate; ?>" required>
                     <br>
-                    <button type="submit" name="submit">Submit</button>
                 <?php else : ?>
                 <?php endif; ?>
-                <!-- <?php if ($update == true) : ?>
+                <?php if ($update == true) : ?>
                     <button class="btn btn-info" type="submit" name="update">Update</button>
                 <?php else : ?>
-                    <button type="submit" name="submit">Submit</button>
-                <?php endif; ?> -->
+                    <!-- <button type="submit" name="submit">Submit</button> -->
+                <?php endif; ?>
             </form>
 </body>
 
