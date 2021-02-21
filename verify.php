@@ -30,6 +30,7 @@
     } else {
         $response = "Broken link! Please click the link in your email.";
     }
+    // here is a comment
 ?>
 <body>
     <?php printSidebar("notloggedin", ""); ?>
