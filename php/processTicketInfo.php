@@ -31,7 +31,7 @@ $name = '';
 //     $stmt->close();
 // }
 
-// new code dumb to commit changes
+// new code dumb to commit changes with no idex.php
 
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
