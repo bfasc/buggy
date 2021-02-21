@@ -90,7 +90,7 @@
                 header ("Location: tickets");
                 exit ();
             }
-        } else { //redirect to signin page if logged in
+        } else if($type != "report"){ //redirect to signin page if logged in
             if(!isset($_SESSION['userID']) && empty($_SESSION['userID'])){
                 header ("Location: signin");
                 exit ();
@@ -201,11 +201,34 @@
      * Return Value: none (void)
      */
      function sendEmail($subject, $to, $from, $content) {
-         $headers = 'From:' . $from . "\r\n";
-         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-         $headers .= "x-trustifi-key: fff5a5665045679658eb6fb15d4f4310c663a2c4cec5b848\r\n";
-         $headers .= "x-trustifi-secret: 0d2c56496d8da831621cd31d3e663953\r\n";
-         mail($to, $subject, $content, $headers);
+         // $headers = 'From:' . $from . "\r\n";
+         // $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+         // mail($to, $subject, $content, $headers);
+         $curl = curl_init();
+         curl_setopt_array($curl, array(
+             CURLOPT_URL =>  "https://be.trustifi.com/api/i/v1/email",
+             CURLOPT_RETURNTRANSFER => true,
+             CURLOPT_ENCODING => "",
+             CURLOPT_MAXREDIRS => 10,
+             CURLOPT_TIMEOUT => 0,
+             CURLOPT_FOLLOWLOCATION => true,
+             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+             CURLOPT_CUSTOMREQUEST => "POST",
+             CURLOPT_POSTFIELDS =>"{\"recipients\":[{\"email\":\"$to\"}],\"title\":\"$subject\",\"html\":\"$content\"}",
+             CURLOPT_HTTPHEADER => array(
+                 "x-trustifi-key: " . "fff5a5665045679658eb6fb15d4f4310c663a2c4cec5b848",
+                 "x-trustifi-secret: " . "0d2c56496d8da831621cd31d3e663953",
+                 "content-type: application/json"
+             )
+         ));
+         $response = curl_exec($curl);
+         $err = curl_error($curl);
+         curl_close($curl);
+         if ($err) {
+             echo "cURL Error #:" . $err;
+         } else {
+             echo $response;
+         }
      }
 
      /* Function Name: emailExists

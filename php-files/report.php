@@ -1,10 +1,10 @@
 <?php
     /* Function Name: getCompanyInfo
     * Description: retrieve company and project information from database by code
-    * Parameters: code (string - company code)
+    * Parameters: code (string - company code), projectID (id - associated project ID)
     * Return Value: arary with company ID, project ID, company name, project name
     */
-    function getCompanyInfo($code){
+    function getCompanyReportInfo($code, $projectID){
         try {
             $db = db_connect();
 
@@ -13,9 +13,9 @@
                 companyinfo.companyName, companyinfo.id AS companyID, projectinfo.projectName, projectinfo.id AS projectID
                 FROM companyinfo
                 INNER JOIN projectinfo
-                ON companyinfo.companyCode = projectinfo.associatedCompany
-                WHERE companyCode=?";
-            $values = [$code];
+                ON companyinfo.id = projectinfo.associatedCompany
+                WHERE companyinfo.companyCode=? AND projectinfo.id=?";
+            $values = [$code, $projectID];
             $stmt = $db->prepare($sql);
             $stmt -> execute($values);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);

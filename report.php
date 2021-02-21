@@ -7,10 +7,13 @@
     $response = NULL;
     $responseDetails = NULL;
     $companyInfo = [];
+    $projectName = "";
 
-    if(isset($_GET['company']) && !empty($_GET['company'])) {
-        $companyInfo = getCompanyInfo($_GET['company']);
-        if($companyInfo != []) {
+    if(isset($_GET['project']) && !empty($_GET['project'])) {
+        $companyCode = substr($_GET['project'], 0, 10);
+        $projectID = substr($_GET['project'], 10);
+        $companyInfo = getCompanyReportInfo($companyCode, $projectID);
+        if($companyInfo) {
             $companyName = $companyInfo['companyName'];
             $companyID = $companyInfo['companyID'];
             $projectName = $companyInfo['projectName'];
@@ -29,9 +32,9 @@
         if(addBugReport($_POST['firstName'], $_POST['lastName'], $projectID, $_POST['email'], $_POST['details'])) {
 
             //send email to reporter
-            $subject = "Your recent bug submission for $companyName's project $projectName";
-            $content = "<p>Thank you for your bug submission. We have sent it
-            to the developers, and you will be notified when there's an update.</p>";
+            $subject = "Your recent bug submission for $companyName&#39;s project $projectName";
+            $content = "Thank you for your bug submission. We have sent it
+            to the developers, and you will be notified when there&#39;s an update.";
             sendEmail($subject, $_POST['email'], "project-buggy@trustifi.com", $content);
 
             $response = "Thank you for submitting your bug.";
