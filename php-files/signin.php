@@ -8,7 +8,7 @@ function checkLogin($email, $password) {
     try {
         $db = db_connect();
         $values = [$email, $password];
-        $sql = "SELECT id, accountType FROM userinfo WHERE email = ? AND password = ?";
+        $sql = "SELECT id, accountType FROM userinfo WHERE email = ? AND password = md5( ? )";
         $stmt = $db->prepare($sql);
         $stmt->execute($values);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
