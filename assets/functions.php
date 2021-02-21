@@ -125,14 +125,31 @@
                 ");
                 break;
             case "developer":
-
+                print("
+                <section id='nav'>
+                    <a href='tickets'>Your Tickets</a>
+                    <a href='projects'>Your Projects</a>
+                    <a href='search'>Search All Tickets</a>
+                    <a href='accountmanagement'>Manage Account</a>
+                    <a href='notifications'>Notifications</a>
+                    <a href='signout'>Sign Out</a>
+                </section>
+                <section id='side-info'>
+                    <img src='assets/img/LOGO_FOOTER.png'>
+                    <div id='info-links'>
+                        <a href='tos'>TOS</a><i class='fas fa-circle'></i>
+                        <a href='privacypolicy'>Privacy Policy</a><i class='fas fa-circle'></i>
+                        <a>&copy; " . date("Y") . "</a>
+                    </div>
+                </section>
+                ");
                 break;
             case "management":
                 print("
                 <section id='nav'>
                     <a href='tickets'>Your Tickets</a>
                     <a href='projects'>Your Projects</a>
-                    <a href='alltickets'>All Tickets</a>
+                    <a href='search'>Search All Tickets</a>
                     <a href='accountmanagement'>Manage Account</a>
                     <a href='companymanagement'>Manage Company</a>
                     <a href='employeemanagement'>Manage Employees</a>
