@@ -17,6 +17,7 @@
         <?php
         $mysqli = new mysqli('us-cdbr-east-03.cleardb.com', 'b27268e1e174f3', 'a5769c7d', 'heroku_ea94c1083a34040');
         $result = $mysqli->query("SELECT * FROM bugreportinfo") or die($mysqli->error);
+        // new testing comment
         ?>
 
         <div class="row justify-content-center">
