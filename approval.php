@@ -27,11 +27,6 @@
         $(document).ready(function(){
         	//open popup
         	$('.cd-popup-trigger').on('click', function(event){
-
-
-
-
-
                 //priority rating code from: https://codepen.io/depy/pen/vEWWdw
                   /* 1. Visualizing things on Hover - See next part for action on click */
                   $('#stars li').on('mouseover', function(){

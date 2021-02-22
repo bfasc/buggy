@@ -30,6 +30,23 @@ body {
   justify-content: flex-start;
   background-color: #EEEEEE; }
 
+/* SCROLLBAR CODE */
+/* width */
+::-webkit-scrollbar {
+  width: 15px; }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #3C4A54; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #E75858; }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #d41e1e; }
+
 .sidebar {
   width: 275px;
   position: fixed;
@@ -356,6 +373,53 @@ xpopup
 @media only screen and (min-width: 1170px) {
   .cd-popup-container {
     margin: 8em auto; } }
+/*SEARCH PAGE */
+#search .forms {
+  margin: 40px 0; }
+
+#search-results, #search-filters {
+  float: left;
+  width: 600px;
+  margin: 0 5%; }
+
+#search-results {
+  height: 100vh;
+  overflow-y: scroll; }
+  #search-results .ticket {
+    width: 100%; }
+  #search-results .ticket i {
+    color: #2A2A2A;
+    font-size: 24px; }
+  #search-results .ticket i.highlight {
+    color: #E75858; }
+
+.radio-row {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0; }
+
+.radios .field-wrap {
+  padding: 10px;
+  border: solid 1px #E75858;
+  min-height: 150px; }
+
+.forms .radios label:not(label[for=radio]) {
+  position: relative;
+  font-size: 16px;
+  display: inline-block;
+  left: 0;
+  transform: none; }
+
+.forms .radios input[type="checkbox"] {
+  display: inline-block;
+  width: 20px;
+  height: 20px; }
+
 /*SIGN IN PAGE*/
 #signin {
   display: flex;
@@ -386,7 +450,8 @@ xpopup
     width: 100%;
     text-align: center;
     color: #EEEEEE;
-    font-size: 32px; }
+    font-size: 32px;
+    margin-bottom: 60px; }
   .forms .tab-group {
     list-style: none;
     padding: 0;
@@ -443,6 +508,8 @@ xpopup
       opacity: 0; }
   .forms label[for=textarea].active {
     transform: translateY(75px); }
+  .forms label[for=date], .forms label[for=radio] {
+    transform: translateY(-40px); }
   .forms label.highlight {
     color: #FFFFFF; }
   .forms input, .forms textarea {
@@ -460,6 +527,8 @@ xpopup
     .forms input:focus, .forms textarea:focus {
       outline: 0;
       border-color: #E75858; }
+  .forms .radios {
+    padding-top: 50px; }
   .forms textarea {
     border: 2px solid #EEEEEE; }
   .forms .field-wrap {
@@ -531,7 +600,7 @@ xpopup
     margin: 5% 0; }
 
 /* BUG APPROVAL */
-.bug {
+.bug, .ticket {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -539,31 +608,31 @@ xpopup
   align-items: center;
   align-items: flex-start;
   justify-content: space-evenly; }
-  .bug .name {
+  .bug .name, .ticket .name {
     font-family: "Ubuntu", sans-serif;
     color: #2A2A2A;
     font-size: 36px; }
-  .bug .info {
+  .bug .info, .ticket .info {
     margin: 5px 0; }
-    .bug .info .label {
+    .bug .info .label, .ticket .info .label {
       font-family: "PT Sans", sans-serif;
       font-weight: bold;
       font-size: 24px;
       width: 200px; }
-    .bug .info a {
+    .bug .info a, .ticket .info a {
       font-weight: normal;
       display: inline-block; }
-  .bug .button-wrap {
+  .bug .button-wrap, .ticket .button-wrap {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly; }
-    .bug .button-wrap .button {
+    .bug .button-wrap .button, .ticket .button-wrap .button {
       width: 300px;
       text-align: center; }
-    .bug .button-wrap .button:hover {
+    .bug .button-wrap .button:hover, .ticket .button-wrap .button:hover {
       cursor: pointer; }
 
 /* Rating Star Widgets Style */

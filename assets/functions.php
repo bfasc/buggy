@@ -116,11 +116,6 @@
                     </section>
                     <section id='side-info'>
                         <img src='assets/img/LOGO_FOOTER.png'>
-                        <div id='info-links'>
-                            <a href='tos'>TOS</a>
-                            <a href='privacypolicy'>Privacy Policy</a>
-                            <a>&copy; " . date("Y") . "</a>
-                        </div>
                     </section>
                 ");
                 break;
@@ -136,11 +131,6 @@
                 </section>
                 <section id='side-info'>
                     <img src='assets/img/LOGO_FOOTER.png'>
-                    <div id='info-links'>
-                        <a href='tos'>TOS</a><i class='fas fa-circle'></i>
-                        <a href='privacypolicy'>Privacy Policy</a><i class='fas fa-circle'></i>
-                        <a>&copy; " . date("Y") . "</a>
-                    </div>
                 </section>
                 ");
                 break;
@@ -159,11 +149,6 @@
                 </section>
                 <section id='side-info'>
                     <img src='assets/img/LOGO_FOOTER.png'>
-                    <div id='info-links'>
-                        <a href='tos'>TOS</a><i class='fas fa-circle'></i>
-                        <a href='privacypolicy'>Privacy Policy</a><i class='fas fa-circle'></i>
-                        <a>&copy; " . date("Y") . "</a>
-                    </div>
                 </section>
                 ");
                 break;

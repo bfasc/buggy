@@ -42,6 +42,26 @@ body {height: 100vh; padding-bottom: 100px;}
     justify-content: flex-start;
     background-color: $lightgray;
 }
+/* SCROLLBAR CODE */
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $bluegray;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $red;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: darken($red, 15%);
+}
 
 .sidebar {
     width: 275px;
@@ -362,6 +382,51 @@ xpopup
     margin: 8em auto;
   }
 }
+
+
+/*SEARCH PAGE */
+#search .forms {
+    margin: 40px 0;
+}
+#search-results, #search-filters{
+    float: left;
+    width: 600px;
+    margin: 0 5%;
+}
+#search-results {
+    height: 100vh;
+    overflow-y: scroll;
+    .ticket {width: 100%;}
+    .ticket i {
+        color: $darkgray;
+        font-size: 24px;
+    }
+    .ticket i.highlight {color: $red;}
+}
+.radio-row {
+    width: 100%;
+    height: auto;
+    @include flexRow;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+.radios .field-wrap {
+    padding: 10px;
+    border: solid 1px $red;
+    min-height: 150px;
+}
+.forms .radios label:not(label[for=radio]) {
+    position: relative;
+    font-size: 16px;
+    display: inline-block;
+    left: 0;
+    transform: none;
+}
+.forms .radios input[type="checkbox"] {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
 /*SIGN IN PAGE*/
 #signin {
     @include flexColumn;
@@ -394,7 +459,7 @@ xpopup
       text-align: center;
       color: $lightgray;
       font-size: 32px;
-
+      margin-bottom: 60px;
   }
   .tab-group {
     list-style:none;
@@ -467,6 +532,7 @@ xpopup
     }
   }
   label[for=textarea].active{transform:translateY(75px);}
+  label[for=date], label[for=radio]{transform:translateY(-40px);}
 
   label.highlight {
   	color:$white;
@@ -489,6 +555,7 @@ xpopup
   		border-color:$red;
     }
   }
+  .radios { padding-top: 50px;}
 
   textarea {
     border:2px solid $lightgray;
@@ -585,7 +652,7 @@ xpopup
 
 
 /* BUG APPROVAL */
-.bug {
+.bug, .ticket {
     width: 100%;
     @include flexColumn;
     align-items: flex-start;

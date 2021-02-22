@@ -14,6 +14,11 @@
             }
             ?>
 
+            <h1>In Progress</h1>
+            
+
+            <h1>New Tickets</h1>
+
         </div>
         <?php printFooter("basic"); ?>
 </body>
