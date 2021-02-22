@@ -10,12 +10,17 @@
             if(checkVerified($_POST['email'])) {
                 $loginInfo = checkLogin($_POST['email'], $_POST['password']);
                 if($loginInfo) {
-                    $_SESSION['userID'] = $loginInfo['id'];
-                    $_SESSION['accountType'] = $loginInfo['accountType'];
-                    if($loginInfo['accountType'] == "developer" || $loginInfo['accountType'] == "management") {
-                        header ("Location: tickets");
-                        exit ();
-                    } else {$response = "error in account type";}
+                    if($loginInfo == "notPurchased") { //management account needs to purchase for compnay
+                        $response = "You still need to purchase a Buggy Plan in order to sign in on this account. Purchase one <a href='purchase'>Here</a>!";
+                    } else {
+                        $_SESSION['userID'] = $loginInfo['id'];
+                        $_SESSION['accountType'] = $loginInfo['accountType'];
+                        if($loginInfo['accountType'] == "developer" || $loginInfo['accountType'] == "management") {
+                            header ("Location: tickets");
+                            exit ();
+                        } else {$response = "error in account type";}
+                    }
+
                 } else {
                     $response = "You have entered in the wrong email/password combo.";
                 }
