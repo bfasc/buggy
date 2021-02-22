@@ -31,6 +31,7 @@ if (isset($_GET['code']) && !empty($_GET['code']) && isset($_GET['email']) && !e
     $response = "Broken link! Please click the link in your email.";
 }
 // vs code changes checking things out
+// new changes be done
 ?>
 
 <body>
