@@ -96,7 +96,7 @@
                 header ("Location: tickets");
                 exit ();
             }
-        } else if($type != "report"){ //redirect to signin page if logged in
+        } else if($type != "report"){ //redirect to signin page if not logged in
             if(!isset($_SESSION['userID']) && empty($_SESSION['userID'])){
                 header ("Location: signin");
                 exit ();

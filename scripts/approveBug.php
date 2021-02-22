@@ -1,5 +1,13 @@
 <?php
     REQUIRE_ONCE "../assets/functions.php";
+    $developerList = json_decode($_POST['developers']);
+
+    $developerString = "";
+    foreach($developerList as $key => $developer) {
+        $developerString .= substr($developer, 10);
+        if($key != count($developerList)-1) $developerString .= ",";
+    }
+
     try {
         $db = db_connect();
 
@@ -19,7 +27,7 @@
             "Not Started",
             $_POST['id'],
             getBugReportInfo($_POST['id'], "associatedProjectID"),
-            $_POST['developers'],
+            $developerString,
             $date,
             $date
         ];

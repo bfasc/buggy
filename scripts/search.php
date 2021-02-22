@@ -6,6 +6,8 @@
     $completed = $_POST['completed'];
     $inProgress = $_POST['inProgress'];
     $projectList = json_decode($_POST['projectList']);
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
     // $content = "fix";
     // $assigned = FALSE;
     // $discussion = FALSE;
@@ -47,6 +49,18 @@
             $where .= "status = 'In Progress'";
             $whereCount++;
         }
+        if($startDate) {
+            if($whereCount > 0) $where .= " AND ";
+            $where .= "approvalDate >= ?";
+            array_push($values, $startDate . " 00:00:00");
+            $whereCount++;
+        }
+        if($endDate) {
+            if($whereCount > 0) $where .= " AND ";
+            $where .= "approvalDate <= ?";
+            array_push($values, $endDate . " 00:00:00");
+            $whereCount++;
+        }
         if($projectList) {
             if($whereCount > 0) $where .= " AND ";
             $where .= "(";
@@ -67,6 +81,9 @@
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $response = "<h1>Search Results</h1>";
+
+        if(!$results)
+            $response .= "<h2>No results found. Try changing your filters.</h2>";
         foreach($results as $ticket) {
             $id = $ticket['id'];
             $title = $ticket['name'];
@@ -78,6 +95,14 @@
             $lastEditedDate = $ticket['lastEditedDate'];
             $approvalDate = $ticket['approvalDate'];
             $assignedDevelopers = $ticket['assignedDevelopers'];
+
+            $developerString = "";
+            $assignedDevelopers = explode(",", $assignedDevelopers);
+            foreach($assignedDevelopers as $developer) {
+                $firstName = getUserInfo($developer, "firstName");
+                $lastName = getUserInfo($developer, "lastName");
+                $developerString .= "$firstName $lastName <br>";
+            }
 
             //priority string
             $priorityString = "";
@@ -93,9 +118,10 @@
             <div class='ticket'>
                 <p class='name'>#$id : $title</p>
                 <p class='info'><a class='label'>Priority : </a><a>$priorityString</a></p>
-                <p class='info'><a class='label'>Assignees: </a><a>$assignedDevelopers</a></p>
+                <p class='info'><a class='label'>Assignees: </a><a>$developerString</a></p>
                 <p class='info'><a class='label'>Progress: </a><a>$status</a></p>
                 <a href='ticket?$id' class='button'>View Ticket Page</a>
+                <a class='button edit cd-popup-trigger' id='$id' class='button'>Edit</a>
             </div>";
         }
     } catch (Exception $e) {

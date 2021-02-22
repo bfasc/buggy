@@ -122,7 +122,16 @@
             var title = document.getElementById('ticketTitle').value;
             var description = document.getElementById('description').value;
             var priority = parseInt($('#stars li.selected').last().data('value'), 10);
-            var developerList = "Testing";
+            var developers = document.querySelectorAll('.developer-list');
+
+            var developerList = [];
+
+            for(var i = 0; i < developers.length; i++){
+                if(developers[i].checked) {
+                    developerList.push(developers[i].id);
+                }
+            }
+            developerList = JSON.stringify(developerList);
             $.ajax({
                 url: 'scripts/approveBug.php',
                 type: 'post',
@@ -189,11 +198,12 @@
                     "</label>"+
                     "<textarea id='description'></textarea>"+
                 "</div>"+
-                "<div class='field-wrap'>"+
-                    "<label for='textarea'>"+
+                "<div class='field-wrap radios'>"+
+                    "<label for='radio'>"+
                         "Assignees<span class='req'>*</span>"+
                     "</label>"+
-                    "<textarea id='developerList'></textarea>"+
+                    "<div id='developerSelect'>"+
+                    "</div>"+
                 "</div>"+
             "</div>"+
             "<ul class='cd-buttons'>"+
@@ -201,6 +211,8 @@
                 "<li onclick=\"closePopup()\"><a>Cancel</a></li>"+
             "</ul>"+
             "<a class='cd-popup-close img-replace'></a>");
+
+            $('#developerSelect').load('scripts/getDeveloperList.php?id='+id);
         });
 
         $('.deny').click(function(){

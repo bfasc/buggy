@@ -71,6 +71,10 @@
                     </div>
 
                 </section>
+                <div class="cd-popup" role="alert">
+                    <div class="cd-popup-container">
+                    </div>
+                </div>
                 <section id="search-results">
                 </section>
             </section>
@@ -133,6 +137,98 @@
                     data: {"content": content, "assigned": assigned, "discussion": discussion, "completed": completed, "inProgress": inProgress, "projectList": projectList, "startDate": startDate, "endDate": endDate},
                     success: function(response) {
                         $('#search-results').html(response.htmlResponse);
+                        /*Popup Edit Window */
+                        //POPUP SCRIPT
+                        $(document).ready(function(){
+                            //open popup
+                            $('.cd-popup-trigger').on('click', function(event){
+                                event.preventDefault();
+                                $('.cd-popup').addClass('is-visible');
+                            });
+
+                            //close popup
+                            $('.cd-popup').on('click', function(event){
+                                if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
+                                    event.preventDefault();
+                                    $(this).removeClass('is-visible');
+                                }
+                            });
+                            //close popup when clicking the esc keyboard button
+                            $(document).keyup(function(event){
+                                if(event.which=='27'){
+                                    $('.cd-popup').removeClass('is-visible');
+                                }
+                            });
+                        });
+                        function closePopup(){
+                            $('.cd-popup').removeClass('is-visible');
+                        }
+                        function editTicket(ticketID){
+
+                        }
+                        //TODO: fill edit fields with pre-defined info, get assignees list, make priority select box, finish editTicket function
+                        $('.edit').click(function(){
+                            var id = $(this).attr('id');
+                            $('.cd-popup-container').html("<div class='forms'>"+
+                                "<div class='field-row'>"+
+                                    "<div class='field-wrap'>"+
+                                        "<label>"+
+                                            "Ticket Title<span class='req'>*</span>"+
+                                        "</label>"+
+                                        "<input type='text' id='ticketTitle'>"+
+                                    "</div>"+
+                                    "<div class='field-wrap'>"+
+                                    "<div class='rating-widget'>"+
+                                        "<p>Priority</p>"+
+                                        "<div class='rating-stars'>"+
+                                        "<ul id='stars'>"+
+                                          "<li class='star' title='Lowest' data-value='1'>"+
+                                            "<i class='fas fa-exclamation fa-fw'></i>"+
+                                          "</li>"+
+                                         " <li class='star' title='Low' data-value='2'>"+
+                                            "<i class='fas fa-exclamation fa-fw'></i>"+
+                                          "</li>"+
+                                          "<li class='star' title='Medium' data-value='3'>"+
+                                            "<i class='fas fa-exclamation fa-fw'></i>"+
+                                          "</li>"+
+                                          "<li class='star' title='High' data-value='4'>"+
+                                            "<i class='fas fa-exclamation fa-fw'></i>"+
+                                          "</li>"+
+                                          "<li class='star' title='Top' data-value='5'>"+
+                                            "<i class='fas fa-exclamation fa-fw'></i>"+
+                                          "</li>"+
+                                        "</ul>"+
+                                        "</div>"+
+                                    "</div>"+
+                                    "</div>"+
+                                "</div>"+
+                                "<div class='field-wrap'>"+
+                                    "<label for='textarea'>"+
+                                        "Ticket Description<span class='req'>*</span>"+
+                                    "</label>"+
+                                    "<textarea id='description'></textarea>"+
+                                "</div>"+
+                                "<div class='field-wrap radios'>"+
+                                    "<label for='radio'>"+
+                                        "Assignees<span class='req'>*</span>"+
+                                    "</label>"+
+                                    "<div id='developerSelect'>"+
+                                    "</div>"+
+                                "</div>"+
+                                "<div class='field-wrap'>"+
+                                    "<label for='select'>"+
+                                        "Progress<span class='req'>*</span>"+
+                                    "</label>"+
+                                    "<select></select>"+
+                                "</div>"+
+                            "</div>"+
+                            "<ul class='cd-buttons'>"+
+                                "<li onclick='editTicket(\"+id+\")'><a>Edit</a></li>"+
+                                "<li onclick='closePopup()'><a>Cancel</a></li>"+
+                            "</ul>"+
+                            "<a class='cd-popup-close img-replace'></a>");
+                        });
+                        $('#search-results').css("border", "solid #E75858 2px");
                     }
                 });
             });
