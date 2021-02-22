@@ -30,8 +30,7 @@ if (isset($_GET['code']) && !empty($_GET['code']) && isset($_GET['email']) && !e
 } else {
     $response = "Broken link! Please click the link in your email.";
 }
-// here is a comment
-// testing vscode
+// vs code changes checking things out
 ?>
 
 <body>
