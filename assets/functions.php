@@ -447,6 +447,28 @@
          }
      }
 
+     /* Function Name: getTicketInfo
+      * Description: get ticket info belonging to the corresponding ticket ID
+      * Parameters: ticketID (ticket ID), column (db column to grab)
+      * Return Value: ticket info
+      */
+     function getTicketInfo($ticketID, $column) {
+         try {
+             $db = db_connect();
+             $values = [$ticketID];
+
+             $sql = "SELECT $column FROM ticketinfo WHERE id = ?";
+             $stmt = $db->prepare($sql);
+             $stmt->execute($values);
+             $result = $stmt->fetchColumn();
+             return $result;
+         } catch (Exception $e) {
+             return NULL;
+         } finally {
+             $db = NULL;
+         }
+     }
+
      /* Function Name: getBugreportInfo
       * Description: get bug report info belonging to the corresponding bug report id
       * Parameters: reportID (project ID), column (db column to grab)
@@ -492,7 +514,7 @@
      }
 
      /* Function Name: getAllProjects
-      * Description: get all projects assigned to user
+      * Description: get all projects assigned to management account
       * Parameters: userID (int, user id)
       * Return Value: array with all project IDs
       */
