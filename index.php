@@ -1,10 +1,10 @@
 <?php
-    REQUIRE_ONCE 'assets/functions.php';
-    printHead("Buggy - Let's Code Together");
+require_once 'assets/functions.php';
+printHead("Buggy - Let's Code Together");
 ?>
 
 <body>
-    <?php printSidebar("notloggedin", "/"); ?>
+    <?php printSidebar("notloggedin", "index"); ?>
     <div class="main" id="splash">
         <header>
             <img src="assets/img/LOGO_MAIN.png">
@@ -99,4 +99,5 @@
     <?php printFooter("basic"); ?>
 
 </body>
+
 </html>
