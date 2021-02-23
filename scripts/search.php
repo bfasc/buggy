@@ -8,16 +8,25 @@
     $projectList = json_decode($_POST['projectList']);
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
-    // $content = "fix";
-    // $assigned = FALSE;
-    // $discussion = FALSE;
-    // $completed = FALSE;
-    // $inProgress = FALSE;
-    // $projectList = [];
-
     REQUIRE_ONCE "../assets/functions.php";
     try {
         $db = db_connect();
+
+        // get list of projects available to user
+        $assignedProjects = getUserInfo($_SESSION['userID'], "assignedProjects");
+        $assignedProjects = explode(",", $assignedProjects);
+
+        $availableProjects = $assignedProjects;
+
+        //if manager, able to see all projects associated with company
+        if(getUserInfo($_SESSION['userID'], "accountType") == "management") {
+            $companyProjects = getAllProjects($_SESSION['userID']);
+            foreach($companyProjects as $project) {
+                $projectID = $project['id'];
+                array_push($availableProjects, $projectID);
+            }
+            $availableProjects = array_unique($availableProjects);
+        }
 
         //update bugreports table with approval
         $values = [];
@@ -72,6 +81,19 @@
                     $where .= ")";
             }
         }
+        else {
+            //search all available projects
+            $projectString = "";
+            if($whereCount > 0) $where .= " AND ";
+            $where .= "(";
+            foreach($availableProjects as $key => $projectID) {
+                $where .= "associatedProjectID = $projectID";
+                if($key != count($availableProjects)-1)
+                    $where .= " OR ";
+                else
+                    $where .= ")";
+            }
+        }
 
         if($where) $sql .= " WHERE $where";
         $stmt = $db->prepare($sql);
@@ -120,9 +142,12 @@
                 <p class='info'><a class='label'>Priority : </a><a>$priorityString</a></p>
                 <p class='info'><a class='label'>Assignees: </a><a>$developerString</a></p>
                 <p class='info'><a class='label'>Progress: </a><a>$status</a></p>
-                <a href='ticket?$id' class='button'>View Ticket Page</a>
-                <a class='button edit cd-popup-trigger' id='$id' class='button'>Edit</a>
-            </div>";
+                <div class='button-wrap'><a href='ticket?$id' class='button'>View Ticket Page</a>
+                ";
+
+            if(getUserInfo($_SESSION['userID'], "accountType") == "management")
+                $response .= "<a class='button edit cd-popup-trigger' id='$id' class='button'>Edit</a>";
+            $response .= "</div></div>";
         }
     } catch (Exception $e) {
         $response = $e;

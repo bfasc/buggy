@@ -441,7 +441,6 @@ function getCompanyInfo($companyID, $column)
       * Parameters: projectID (project ID), column (db column to grab)
       * Return Value: project info
       */
-<<<<<<< HEAD
      function getProjectInfo($projectID, $column) {
          try {
              $db = db_connect();
@@ -482,27 +481,6 @@ function getCompanyInfo($companyID, $column)
      }
 
      /* Function Name: getBugreportInfo
-=======
-function getProjectInfo($projectID, $column)
-{
-    try {
-        $db = db_connect();
-        $values = [$projectID];
-
-        $sql = "SELECT $column FROM projectinfo WHERE id = ?";
-        $stmt = $db->prepare($sql);
-        $stmt->execute($values);
-        $result = $stmt->fetchColumn();
-        return $result;
-    } catch (Exception $e) {
-        return NULL;
-    } finally {
-        $db = NULL;
-    }
-}
-
-/* Function Name: getBugreportInfo
->>>>>>> 0c45b6efaf1058823ddcfa42b049dcac5cd8c525
       * Description: get bug report info belonging to the corresponding bug report id
       * Parameters: reportID (project ID), column (db column to grab)
       * Return Value: report info
@@ -530,7 +508,6 @@ function getBugReportInfo($reportID, $column)
       * Parameters: userID (int, user id)
       * Return Value: account type associated (string)
       */
-<<<<<<< HEAD
      function getAccountType($userID) {
          try {
              $db = db_connect();
@@ -550,28 +527,6 @@ function getBugReportInfo($reportID, $column)
 
      /* Function Name: getAllProjects
       * Description: get all projects assigned to management account
-=======
-function getAccountType($userID)
-{
-    try {
-        $db = db_connect();
-        $values = [$userID];
-
-        $sql = "SELECT accountType FROM userinfo WHERE id = ?";
-        $stmt = $db->prepare($sql);
-        $stmt->execute($values);
-        $result = $stmt->fetchColumn();
-        return $result;
-    } catch (Exception $e) {
-        return NULL;
-    } finally {
-        $db = NULL;
-    }
-}
-
-/* Function Name: getAllProjects
-      * Description: get all projects assigned to user
->>>>>>> 0c45b6efaf1058823ddcfa42b049dcac5cd8c525
       * Parameters: userID (int, user id)
       * Return Value: array with all project IDs
       */

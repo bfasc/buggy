@@ -160,37 +160,35 @@
             var id = $(this).attr('id');
             $('.cd-popup-container').html("<p>Fill out the following fields to create a ticket for this bug.</p>"+
             "<div class='forms'>"+
-                "<div class='field-row'>"+
-                    "<div class='field-wrap'>"+
-                        "<label>"+
-                            "Ticket Title<span class='req'>*</span>"+
-                        "</label>"+
-                        "<input type='text' id='ticketTitle'>"+
+                "<div class='field-wrap'>"+
+                    "<label>"+
+                        "Ticket Title<span class='req'>*</span>"+
+                    "</label>"+
+                    "<input type='text' id='ticketTitle'>"+
+                "</div>"+
+                "<div class='field-wrap'>"+
+                "<div class='rating-widget'>"+
+                    "<p>Priority</p>"+
+                    "<div class='rating-stars'>"+
+                    "<ul id='stars'>"+
+                      "<li class='star' title='Lowest' data-value='1'>"+
+                        "<i class='fas fa-exclamation fa-fw'></i>"+
+                      "</li>"+
+                     " <li class='star' title='Low' data-value='2'>"+
+                        "<i class='fas fa-exclamation fa-fw'></i>"+
+                      "</li>"+
+                      "<li class='star' title='Medium' data-value='3'>"+
+                        "<i class='fas fa-exclamation fa-fw'></i>"+
+                      "</li>"+
+                      "<li class='star' title='High' data-value='4'>"+
+                        "<i class='fas fa-exclamation fa-fw'></i>"+
+                      "</li>"+
+                      "<li class='star' title='Top' data-value='5'>"+
+                        "<i class='fas fa-exclamation fa-fw'></i>"+
+                      "</li>"+
+                    "</ul>"+
                     "</div>"+
-                    "<div class='field-wrap'>"+
-                    "<div class='rating-widget'>"+
-                        "<p>Priority</p>"+
-                        "<div class='rating-stars'>"+
-                        "<ul id='stars'>"+
-                          "<li class='star' title='Lowest' data-value='1'>"+
-                            "<i class='fas fa-exclamation fa-fw'></i>"+
-                          "</li>"+
-                         " <li class='star' title='Low' data-value='2'>"+
-                            "<i class='fas fa-exclamation fa-fw'></i>"+
-                          "</li>"+
-                          "<li class='star' title='Medium' data-value='3'>"+
-                            "<i class='fas fa-exclamation fa-fw'></i>"+
-                          "</li>"+
-                          "<li class='star' title='High' data-value='4'>"+
-                            "<i class='fas fa-exclamation fa-fw'></i>"+
-                          "</li>"+
-                          "<li class='star' title='Top' data-value='5'>"+
-                            "<i class='fas fa-exclamation fa-fw'></i>"+
-                          "</li>"+
-                        "</ul>"+
-                        "</div>"+
-                    "</div>"+
-                    "</div>"+
+                "</div>"+
                 "</div>"+
                 "<div class='field-wrap'>"+
                     "<label for='textarea'>"+

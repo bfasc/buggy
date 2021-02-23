@@ -96,6 +96,37 @@
                 });
             });
 
+            function closePopup(){
+                $('.cd-popup').removeClass('is-visible');
+            }
+            function editTicket(ticketID){
+                var title = document.getElementById('ticketTitle').value;
+                var description = document.getElementById('description').value;
+                var progress = document.getElementById('progress').value;
+                var priority = parseInt($('#stars li.selected').last().data('value'), 10);
+                var developers = document.querySelectorAll('.developer-list');
+
+                var developerList = [];
+
+                for(var i = 0; i < developers.length; i++){
+                    if(developers[i].checked) {
+                        developerList.push(developers[i].id);
+                    }
+                }
+                developerList = JSON.stringify(developerList);
+
+                $.ajax({
+                    url: 'scripts/editTicket.php',
+                    type: 'post',
+                    dataType: 'JSON',
+                    data: {"id": ticketID, "name": title, "description": description, "priority": priority, "developers": developerList, "progress": progress},
+                    success: function(response) {
+                        closePopup();
+                        window.location.href = "";
+                    }
+                });
+            }
+
             /*Fill search results*/
             $('#searchForm').on("submit", function(e){
                 e.preventDefault();
@@ -160,73 +191,10 @@
                                 }
                             });
                         });
-                        function closePopup(){
-                            $('.cd-popup').removeClass('is-visible');
-                        }
-                        function editTicket(ticketID){
 
-                        }
-                        //TODO: fill edit fields with pre-defined info, get assignees list, make priority select box, finish editTicket function
                         $('.edit').click(function(){
                             var id = $(this).attr('id');
-                            $('.cd-popup-container').html("<div class='forms'>"+
-                                "<div class='field-row'>"+
-                                    "<div class='field-wrap'>"+
-                                        "<label>"+
-                                            "Ticket Title<span class='req'>*</span>"+
-                                        "</label>"+
-                                        "<input type='text' id='ticketTitle'>"+
-                                    "</div>"+
-                                    "<div class='field-wrap'>"+
-                                    "<div class='rating-widget'>"+
-                                        "<p>Priority</p>"+
-                                        "<div class='rating-stars'>"+
-                                        "<ul id='stars'>"+
-                                          "<li class='star' title='Lowest' data-value='1'>"+
-                                            "<i class='fas fa-exclamation fa-fw'></i>"+
-                                          "</li>"+
-                                         " <li class='star' title='Low' data-value='2'>"+
-                                            "<i class='fas fa-exclamation fa-fw'></i>"+
-                                          "</li>"+
-                                          "<li class='star' title='Medium' data-value='3'>"+
-                                            "<i class='fas fa-exclamation fa-fw'></i>"+
-                                          "</li>"+
-                                          "<li class='star' title='High' data-value='4'>"+
-                                            "<i class='fas fa-exclamation fa-fw'></i>"+
-                                          "</li>"+
-                                          "<li class='star' title='Top' data-value='5'>"+
-                                            "<i class='fas fa-exclamation fa-fw'></i>"+
-                                          "</li>"+
-                                        "</ul>"+
-                                        "</div>"+
-                                    "</div>"+
-                                    "</div>"+
-                                "</div>"+
-                                "<div class='field-wrap'>"+
-                                    "<label for='textarea'>"+
-                                        "Ticket Description<span class='req'>*</span>"+
-                                    "</label>"+
-                                    "<textarea id='description'></textarea>"+
-                                "</div>"+
-                                "<div class='field-wrap radios'>"+
-                                    "<label for='radio'>"+
-                                        "Assignees<span class='req'>*</span>"+
-                                    "</label>"+
-                                    "<div id='developerSelect'>"+
-                                    "</div>"+
-                                "</div>"+
-                                "<div class='field-wrap'>"+
-                                    "<label for='select'>"+
-                                        "Progress<span class='req'>*</span>"+
-                                    "</label>"+
-                                    "<select></select>"+
-                                "</div>"+
-                            "</div>"+
-                            "<ul class='cd-buttons'>"+
-                                "<li onclick='editTicket(\"+id+\")'><a>Edit</a></li>"+
-                                "<li onclick='closePopup()'><a>Cancel</a></li>"+
-                            "</ul>"+
-                            "<a class='cd-popup-close img-replace'></a>");
+                            $('.cd-popup-container').load('scripts/editForm.php?id='+id);
                         });
                         $('#search-results').css("border", "solid #E75858 2px");
                     }

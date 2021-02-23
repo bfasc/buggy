@@ -290,7 +290,7 @@ xpopup
   transition-duration: 0.3s; }
 
 .cd-popup-container p {
-  padding: 3em 1em;
+  padding: 20px;
   font-size: 24px; }
 
 .cd-popup-container .cd-buttons:hover {
@@ -387,11 +387,22 @@ xpopup
   overflow-y: scroll; }
   #search-results .ticket {
     width: 100%; }
+  #search-results .ticket .button-wrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly; }
+  #search-results .ticket .button {
+    font-size: 18px;
+    max-width: 45%; }
   #search-results .ticket i {
     color: #2A2A2A;
     font-size: 24px; }
-  #search-results .ticket i.highlight {
-    color: #E75858; }
+
+#search-results .ticket i.highlight, .forms .rating-stars ul > li.star i.highlight, .ticket i.highlight {
+  color: #E75858; }
 
 .radio-row {
   width: 100%;
@@ -405,7 +416,7 @@ xpopup
 
 .radios .field-wrap {
   padding: 10px;
-  border: solid 1px #E75858;
+  border-right: solid 2px #E75858;
   min-height: 150px; }
 
 .forms .radios label:not(label[for=radio]) {
@@ -420,6 +431,10 @@ xpopup
   width: 20px;
   height: 20px; }
 
+#developerSelect {
+  height: 100px;
+  overflow-y: scroll; }
+
 /*SIGN IN PAGE*/
 #signin {
   display: flex;
@@ -431,6 +446,22 @@ xpopup
     font-size: 36px;
     color: #3C4A54;
     text-align: center; }
+
+/*TICKET PAGE*/
+#tickets h1 {
+  font-size: 48px;
+  color: #E75858;
+  padding-left: 50px;
+  letter-spacing: 10px;
+  font-family: "Titillium Web", sans-serif;
+  text-transform: uppercase; }
+
+.ticket {
+  width: 100%;
+  padding-left: 75px; }
+
+.ticket .button-wrap .button {
+  font-size: 24px; }
 
 /*SIGN UP PAGE*/
 .forms {
@@ -488,7 +519,7 @@ xpopup
     text-transform: uppercase;
     letter-spacing: 5px;
     font-size: 48px; }
-  .forms label {
+  .forms label, .forms .rating-widget p {
     position: absolute;
     transform: translateY(6px);
     left: 13px;
@@ -497,9 +528,22 @@ xpopup
     -webkit-backface-visibility: hidden;
     pointer-events: none;
     font-size: 22px; }
-    .forms label .req {
+    .forms label .req, .forms .rating-widget p .req {
       margin: 2px;
       color: #E75858; }
+  .forms .rating-widget {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly; }
+  .forms .rating-widget p {
+    width: auto;
+    transform: none;
+    left: 2px;
+    font-size: 18px; }
   .forms label.active {
     transform: translateY(50px);
     left: 2px;
@@ -508,11 +552,13 @@ xpopup
       opacity: 0; }
   .forms label[for=textarea].active {
     transform: translateY(75px); }
-  .forms label[for=date], .forms label[for=radio] {
-    transform: translateY(-40px); }
+  .forms label[for=date], .forms label[for=radio], .forms label[for=select] {
+    transform: translateY(-35px);
+    font-size: 18px;
+    border-bottom: solid #E75858 2px; }
   .forms label.highlight {
     color: #FFFFFF; }
-  .forms input, .forms textarea {
+  .forms input, .forms textarea, .forms select {
     font-size: 22px;
     display: block;
     width: 100%;
@@ -524,16 +570,18 @@ xpopup
     color: #FFFFFF;
     border-radius: 0;
     transition: border-color .25s ease, box-shadow .25s ease; }
-    .forms input:focus, .forms textarea:focus {
+    .forms input:focus, .forms textarea:focus, .forms select:focus {
       outline: 0;
       border-color: #E75858; }
+  .forms select option {
+    background: #3C4A54; }
   .forms .radios {
     padding-top: 50px; }
   .forms textarea {
     border: 2px solid #EEEEEE; }
   .forms .field-wrap {
     position: relative;
-    margin-bottom: 40px; }
+    margin-bottom: 30px; }
   .forms .field-row:after {
     content: "";
     display: table;

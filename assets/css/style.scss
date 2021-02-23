@@ -303,7 +303,7 @@ xpopup
   transition-duration: 0.3s;
 }
 .cd-popup-container p {
-  padding: 3em 1em;
+  padding: 20px;
   font-size: 24px;
 }
 .cd-popup-container .cd-buttons:hover {cursor: pointer;}
@@ -397,12 +397,21 @@ xpopup
     height: 100vh;
     overflow-y: scroll;
     .ticket {width: 100%;}
+    .ticket .button-wrap {
+        width: 100%;
+        @include flexRow();
+        justify-content: space-evenly;
+    }
+    .ticket .button {
+        font-size: 18px;
+        max-width: 45%;
+    }
     .ticket i {
         color: $darkgray;
         font-size: 24px;
     }
-    .ticket i.highlight {color: $red;}
 }
+#search-results .ticket i.highlight, .forms .rating-stars ul > li.star i.highlight, .ticket i.highlight{color: $red;}
 .radio-row {
     width: 100%;
     height: auto;
@@ -412,7 +421,7 @@ xpopup
 }
 .radios .field-wrap {
     padding: 10px;
-    border: solid 1px $red;
+    border-right: solid 2px $red;
     min-height: 150px;
 }
 .forms .radios label:not(label[for=radio]) {
@@ -427,6 +436,11 @@ xpopup
     width: 20px;
     height: 20px;
 }
+
+#developerSelect {
+    height: 100px;
+    overflow-y: scroll;
+}
 /*SIGN IN PAGE*/
 #signin {
     @include flexColumn;
@@ -436,6 +450,23 @@ xpopup
        color: $bluegray;
        text-align: center;
    }
+}
+
+/*TICKET PAGE*/
+#tickets h1 {
+    font-size: 48px;
+    color: $red;
+    padding-left: 50px;
+    letter-spacing: 10px;
+    font-family: $Ubuntu;
+    text-transform: uppercase;
+}
+.ticket {
+    width: 100%;
+    padding-left: 75px;
+}
+.ticket .button-wrap .button {
+    font-size: 24px;
 }
 /*SIGN UP PAGE*/
 
@@ -508,7 +539,7 @@ xpopup
     font-size: 48px;
   }
 
-  label {
+  label, .rating-widget p {
     position:absolute;
     transform:translateY(6px);
     left:13px;
@@ -522,6 +553,18 @@ xpopup
     	color:$red;
     }
   }
+  .rating-widget {
+      width: 100%;
+      height: 50px;
+      @include flexRow();
+      justify-content: space-evenly;
+  }
+  .rating-widget p {
+      width: auto;
+      transform: none;
+      left: 2px;
+      font-size: 18px;
+  }
 
   label.active {
     transform:translateY(50px);
@@ -532,13 +575,17 @@ xpopup
     }
   }
   label[for=textarea].active{transform:translateY(75px);}
-  label[for=date], label[for=radio]{transform:translateY(-40px);}
+  label[for=date], label[for=radio], label[for=select]{
+      transform:translateY(-35px);
+      font-size: 18px;
+      border-bottom: solid $red 2px;
+  }
 
   label.highlight {
   	color:$white;
   }
 
-  input, textarea {
+  input, textarea, select {
     font-size:22px;
     display:block;
     width:100%;
@@ -555,6 +602,7 @@ xpopup
   		border-color:$red;
     }
   }
+  select option {background: $bluegray;}
   .radios { padding-top: 50px;}
 
   textarea {
@@ -563,7 +611,7 @@ xpopup
 
   .field-wrap {
     position:relative;
-    margin-bottom:40px;
+    margin-bottom:30px;
   }
 
   .field-row {
