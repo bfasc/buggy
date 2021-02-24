@@ -116,6 +116,7 @@ function printSidebar($type, $current)
                         <a href='purchase'>Get Buggy</a>
                         <a href='more'>Learn More</a>
                         <a href='signin'>Sign In</a>
+                        <a href='signup'>Sign Up</a>
                     </section>
                     <section id='side-info'>
                         <img src='assets/img/LOGO_FOOTER.png'>
@@ -441,46 +442,48 @@ function getCompanyInfo($companyID, $column)
       * Parameters: projectID (project ID), column (db column to grab)
       * Return Value: project info
       */
-     function getProjectInfo($projectID, $column) {
-         try {
-             $db = db_connect();
-             $values = [$projectID];
+function getProjectInfo($projectID, $column)
+{
+    try {
+        $db = db_connect();
+        $values = [$projectID];
 
-             $sql = "SELECT $column FROM projectinfo WHERE id = ?";
-             $stmt = $db->prepare($sql);
-             $stmt->execute($values);
-             $result = $stmt->fetchColumn();
-             return $result;
-         } catch (Exception $e) {
-             return NULL;
-         } finally {
-             $db = NULL;
-         }
-     }
+        $sql = "SELECT $column FROM projectinfo WHERE id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
+        $result = $stmt->fetchColumn();
+        return $result;
+    } catch (Exception $e) {
+        return NULL;
+    } finally {
+        $db = NULL;
+    }
+}
 
-     /* Function Name: getTicketInfo
+/* Function Name: getTicketInfo
       * Description: get ticket info belonging to the corresponding ticket ID
       * Parameters: ticketID (ticket ID), column (db column to grab)
       * Return Value: ticket info
       */
-     function getTicketInfo($ticketID, $column) {
-         try {
-             $db = db_connect();
-             $values = [$ticketID];
+function getTicketInfo($ticketID, $column)
+{
+    try {
+        $db = db_connect();
+        $values = [$ticketID];
 
-             $sql = "SELECT $column FROM ticketinfo WHERE id = ?";
-             $stmt = $db->prepare($sql);
-             $stmt->execute($values);
-             $result = $stmt->fetchColumn();
-             return $result;
-         } catch (Exception $e) {
-             return NULL;
-         } finally {
-             $db = NULL;
-         }
-     }
+        $sql = "SELECT $column FROM ticketinfo WHERE id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
+        $result = $stmt->fetchColumn();
+        return $result;
+    } catch (Exception $e) {
+        return NULL;
+    } finally {
+        $db = NULL;
+    }
+}
 
-     /* Function Name: getBugreportInfo
+/* Function Name: getBugreportInfo
       * Description: get bug report info belonging to the corresponding bug report id
       * Parameters: reportID (project ID), column (db column to grab)
       * Return Value: report info
@@ -508,24 +511,25 @@ function getBugReportInfo($reportID, $column)
       * Parameters: userID (int, user id)
       * Return Value: account type associated (string)
       */
-     function getAccountType($userID) {
-         try {
-             $db = db_connect();
-             $values = [$userID];
+function getAccountType($userID)
+{
+    try {
+        $db = db_connect();
+        $values = [$userID];
 
-             $sql = "SELECT accountType FROM userinfo WHERE id = ?";
-             $stmt = $db->prepare($sql);
-             $stmt->execute($values);
-             $result = $stmt->fetchColumn();
-             return $result;
-         } catch (Exception $e) {
-             return NULL;
-         } finally {
-             $db = NULL;
-         }
-     }
+        $sql = "SELECT accountType FROM userinfo WHERE id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
+        $result = $stmt->fetchColumn();
+        return $result;
+    } catch (Exception $e) {
+        return NULL;
+    } finally {
+        $db = NULL;
+    }
+}
 
-     /* Function Name: getAllProjects
+/* Function Name: getAllProjects
       * Description: get all projects assigned to management account
       * Parameters: userID (int, user id)
       * Return Value: array with all project IDs
