@@ -55,6 +55,15 @@
             var id = $(this).attr('id');
             $('.cd-popup-container').load('scripts/editForm.php?id='+id);
         });
+        $('.delete').click(function(){
+            var id = $(this).attr('id');
+            $('.cd-popup-container').html("<p>Are you sure you want to delete this ticket?</p>"+
+            "<ul class='cd-buttons'>"+
+                "<li onclick=\"deleteTicket("+id+")\"><a>Delete</a></li>"+
+                "<li onclick=\"closePopup()\"><a>Cancel</a></li>"+
+            "</ul>"+
+            "<a class='cd-popup-close img-replace'></a>");
+        });
         function closePopup(){
             $('.cd-popup').removeClass('is-visible');
         }
@@ -79,6 +88,18 @@
                 type: 'post',
                 dataType: 'JSON',
                 data: {"id": ticketID, "name": title, "description": description, "priority": priority, "developers": developerList, "progress": progress},
+                success: function(response) {
+                    closePopup();
+                    window.location.href = "";
+                }
+            });
+        }
+        function deleteTicket(ticketID) {
+            $.ajax({
+                url: 'scripts/deleteTicket.php',
+                type: 'post',
+                dataType: 'JSON',
+                data: {"id": ticketID},
                 success: function(response) {
                     closePopup();
                     window.location.href = "";
