@@ -91,8 +91,11 @@ function fetchTickets($userID, $progress) {
                 <div class='button-wrap'><a href='ticket?$id' class='button'>View Ticket Page</a>
                 ";
 
-            if(getUserInfo($userID, "accountType") == "management")
+            if(getUserInfo($userID, "accountType") == "management") {
                 $response .= "<a class='button edit cd-popup-trigger' id='$id' class='button'>Edit</a>";
+                $response .= "<a class='button delete cd-popup-trigger' id='$id' class='button'>Delete</a>";
+            }
+
             $response .= "</div></div>";
         }
         print $response;
