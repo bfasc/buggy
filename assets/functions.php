@@ -144,7 +144,7 @@ function printSidebar($type, $current)
                 <section id='nav'>
                     <a href='tickets'>Your Tickets</a>
                     <a href='projects'>Your Projects</a>
-                    <a href='search'>Search All Tickets</a>
+                    <a href='search'>Search Tickets</a>
                     <a href='accountmanagement'>Manage Account</a>
                     <a href='companymanagement'>Manage Company</a>
                     <a href='employeemanagement'>Manage Employees</a>

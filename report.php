@@ -1,53 +1,69 @@
 <?php
-    //TODO: ADD JS VALIDATION
-    REQUIRE_ONCE 'assets/functions.php';
-    REQUIRE_ONCE 'php-files/report.php';
-
-    // GET COMPANY INFO FROM GET VAR
-    $response = NULL;
-    $responseDetails = NULL;
-    $companyInfo = [];
-    $projectName = "";
-
-    if(isset($_GET['project']) && !empty($_GET['project'])) {
-        $companyCode = substr($_GET['project'], 0, 10);
-        $projectID = substr($_GET['project'], 10);
-        $companyInfo = getCompanyReportInfo($companyCode, $projectID);
-        if($companyInfo) {
-            $companyName = $companyInfo['companyName'];
-            $companyID = $companyInfo['companyID'];
-            $projectName = $companyInfo['projectName'];
-            $projectID = $companyInfo['projectID'];
-        } else {
-            $response = "There was an error fetching this company's information! Please contact the developer directly.";
-        }
-    } else {
-        $response = "Broken Link! Please contact the developer directly.";
-    }
+//TODO: ADD JS VALIDATION
+require_once 'assets/functions.php';
+require_once 'php-files/report.php';
+// Databse connection
+require_once 'assets/dbconnect.php';
 
 
-    //PROCESS FORM DATA
+// GET COMPANY INFO FROM GET VAR
+$response = NULL;
+$responseDetails = NULL;
+$companyInfo = [];
+//$projectName = "";
 
-    if(isset($_POST['email']) && !empty($_POST['email'])) {
-        if(addBugReport($_POST['firstName'], $_POST['lastName'], $projectID, $_POST['email'], $_POST['details'])) {
 
-            //send email to reporter
-            $subject = "Your recent bug submission for $companyName&#39;s project $projectName";
-            $content = "Thank you for your bug submission. We have sent it
+
+// if(isset($_GET['project']) && !empty($_GET['project'])) {
+//     $companyCode = substr($_GET['project'], 0, 10);
+//     $projectID = substr($_GET['project'], 10);
+//     $companyInfo = getCompanyReportInfo($companyCode, $projectID);
+//     if($companyInfo) {
+//         $companyName = $companyInfo['companyName'];
+//         $companyID = $companyInfo['companyID'];
+//         $projectName = $companyInfo['projectName'];
+//         $projectID = $companyInfo['projectID'];
+//     } else {
+//         $response = "There was an error fetching this company's information! Please contact the developer directly.";
+//     }
+// } else {
+//     $response = "Broken Link! Please contact the developer directly.";
+// }
+
+
+//PROCESS FORM DATA
+
+if (isset($_POST['email']) && !empty($_POST['email'])) {
+    $projectName = $_POST['projectName'];
+    $db = db_connect();
+    $values = [$projectName];
+    $query = "SELECT id FROM projectinfo WHERE projectName = ?";
+    $state = $db->prepare($query);
+    $state->execute($values);
+    $result = $state->fetchColumn();
+
+    $associatedprojectID = $result;
+
+    if (addBugReport($_POST['firstName'], $_POST['lastName'], $associatedprojectID, $_POST['email'], $_POST['details'])) {
+        //$projectID - goes where the  post project name is
+        //send email to reporter
+        // $subject = "Your recent bug submission for $companyName&#39;s project $projectName";
+        $subject = "Your recent bug submission for project $projectName";
+        $content = "Thank you for your bug submission. We have sent it
             to the developers, and you will be notified when there&#39;s an update.";
-            sendEmail($subject, $_POST['email'], "project-buggy@trustifi.com", $content);
+        sendEmail($subject, $_POST['email'], "project-buggy@trustifi.com", $content);
 
-            $response = "Thank you for submitting your bug.";
-            $responseDetails = "A confirmation email has been sent to the email you
-            provided. We have also forwarded this information to the lead developer at
-            $companyName. A representative from their company was given your
-            email address to inform you of the ticket progress.";
-        } else {
-            $response = "There was an error submitting your bug report into our database.";
-        }
+        $response = "Thank you for submitting your bug.";
+        $responseDetails = "A confirmation email has been sent to the email you
+            provided."; // We have also forwarded this information to the lead developer at
+        // $companyName. A representative from their company was given your
+        // email address to inform you of the ticket progress.";
+    } else {
+        $response = "There was an error submitting your bug report into our database.";
     }
+}
 
-    printHead("Report a bug for $projectName | Buggy - Let's Code Together");
+printHead("Report a bug for $projectName | Buggy - Let's Code Together");
 ?>
 
 <body>
@@ -55,58 +71,88 @@
     <div class="main">
         <section id="developer">
             <?php
-                //IF ERROR FETCHING COMPANY INFO
-                if($response != NULL) {
-                    print("<h2>$response</h2>");
-                    if($responseDetails != NULL)
-                        print("<p>$responseDetails</p>");
-                }
-                else {
+            //IF ERROR FETCHING COMPANY INFO
+            if ($response != NULL) {
+                print("<h2>$response</h2>");
+                if ($responseDetails != NULL)
+                    print("<p>$responseDetails</p>");
+            } else {
             ?>
 
 
-            <div class="forms">
-                <h1>Report A Bug</h1>
-                <p>Report a bug for <?php print $projectName; ?></p>
-                <div id="signin">
-                    <form id="signup" method="post" action="" autocomplete="off">
-                        <div class="tab-content">
-                            <div class="field-row">
-                                <div class="field-wrap">
-                                    <label>
-                                        First Name<span class="req">*</span>
-                                    </label>
-                                    <input type="text" name="firstName" required>
+                <div class="forms">
+                    <h1>Report A Bug</h1>
+                    <!-- <p>Report a bug for <?php print $projectName; ?></p> -->
+                    <!-- <label>Project Name<span class="req">*</span></label> -->
+                    <!-- <select name="projectName" id="projectName">
+                        <?php
+                        $db = db_connect();
+                        //$values = [$projectID];
+                        $sql = "SELECT projectName FROM projectinfo";
+                        $stmt = $db->prepare($sql);
+                        $stmt->execute();
+                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($result as $row) {
+                            print("
+                            <option value='" . $row['projectName'] . "'>" . $row['projectName'] . "</option>
+                            ");
+                        } ?>
+                    </select> -->
+                    <div id="signin">
+                        <form id="signup" method="post" action="" autocomplete="off">
+                            <div class="tab-content">
+                                <div class="field-row">
+                                    <select name="projectName" id="projectName">
+                                        <?php
+                                        $db = db_connect();
+                                        //$values = [$projectID];
+                                        $sql = "SELECT projectName FROM projectinfo";
+                                        $stmt = $db->prepare($sql);
+                                        $stmt->execute();
+                                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                        foreach ($result as $row) {
+                                            print("
+                            <option value='" . $row['projectName'] . "'>" . $row['projectName'] . "</option>
+                            ");
+                                        } ?>
+                                    </select>
+                                    <div class="field-wrap">
+                                        <label>
+                                            First Name<span class="req">*</span>
+                                        </label>
+                                        <input type="text" name="firstName" required>
+                                    </div>
+                                    <div class="field-wrap">
+                                        <label>
+                                            Last Name<span class="req">*</span>
+                                        </label>
+                                        <input type="text" name="lastName" required>
+                                    </div>
                                 </div>
                                 <div class="field-wrap">
                                     <label>
-                                        Last Name<span class="req">*</span>
+                                        Email<span class="req">*</span>
                                     </label>
-                                    <input type="text" name="lastName" required>
+                                    <input type="email" name="email" required>
                                 </div>
+                                <div class="field-wrap">
+                                    <label>
+                                        Description of Bug<span class="req">*</span>
+                                    </label>
+                                    <textarea name="details" required></textarea>
+                                </div>
+                                <input type="submit" class="button button-block" value="Submit Bug">
                             </div>
-                            <div class="field-wrap">
-                                <label>
-                                    Email<span class="req">*</span>
-                                </label>
-                                <input type="email" name="email" required>
-                            </div>
-                            <div class="field-wrap">
-                                <label>
-                                    Description of Bug<span class="req">*</span>
-                                </label>
-                                <textarea name="details" required></textarea>
-                            </div>
-                            <input type="submit" class="button button-block" value="Submit Bug">
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            </form>
+                </form>
         </section>
-        <?php } //END ELSE STMT FOR ERROR FETCHING COMPANY INFO ?>
+    <?php } //END ELSE STMT FOR ERROR FETCHING COMPANY INFO 
+    ?>
 
     </div>
     <?php printFooter("report"); ?>
 </body>
+
 </html>
