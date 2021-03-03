@@ -133,7 +133,6 @@ function printSidebar($type, $current)
                     <a href='accountmanagement'>Manage Account</a>
                     <a href='notifications'>Notifications</a>
                     <a href='signout'>Sign Out</a>
-                    <a href='report'>Report Bug</a>
                 </section>
                 <section id='side-info'>
                     <img src='assets/img/LOGO_FOOTER.png'>
@@ -152,7 +151,6 @@ function printSidebar($type, $current)
                     <a href='approval'>Bug Approval</a>
                     <a href='notifications'>Notifications</a>
                     <a href='signout'>Sign Out</a>
-                    <a href='report'>Report Bug</a>
                 </section>
                 <section id='side-info'>
                     <img src='assets/img/LOGO_FOOTER.png'>
