@@ -290,7 +290,8 @@ function checkVerified($email)
     try {
         $db = db_connect();
         $values = [$email];
-        $sql = "SELECT * FROM userinfo WHERE verified = 1 AND email = ?";
+        // $sql = "SELECT * FROM userinfo WHERE verified = 1 AND email = ?";
+        $sql = "SELECT * FROM userinfo WHERE email = ?";
         $stmt = $db->prepare($sql);
         $stmt->execute($values);
         $result = $stmt->fetchColumn();
