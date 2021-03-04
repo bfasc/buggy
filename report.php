@@ -148,10 +148,40 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
                 </div>
                 </form>
         </section>
-    <?php } //END ELSE STMT FOR ERROR FETCHING COMPANY INFO 
+    <?php } //END ELSE STMT FOR ERROR FETCHING COMPANY INFO
     ?>
 
     </div>
+    <script>
+    //form js
+    $('.forms').find('input, textarea').on('keyup blur focus', function (e) {
+      var $this = $(this),
+          label = $this.prev('label');
+
+          if (e.type === 'keyup') {
+                if ($this.val() === '') {
+              label.removeClass('active highlight');
+            } else {
+              label.addClass('active highlight');
+            }
+        } else if (e.type === 'blur') {
+            if( $this.val() === '' ) {
+                label.removeClass('active highlight');
+                } else {
+                label.removeClass('highlight');
+                }
+        } else if (e.type === 'focus') {
+
+          if( $this.val() === '' ) {
+                label.removeClass('highlight');
+                }
+          else if( $this.val() !== '' ) {
+                label.addClass('highlight');
+                }
+        }
+
+    });
+    </script>
     <?php printFooter("report"); ?>
 </body>
 
