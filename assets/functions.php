@@ -250,9 +250,9 @@ function sendEmail($subject, $to, $from, $content)
     $err = curl_error($curl);
     curl_close($curl);
     if ($err) {
-        echo "cURL Error #:" . $err;
+        //echo "cURL Error #:" . $err;
     } else {
-        echo $response;
+        //echo $response;
     }
 }
 
