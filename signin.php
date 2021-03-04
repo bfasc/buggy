@@ -13,12 +13,16 @@
                     if($loginInfo == "notPurchased") { //management account needs to purchase for compnay
                         $response = "You still need to purchase a Buggy Plan in order to sign in on this account. Purchase one <a href='purchase'>Here</a>!";
                     } else {
-                        $_SESSION['userID'] = $loginInfo['id'];
-                        $_SESSION['accountType'] = $loginInfo['accountType'];
-                        if($loginInfo['accountType'] == "developer" || $loginInfo['accountType'] == "management") {
-                            header ("Location: tickets");
-                            exit ();
-                        } else {$response = "error in account type";}
+                        if(!checkPassReset($_POST['email'])) { //password needs changed, +180 days after last change
+                            $response = "Your password has not been changed in the past 180 days. <form action='resetpassword' method='post'><input type='hidden' value='" . $_POST['email'] . "' name='email'><input type='submit' value='Click Here'> to change it.</form>";
+                        } else {
+                            $_SESSION['userID'] = $loginInfo['id'];
+                            $_SESSION['accountType'] = $loginInfo['accountType'];
+                            if($loginInfo['accountType'] == "developer" || $loginInfo['accountType'] == "management") {
+                                header ("Location: tickets");
+                                exit ();
+                            } else {$response = "error in account type";}
+                        }
                     }
 
                 } else {

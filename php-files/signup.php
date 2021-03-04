@@ -15,9 +15,10 @@ function createDevUser($email, $firstName, $lastName, $password, $companyCode) {
             $lastName,
             getCompanyID($companyCode),
             "developer",
-            $hash
+            $hash,
+            date('Y-m-d')
         ];
-        $sql = "INSERT INTO userinfo (email, firstName, lastName, password, associatedCompany, accountType, verificationCode) VALUES (?, ?, ?, md5( '$password' ), ?, ?, ?)";
+        $sql = "INSERT INTO userinfo (email, firstName, lastName, password, associatedCompany, accountType, verificationCode, passLastChanged) VALUES (?, ?, ?, md5( '$password' ), ?, ?, ?, ?)";
         $stmt = $db->prepare($sql);
         $stmt->execute($values);
 
@@ -54,11 +55,12 @@ function createManUser($email, $firstName, $lastName, $password, $companyName, $
             $lastName,
             getCompanyID($companyCode),
             "management",
-            $hash
+            $hash,
+            date('Y-m-d')
         ];
         $sql = "INSERT
-        INTO userinfo (email, firstName, lastName, password, associatedCompany, accountType, verificationCode)
-        VALUES (?, ?, ?, md5( '$password' ), ?, ?, ?)";
+        INTO userinfo (email, firstName, lastName, password, associatedCompany, accountType, verificationCode, passLastChanged)
+        VALUES (?, ?, ?, md5( '$password' ), ?, ?, ?, ?)";
         $stmt = $db->prepare($sql);
         $stmt->execute($values);
 
