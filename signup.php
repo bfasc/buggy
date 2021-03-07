@@ -49,7 +49,7 @@
         else {
             if($success) {
                 ?>
-                <h1>Thank you for creating your accountt!</h1>
+                <h1>Thank you for creating your account!</h1>
                 <p>An email has been sent to you with a verification link for you to click. Once you click
                     on that link, you will be able to log in to your Buggy account.</p>
 
