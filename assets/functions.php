@@ -225,35 +225,11 @@ function printFooter($type)
 function sendEmail($subject, $to, $from, $content)
 {
     //replace apos and quot with html code so it's parsed correctly
-    $content = str_replace("'", "", $content);
-    $content = str_replace('"', "", $content);
-
-
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-        CURLOPT_URL =>  "https://be.trustifi.com/api/i/v1/email",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "{\"recipients\":[{\"email\":\"$to\"}],\"title\":\"$subject\",\"html\":\"$content\"}",
-        CURLOPT_HTTPHEADER => array(
-            "x-trustifi-key: " . "fff5a5665045679658eb6fb15d4f4310c663a2c4cec5b848",
-            "x-trustifi-secret: " . "0d2c56496d8da831621cd31d3e663953",
-            "content-type: application/json"
-        )
-    ));
-    $response = curl_exec($curl);
-    $err = curl_error($curl);
-    curl_close($curl);
-    if ($err) {
-        //echo "cURL Error #:" . $err;
-    } else {
-        //echo $response;
-    }
+    // $content = str_replace("'", "", $content);
+    // $content = str_replace('"', "", $content);
+    $headers = "From:noreply@projectbuggy.tk" . "\r\n";
+    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+    mail($to, $subject, $message, $headers);
 }
 
 /* Function Name: emailExists
