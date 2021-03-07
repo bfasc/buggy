@@ -63,8 +63,8 @@
                     $response .= ">In Progress</option>";
 
                     $response .= "<option id='needsReview' ";
-                    if($progress == 'Needs Review') $response .= "selected";
-                    $response .= ">Needs Review</option>";
+                    if($progress == 'Review') $response .= "selected";
+                    $response .= ">Review</option>";
 
                     $response .= "<option id='needsRevisions' ";
                     if($progress == 'Needs Revisions') $response .= "selected";
