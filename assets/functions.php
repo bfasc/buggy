@@ -229,7 +229,7 @@ function sendEmail($subject, $to, $from, $content)
     // $content = str_replace('"', "", $content);
     $headers = "From:noreply@projectbuggy.tk" . "\r\n";
     $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-    mail($to, $subject, $message, $headers);
+    mail($to, $subject, $content, $headers);
 }
 
 /* Function Name: emailExists
