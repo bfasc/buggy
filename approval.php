@@ -154,7 +154,7 @@
             "<a class='cd-popup-close img-replace'></a>");
         }
         function deleteBug(id, reason, deletebug) {
-            console.log("Hello");
+            console.log("Helloo");
             $.ajax({
                 url: 'scripts/denyBug.php',
                 type: 'post',
