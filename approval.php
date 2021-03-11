@@ -145,17 +145,27 @@
         }
         function denyBug(id){
             var reason = document.getElementById('rejectionreason').value;
+
+            $('.cd-popup-container').html("<p>Would you like to permanently delete this bug report?</p>"+
+            "<ul class='cd-buttons'>"+
+                "<li onclick=\"deleteBug("+id+", "+reason+", "+true+")\"><a>Yes</a></li>"+
+                "<li onclick=\"deleteBug("+id+", "+reason+", "+false+")\"><a>No</a></li>"+
+            "</ul>"+
+            "<a class='cd-popup-close img-replace'></a>");
+        }
+        function deleteBug(id, reason, deletebug) {
             $.ajax({
                 url: 'scripts/denyBug.php',
                 type: 'post',
                 dataType: 'JSON',
-                data: {"id": id, "reason": reason},
+                data: {"id": id, "reason": reason, "deletebug": deletebug},
                 success: function(response) {
                     closePopup();
                     window.location.href = "";
                 }
             });
         }
+
         $('.approve').click(function(){
             var id = $(this).attr('id');
             $('.cd-popup-container').html("<p>Fill out the following fields to create a ticket for this bug.</p>"+
