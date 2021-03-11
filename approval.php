@@ -148,8 +148,8 @@
 
             $('.cd-popup-container').html("<p>Would you like to permanently delete this bug report?</p>"+
             "<ul class='cd-buttons'>"+
-                "<li onclick=\"deleteBug("+id+", "+reason+", "+true+")\"><a>Yes</a></li>"+
-                "<li onclick=\"deleteBug("+id+", "+reason+", "+false+")\"><a>No</a></li>"+
+                "<li onclick=\"deleteBug("+id+", '"+reason+"', "+true+")\"><a>Yes</a></li>"+
+                "<li onclick=\"deleteBug("+id+", '"+reason+"', "+false+")\"><a>No</a></li>"+
             "</ul>"+
             "<a class='cd-popup-close img-replace'></a>");
         }
