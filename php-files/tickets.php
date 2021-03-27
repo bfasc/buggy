@@ -16,7 +16,7 @@ function fetchTickets($userID, $progress) {
 
         $availableProjects = $assignedProjects;
 
-        //if manager, able to see all projects associated with company
+        //if manager, user can see all tickets under company
         if(getUserInfo($userID, "accountType") == "management") {
             $companyProjects = getAllProjects($userID);
             foreach($companyProjects as $projectID) {
@@ -26,7 +26,7 @@ function fetchTickets($userID, $progress) {
             $availableProjects = array_unique($availableProjects);
         }
 
-        //get array of all viewable projects
+        //set where statement to show all viewable projects
         $where = "";
         foreach($availableProjects as $key => $projectID) {
             $where .= "associatedProjectID = $projectID";
@@ -34,7 +34,7 @@ function fetchTickets($userID, $progress) {
                 $where .= " OR ";
         }
 
-        $sql = "SELECT * FROM ticketinfo WHERE status = $progress AND $where";
+        $sql = "SELECT * FROM ticketinfo WHERE (status = $progress) AND ($where)";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -42,9 +42,14 @@ function fetchTickets($userID, $progress) {
         //create array of all tickets assigned to you
         $yourTickets = [];
         foreach($results as $allTicket) {
-            $assignedDevelopers = $allTicket['assignedDevelopers'];
-            $assignedDevelopers = explode(",", $assignedDevelopers);
-            if(array_search($userID, $assignedDevelopers) !== FALSE) array_push($yourTickets, $allTicket);
+            if(getUserInfo($userID, "accountType") == "management") {
+                array_push($yourTickets, $allTicket);
+            } else {
+                $assignedDevelopers = $allTicket['assignedDevelopers'];
+                $assignedDevelopers = explode(",", $assignedDevelopers);
+                if(array_search($userID, $assignedDevelopers) !== FALSE) array_push($yourTickets, $allTicket);
+            }
+
         }
 
         $response = "";
