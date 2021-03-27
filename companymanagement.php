@@ -10,6 +10,7 @@ printHead("Search Tickets | Buggy - Let's Code Together");
     <div class="main">
         <?php printHeader($_SESSION['userID']);
         ?>
+        <a href="companyreports">Generate Reports</a>
     </div>
 
     <?php printFooter("basic"); ?>
