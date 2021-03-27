@@ -659,8 +659,55 @@ xpopup
     text-align:right;
   }
 }
-
-
+/* REPORT TABLES */
+h1.reports {
+    font-size: 48px;
+    color: $red;
+    text-align: center;
+    letter-spacing: 10px;
+    font-family: $Ubuntu;
+    text-transform: uppercase;
+}
+table.reports {
+    width: 80%;
+    margin: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    color: $darkgray;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    margin-bottom: 75px;
+    th {
+        text-align: left;
+        font-family: $TitilliumWeb;
+        text-transform: uppercase;
+        padding: 12px 15px;
+        background-color: $red;
+        color: $white;
+        font-size: 32px;
+    }
+    th:first-of-type {
+        border-top-left-radius: 25px;
+    }
+    th:last-of-type {
+        border-top-right-radius: 25px;
+    }
+    td {
+        font-family: $Ubuntu;
+        padding: 12px 15px;
+        font-size: 22px;
+    }
+    td.descriptor {
+        text-transform: uppercase;
+        font-family: $PTSans;
+        font-size: 28px;
+        color: $bluegray;
+    }
+    tr:nth-of-type(even) {background: $lightgray;}
+    tr:nth-of-type(odd) {background: $white;}
+    tr:last-of-type {
+        border-bottom: solid $red 5px;
+    }
+}
 
 /*SPLASH PAGE*/
 #splash header {

@@ -614,6 +614,51 @@ xpopup
     margin-top: -20px;
     text-align: right; }
 
+/* REPORT TABLES */
+h1.reports {
+  font-size: 48px;
+  color: #E75858;
+  text-align: center;
+  letter-spacing: 10px;
+  font-family: "Titillium Web", sans-serif;
+  text-transform: uppercase; }
+
+table.reports {
+  width: 80%;
+  margin: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  color: #2A2A2A;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  margin-bottom: 75px; }
+  table.reports th {
+    text-align: left;
+    font-family: "Ubuntu", sans-serif;
+    text-transform: uppercase;
+    padding: 12px 15px;
+    background-color: #E75858;
+    color: #FFFFFF;
+    font-size: 32px; }
+  table.reports th:first-of-type {
+    border-top-left-radius: 25px; }
+  table.reports th:last-of-type {
+    border-top-right-radius: 25px; }
+  table.reports td {
+    font-family: "Titillium Web", sans-serif;
+    padding: 12px 15px;
+    font-size: 22px; }
+  table.reports td.descriptor {
+    text-transform: uppercase;
+    font-family: "PT Sans", sans-serif;
+    font-size: 28px;
+    color: #3C4A54; }
+  table.reports tr:nth-of-type(even) {
+    background: #EEEEEE; }
+  table.reports tr:nth-of-type(odd) {
+    background: #FFFFFF; }
+  table.reports tr:last-of-type {
+    border-bottom: solid #E75858 5px; }
+
 /*SPLASH PAGE*/
 #splash header {
   width: 100%;
