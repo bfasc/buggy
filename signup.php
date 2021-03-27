@@ -242,6 +242,7 @@
         </div> <!-- /form -->
 
 
+    <script src="scripts/forms.js"></script>
     <script>
         /*Developer/Management Account Panel Script*/
         $(document).ready(function(){
@@ -258,34 +259,6 @@
                 $('#developer').hide();
                 $('#management').show();
             }
-        });
-
-        $('.forms').find('input, textarea').on('keyup blur focus', function (e) {
-          var $this = $(this),
-              label = $this.prev('label');
-
-        	  if (e.type === 'keyup') {
-        			if ($this.val() === '') {
-                  label.removeClass('active highlight');
-                } else {
-                  label.addClass('active highlight');
-                }
-            } else if (e.type === 'blur') {
-            	if( $this.val() === '' ) {
-            		label.removeClass('active highlight');
-        			} else {
-        		    label.removeClass('highlight');
-        			}
-            } else if (e.type === 'focus') {
-
-              if( $this.val() === '' ) {
-            		label.removeClass('highlight');
-        			}
-              else if( $this.val() !== '' ) {
-        		    label.addClass('highlight');
-        			}
-            }
-
         });
 
         $('.tab a').on('click', function (e) {

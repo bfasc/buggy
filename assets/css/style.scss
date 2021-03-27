@@ -659,6 +659,72 @@ xpopup
     text-align:right;
   }
 }
+
+/*PROJECT PAGES */
+.forms #project {
+    .field-row {
+        margin-bottom: 50px;
+    }
+}
+.main#projects {
+    @include flexRow;
+    h1 {
+        font-size: 48px;
+        width: 100%;
+        color: $red;
+        text-align: center;
+        letter-spacing: 10px;
+        font-family: $Ubuntu;
+        text-transform: uppercase;
+    }
+}
+
+.project {
+    width: 100%;
+    @include flexRow;
+    justify-content: flex-start;
+    padding: 20px;
+    padding-left: 75px;
+    img {
+        width: 300px;
+        height: 300px;
+    }
+    .info {
+        width: 60%;
+        height: 300px;
+        @include flexColumn;
+        justify-content: flex-end;
+        h2, h3 {
+            width: 100%;
+            font-family: $PTSans;
+            font-size: 48px;
+            color: $red;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 10px 75px;
+            letter-spacing: 5px;
+        }
+        h3 {
+            color: $darkgray;
+            font-size: 42px;
+            letter-spacing: 2px;
+        }
+    }
+    p {
+        font-size: 26px;
+        text-align: left;
+        color: $darkgray;
+        width: 40%;
+        font-family: $Ubuntu;
+    }
+
+    .button {
+        width: 30%;
+        font-size: 22px;
+        text-align: center;
+    }
+}
+.project:nth-of-type(even) {background: darken($lightgray, 15%);}
 /* REPORT TABLES */
 h1.reports {
     font-size: 48px;

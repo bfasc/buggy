@@ -7,7 +7,7 @@ function getTotalTickets($element)
     try {
         $db = db_connect();
         $totalTickets = 0;
-        $sql = "SELECT * FROM ticketinfo WHERE associatedProjectID = $element[id]";
+        $sql = "SELECT * FROM ticketinfo WHERE associatedProjectID = $element";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -29,7 +29,7 @@ function getTotalOpenTickets($element)
     try {
         $db = db_connect();
         $totalOpenTickets = 0;
-        $sql = "SELECT status FROM ticketinfo WHERE associatedProjectID = $element[id]";
+        $sql = "SELECT status FROM ticketinfo WHERE associatedProjectID = $element";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -53,7 +53,7 @@ function getTotalUnapprovedTickets($element)
     try {
         $db = db_connect();
         $totalUnapprovedTickets = 0;
-        $sql = "SELECT approval FROM bugreportinfo WHERE associatedProjectID = $element[id]";
+        $sql = "SELECT approval FROM bugreportinfo WHERE associatedProjectID = $element";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -77,7 +77,7 @@ function getTotalCompletedTickets($element)
     try {
         $db = db_connect();
         $totalCompletedTickets = 0;
-        $sql = "SELECT status FROM ticketinfo WHERE associatedProjectID = $element[id]";
+        $sql = "SELECT status FROM ticketinfo WHERE associatedProjectID = $element";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -101,7 +101,7 @@ function getEmployeeProjectArray($element, $companyID, &$projectArray)
 {
     try {
         $db = db_connect();
-        $sql = "SELECT assignedProjects FROM userinfo WHERE associatedCompany = $companyID AND accountType = 'developer' AND assignedProjects = $element[id]";
+        $sql = "SELECT assignedProjects FROM userinfo WHERE associatedCompany = $companyID AND accountType = 'developer' AND assignedProjects = $element";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -124,7 +124,7 @@ function getEmployeeProjectArray($element, $companyID, &$projectArray)
  */
 function getTotalEmployees($projectArray, $element)
 {
-    $x = (int)"$element[id]";
+    $x = (int)"$element";
     $totalEmployees = 0;
     foreach ($projectArray as $p) {
         if ($p === $x) {

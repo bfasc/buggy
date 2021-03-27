@@ -16,7 +16,7 @@
                 <?php
                 $projectArray = getAllProjects($_SESSION['userID']);
                 foreach($projectArray as $row) {
-                    listBugs($row['id']);
+                    listBugs($row);
                 }
                 ?>
             </section>

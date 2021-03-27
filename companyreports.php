@@ -20,7 +20,7 @@ printHead("Company Reports | Buggy - Let's Code Together");
         $companyID = getUserInfo($_SESSION['userID'], "associatedCompany");
         $projects = getAllProjects($_SESSION['userID']);
         foreach ($projects as $element) {
-            $data[$totalProjects]["projectID"] = $element['id'];
+            $data[$totalProjects]["projectID"] = $element;
             $data[$totalProjects]["totalTickets"] = getTotalTickets($element);
             $data[$totalProjects]["openTickets"] = getTotalOpenTickets($element);
             $data[$totalProjects]["unapprovedTickets"] = getTotalUnapprovedTickets($element);

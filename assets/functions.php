@@ -508,7 +508,7 @@ function getAccountType($userID)
 }
 
 /* Function Name: getAllProjects
-      * Description: get all projects assigned to management account
+      * Description: get all projects assigned to account
       * Parameters: userID (int, user id)
       * Return Value: array with all project IDs
       */
@@ -516,13 +516,31 @@ function getAllProjects($userID)
 {
     try {
         $db = db_connect();
-        $companyID = getUserInfo($userID, "associatedCompany");
-        $values = [$companyID];
 
-        $sql = "SELECT id FROM projectinfo WHERE associatedCompany = ?";
-        $stmt = $db->prepare($sql);
-        $stmt->execute($values);
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if(getAccountType($userID) == "management") {
+            $companyID = getUserInfo($userID, "associatedCompany");
+            $values = [$companyID];
+
+            $sql = "SELECT id FROM projectinfo WHERE associatedCompany = ?";
+            $stmt = $db->prepare($sql);
+            $stmt->execute($values);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $return = [];
+            foreach($result as $row) {
+                array_push($return, $row['id']);
+            }
+            return $return;
+        } else {
+            $values = [$userID];
+
+            $sql = "SELECT assignedProjects FROM userinfo WHERE id = ?";
+            $stmt = $db->prepare($sql);
+            $stmt->execute($values);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $result = explode(",", $result['assignedProjects']);
+        }
+
         return $result;
     } catch (Exception $e) {
         return [];

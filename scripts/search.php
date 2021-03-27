@@ -21,8 +21,7 @@
         //if manager, able to see all projects associated with company
         if(getUserInfo($_SESSION['userID'], "accountType") == "management") {
             $companyProjects = getAllProjects($_SESSION['userID']);
-            foreach($companyProjects as $project) {
-                $projectID = $project['id'];
+            foreach($companyProjects as $projectID) {
                 array_push($availableProjects, $projectID);
             }
             $availableProjects = array_unique($availableProjects);

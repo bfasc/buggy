@@ -19,8 +19,7 @@ function fetchTickets($userID, $progress) {
         //if manager, able to see all projects associated with company
         if(getUserInfo($userID, "accountType") == "management") {
             $companyProjects = getAllProjects($userID);
-            foreach($companyProjects as $project) {
-                $projectID = $project['id'];
+            foreach($companyProjects as $projectID) {
                 array_push($availableProjects, $projectID);
             }
             //remove any duplicates

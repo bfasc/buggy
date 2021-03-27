@@ -614,6 +614,71 @@ xpopup
     margin-top: -20px;
     text-align: right; }
 
+/*PROJECT PAGES */
+.forms #project .field-row {
+  margin-bottom: 50px; }
+
+.main#projects {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center; }
+  .main#projects h1 {
+    font-size: 48px;
+    width: 100%;
+    color: #E75858;
+    text-align: center;
+    letter-spacing: 10px;
+    font-family: "Titillium Web", sans-serif;
+    text-transform: uppercase; }
+
+.project {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  padding-left: 75px; }
+  .project img {
+    width: 300px;
+    height: 300px; }
+  .project .info {
+    width: 60%;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; }
+    .project .info h2, .project .info h3 {
+      width: 100%;
+      font-family: "PT Sans", sans-serif;
+      font-size: 48px;
+      color: #E75858;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin: 10px 75px;
+      letter-spacing: 5px; }
+    .project .info h3 {
+      color: #2A2A2A;
+      font-size: 42px;
+      letter-spacing: 2px; }
+  .project p {
+    font-size: 26px;
+    text-align: left;
+    color: #2A2A2A;
+    width: 40%;
+    font-family: "Titillium Web", sans-serif; }
+  .project .button {
+    width: 30%;
+    font-size: 22px;
+    text-align: center; }
+
+.project:nth-of-type(even) {
+  background: #c8c8c8; }
+
 /* REPORT TABLES */
 h1.reports {
   font-size: 48px;

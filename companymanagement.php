@@ -1,7 +1,7 @@
 <?php
 require_once 'assets/functions.php';
 require_once 'php-files/search.php';
-printHead("Search Tickets | Buggy - Let's Code Together");
+printHead("Manage Company | Buggy - Let's Code Together");
 ?>
 
 <body>
@@ -10,7 +10,7 @@ printHead("Search Tickets | Buggy - Let's Code Together");
     <div class="main">
         <?php printHeader($_SESSION['userID']);
         ?>
-        <a href="companyreports">Generate Reports</a>
+        <a href="companyreports" class="button">Generate Reports</a>
     </div>
 
     <?php printFooter("basic"); ?>
