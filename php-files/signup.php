@@ -23,7 +23,7 @@ function createDevUser($email, $firstName, $lastName, $password, $companyCode) {
         $stmt->execute($values);
 
         $subject = "Please verify your Buggy account";
-        $content = "Thank you for signing up for your Buggy account! Please click the link below to verify your account.<br><a href='http://project-buggy.herokuapp.com/verify?code=$hash&email=$email'>Click Here to verify your account</a>";
+        $content = "Thank you for signing up for your Buggy account! Please click the link below to verify your account.<br><a href='http://projectbuggy.tk/verify?code=$hash&email=$email'>Click Here to verify your account</a>";
 
         sendEmail($subject, $_POST['email'], "project-buggy@trustifi.com", $content);
         return TRUE;
@@ -73,7 +73,7 @@ function createManUser($email, $firstName, $lastName, $password, $companyName, $
         $stmt->execute($values);
 
         $subject = "Please verify your Buggy account";
-        $content = "Thank you for signing up for your Buggy account! Please click the link below to verify your account.<br><a href='http://wwww.https://project-buggy.herokuapp.com/verify?code=$hash&email=$email'>Click Here to verify your account</a>";
+        $content = "Thank you for signing up for your Buggy account! Please click the link below to verify your account.<br><a href='https://projectbuggy.tk/verify?code=$hash&email=$email'>Click Here to verify your account</a>";
 
         sendEmail($subject, $_POST['email'], "project-buggy@trustifi.com", $content);
         return TRUE;
