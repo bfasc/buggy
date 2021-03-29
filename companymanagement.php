@@ -10,6 +10,8 @@ printHead("Manage Company | Buggy - Let's Code Together");
     <div class="main">
         <?php printHeader($_SESSION['userID']);
         ?>
+        <h2>Want to invite an employee to work with your company in Buggy projects?</h2>
+        <p>Give your developer this link: <a>http://projectbuggy.tk/signup?companyCode=<?php echo getCompanyInfo(getUserInfo($_SESSION['userID'], "associatedCompany"), "companyCode"); ?></a> or this code: <a><?php echo getCompanyInfo(getUserInfo($_SESSION['userID'], "associatedCompany"), "companyCode"); ?></a> to fill in the signup form.</p>
         <a href="companyreports" class="button">Generate Reports</a>
     </div>
 

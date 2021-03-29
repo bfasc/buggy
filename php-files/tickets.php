@@ -12,9 +12,10 @@ function fetchTickets($userID, $progress) {
         else $progress = "'Not Started'";
         // get list of projects available to user
         $assignedProjects = getUserInfo($userID, "assignedProjects");
-        $assignedProjects = explode(",", $assignedProjects);
-
-        $availableProjects = $assignedProjects;
+        if($assignedProjects) {
+            $assignedProjects = explode(",", $assignedProjects);
+            $availableProjects = $assignedProjects;
+        } else $availableProjects = [];
 
         //if manager, user can see all tickets under company
         if(getUserInfo($userID, "accountType") == "management") {
@@ -28,13 +29,15 @@ function fetchTickets($userID, $progress) {
 
         //set where statement to show all viewable projects
         $where = "";
+
         foreach($availableProjects as $key => $projectID) {
             $where .= "associatedProjectID = $projectID";
             if($key != count($availableProjects)-1)
                 $where .= " OR ";
         }
 
-        $sql = "SELECT * FROM ticketinfo WHERE (status = $progress) AND ($where)";
+        $sql = "SELECT * FROM ticketinfo WHERE (status = $progress)";
+        if($availableProjects) $sql .= " AND ($where)";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -71,7 +71,7 @@ function printHeader($userID)
                     <img src='assets/img/LOGO_MAIN.png'>
                     <div>
                         <h2>Hello, $firstName</h2>
-                        <p>You have <a id='ticketnum'>$ticketNum</a> unfinished tickets.</p>
+                        <p>You have <a id='ticketnum'>" . getTicketNum($userID) . "</a> unfinished tickets.</p>
                     </div>
                 </header>
         ");
@@ -215,6 +215,42 @@ function printFooter($type)
             print("<a>Sorry, there was an error in the footer.</a>");
     }
     print("</footer>");
+}
+
+/* Function Name: getTicketNum
+     * Description: get current amount of assigned tickets
+     * Parameters: userID (int, user to be searched)
+     * Return Value: int, assigned tickets
+     */
+function getTicketNum($userID)
+{
+    try {
+        $db = db_connect();
+
+        //cycle through all possible projects
+        $projects = getAllProjects($userID);
+        $count = 0;
+        foreach($projects as $projectID) {
+            $values = [$projectID];
+            $sql = "SELECT assignedDevelopers FROM ticketinfo WHERE associatedProjectID = ?";
+            $stmt = $db->prepare($sql);
+            $stmt->execute($values);
+            $assignedDevelopers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach($assignedDevelopers as $ticket) {
+                if($ticket["assignedDevelopers"]) {
+                    $developerList = explode(",", $ticket["assignedDevelopers"]);
+                    //search array for user's ID
+                    if(array_search($userID, $developerList) !== FALSE) $count++;
+                }
+            }
+        }
+
+        return $count;
+    } catch (Exception $e) {
+        return FALSE;
+    } finally {
+        $db = NULL;
+    }
 }
 
 /* Function Name: sendEmail
@@ -537,11 +573,11 @@ function getAllProjects($userID)
             $stmt = $db->prepare($sql);
             $stmt->execute($values);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($result['assignedProjects']) $result = explode(",", $result['assignedProjects']);
+            else $result = [];
 
-            $result = explode(",", $result['assignedProjects']);
+            return $result;
         }
-
-        return $result;
     } catch (Exception $e) {
         return [];
     } finally {

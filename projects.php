@@ -11,11 +11,13 @@ printHead("Projects | Buggy - Let's Code Together");
 
         <?php printHeader($_SESSION['userID']); ?>
         <h1>Your Projects</h1>
-        <a href="createproject" class="button">Add a New Project</a>
+        <?php if(getUserInfo($_SESSION['userID'], "accountType") == "management") print("<a href=\"createproject\" class=\"button\">Add a New Project</a>"); ?>
         <?php
         $projectList = getAllProjects($_SESSION['userID']);
-
-        if($projectList == []) print("<h2>Create your first project.</h2>");
+        if($projectList == []) {
+            print("<h2>You currently have no assigned projects.</h2>");
+            if(getUserInfo($_SESSION['userID'], "accountType") == "management") print("<h2>Create your first project.</h2>");
+        }
         foreach($projectList as $projectID) {
             $projectName = getProjectInfo($projectID, "projectName");
             $projectIcon = getProjectInfo($projectID, "projectIcon");

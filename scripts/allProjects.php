@@ -4,8 +4,7 @@
 
     REQUIRE_ONCE "../assets/functions.php";
     try {
-        $assignedProjects = getUserInfo($userID, "assignedProjects");
-        $assignedProjects = explode(",", $assignedProjects);
+        $assignedProjects = getAllProjects($userID);
 
         $response = "";
         foreach($assignedProjects as $projectID) {
