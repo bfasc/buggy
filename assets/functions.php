@@ -202,7 +202,7 @@ function printFooter($type)
         case "report":
             print("
                     <div class='poweredby'>
-                        <p>This form is powered by <a href='https://www.projectbuggy.tk/'>Buggy</a>
+                        <p>This form is powered by <a href='https://projectbuggy.tk/'>Buggy</a>
                             </p>
                     </div>
                     <div class='logo report'>
