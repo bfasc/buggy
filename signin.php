@@ -2,7 +2,7 @@
     //TODO: ADD JS VALIDATION
     REQUIRE_ONCE 'assets/functions.php';
     REQUIRE_ONCE 'php-files/signin.php';
-    printHead("Sign In | Buggy - Let's Code Together");
+    printHead("Sign Innn | Buggy - Let's Code Together");
 
     $response = "";
     if(isset($_POST['email']) && !empty($_POST['email'])) {
