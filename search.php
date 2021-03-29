@@ -128,7 +128,8 @@ printHead("Search Tickets | Buggy - Let's Code Together");
                     "description": description,
                     "priority": priority,
                     "developers": developerList,
-                    "progress": progress
+                    "progress": progress,
+                    "type": "full"
                 },
                 success: function(response) {
                     closePopup();

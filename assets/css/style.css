@@ -242,6 +242,9 @@ header {
       font-weight: bold;
       display: inline-block; }
 
+.button:hover {
+  cursor: pointer; }
+
 /* --------------------------------
 
 xpopup
@@ -404,7 +407,7 @@ xpopup
     color: #2A2A2A;
     font-size: 24px; }
 
-#search-results .ticket i.highlight, .forms .rating-stars ul > li.star i.highlight, .ticket i.highlight {
+#search-results .ticket i.highlight, .forms .rating-stars ul > li.star i.highlight, .ticket i.highlight, #projects p i.highlight {
   color: #E75858; }
 
 .radio-row {
@@ -462,6 +465,27 @@ xpopup
 .ticket {
   width: 100%;
   padding-left: 75px; }
+  .ticket select {
+    font-size: 22px;
+    display: inline-block;
+    height: 100%;
+    padding: 5px 10px;
+    margin: 0 10px;
+    background: none;
+    background-image: none;
+    border: 1px solid #EEEEEE;
+    color: #E75858;
+    border-radius: 0;
+    transition: border-color .25s ease, box-shadow .25s ease; }
+    .ticket select:focus {
+      outline: 0;
+      border-color: #E75858; }
+  .ticket select option {
+    background: #3C4A54; }
+  .ticket .button.progressChange {
+    font-size: 22px;
+    padding: 5px 10px;
+    font-weight: bold; }
 
 .ticket .button-wrap .button {
   font-size: 24px; }
@@ -666,13 +690,13 @@ xpopup
       letter-spacing: 5px; }
     .project .info h3 {
       color: #2A2A2A;
-      font-size: 42px;
+      font-size: 36px;
       letter-spacing: 2px; }
   .project p {
     font-size: 26px;
     text-align: left;
     color: #2A2A2A;
-    width: 40%;
+    width: 25%;
     font-family: "Titillium Web", sans-serif; }
   .project .button {
     width: 30%;
@@ -793,8 +817,6 @@ table.reports {
     .bug .button-wrap .button, .ticket .button-wrap .button {
       width: 300px;
       text-align: center; }
-    .bug .button-wrap .button:hover, .ticket .button-wrap .button:hover {
-      cursor: pointer; }
 
 /* Rating Star Widgets Style */
 .rating-widget p {

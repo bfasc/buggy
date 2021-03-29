@@ -55,6 +55,20 @@
             var id = $(this).attr('id');
             $('.cd-popup-container').load('scripts/editForm.php?id='+id);
         });
+        $('.progressChange').click(function(){
+            var id = $(this).attr('id');
+            var progress = document.getElementById('progress').value;
+
+            $.ajax({
+                url: 'scripts/editTicket.php',
+                type: 'post',
+                dataType: 'JSON',
+                data: {"id": id, "type": "editProgress", "progress": progress},
+                success: function(response) {
+                    window.location.href = "";
+                }
+            });
+        });
         $('.delete').click(function(){
             var id = $(this).attr('id');
             $('.cd-popup-container').html("<p>Are you sure you want to delete this ticket?</p>"+
@@ -87,7 +101,14 @@
                 url: 'scripts/editTicket.php',
                 type: 'post',
                 dataType: 'JSON',
-                data: {"id": ticketID, "name": title, "description": description, "priority": priority, "developers": developerList, "progress": progress},
+                data: {"id": ticketID,
+                "name": title,
+                "description": description,
+                "priority": priority,
+                "developers": developerList,
+                "progress": progress,
+                "type": "full"
+            },
                 success: function(response) {
                     closePopup();
                     window.location.href = "";

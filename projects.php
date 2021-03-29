@@ -23,15 +23,26 @@ printHead("Projects | Buggy - Let's Code Together");
             $projectIcon = getProjectInfo($projectID, "projectIcon");
             $category = getProjectInfo($projectID, "projectCategory");
             $status = getProjectInfo($projectID, "status");
+            $priority = getProjectInfo($projectID, "priority");
             $companyName = getCompanyInfo(getProjectInfo($projectID, "associatedCompany"), "companyName");
             $reportCode = getCompanyInfo(getProjectInfo($projectID, "associatedCompany"), "companyCode") . $projectID;
             print("<div class='project'>");
             print("<img src='assets/img/project-icons/$projectIcon'>");
             print("<div class='info'>");
-                print("<h2>$projectName</h2>");
-                print("<h3>$companyName</h3>");
+                print("<h2>PROJECT: $projectName</h2>");
+                print("<h3>COMPANY: $companyName</h3>");
             print("</div>");
-            print("<p>Category: $category</p><p>Status: $status</p>");
+            //priority string
+            $priorityString = "";
+            for($i = 0; $i < 5; $i++){
+                $priorityString .= "<i class='fas fa-exclamation fa-fw";
+                if($i < $priority) {
+                    $priorityString .= " highlight";
+                }
+                $priorityString .= "'></i>";
+            }
+            print("<p>Category: $category</p><p>Status: $status</p><p>Priority: $priorityString</p>");
+
             print("<a class='button' href='report?project=$reportCode'>Report a Bug</a>");
 
             if(getAccountType($_SESSION['userID']) == "management") {

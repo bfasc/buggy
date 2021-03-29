@@ -8,7 +8,7 @@ function fetchTickets($userID, $progressShort) {
     try {
         $db = db_connect();
         //update progress var for correct sql syntax
-        if($progressShort == "In Progress") $progress = "'In Progress' OR status = 'Needs Review' OR status = 'Needs Revisions'";
+        if($progressShort == "In Progress") $progress = "'In Progress' OR status = 'Review' OR status = 'Needs Revisions'";
         else $progress = "'Not Started'";
         // get list of projects available to user
         $assignedProjects = getUserInfo($userID, "assignedProjects");
@@ -96,10 +96,18 @@ function fetchTickets($userID, $progressShort) {
                 <p class='name'>#$id : $title</p>
                 <p class='info'><a class='label'>Priority : </a><a>$priorityString</a></p>
                 <p class='info'><a class='label'>Assignees: </a><a>$developerString</a></p>
-                <p class='info'><a class='label'>Progress: </a><a>$status</a></p>
-                <div class='button-wrap'><a href='ticket?$id' class='button'>View Ticket Page</a>
+                <p class='info'><a class='label'>Progress: </a><a>$status</a>
                 ";
-
+            if(getUserInfo($userID, "accountType") == "developer") {
+                $response .= "<select id='progress'>
+                <option selected disabled>Change Ticket Progress</option>
+                <option id='notStarted'>Not Yet Started</option>
+                <option id='inProgress'>In Progress</option>
+                <option id='review'>Review</option>
+                <option id='needsRevisions'>Needs Revisions</option>
+                </select><a class='button progressChange'id='$id'>Change Progress</a>";
+            }
+            $response .= "</p><div class='button-wrap'><a href='ticket?$id' class='button'>View Ticket Page</a>";
             if(getUserInfo($userID, "accountType") == "management") {
                 $response .= "<a class='button edit cd-popup-trigger' id='$id' class='button'>Edit</a>";
                 $response .= "<a class='button delete cd-popup-trigger' id='$id' class='button'>Delete</a>";

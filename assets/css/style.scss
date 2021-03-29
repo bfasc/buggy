@@ -252,7 +252,7 @@ header {
        }
    }
 }
-
+.button:hover{cursor: pointer;}
 /* --------------------------------
 
 xpopup
@@ -413,7 +413,7 @@ xpopup
         font-size: 24px;
     }
 }
-#search-results .ticket i.highlight, .forms .rating-stars ul > li.star i.highlight, .ticket i.highlight{color: $red;}
+#search-results .ticket i.highlight, .forms .rating-stars ul > li.star i.highlight, .ticket i.highlight, #projects p i.highlight{color: $red;}
 .radio-row {
     width: 100%;
     height: auto;
@@ -466,6 +466,30 @@ xpopup
 .ticket {
     width: 100%;
     padding-left: 75px;
+    select {
+      font-size:22px;
+      display:inline-block;
+      height:100%;
+      padding:5px 10px;
+      margin: 0 10px;
+      background:none;
+      background-image:none;
+      border:1px solid $lightgray;
+      color:$red;
+      border-radius:0;
+      transition:border-color .25s ease, box-shadow .25s ease;
+      &:focus {
+          outline:0;
+          border-color:$red;
+      }
+    }
+    select option {background: $bluegray;}
+
+    .button.progressChange {
+        font-size: 22px;
+        padding: 5px 10px;
+        font-weight: bold;
+    }
 }
 .ticket .button-wrap .button {
     font-size: 24px;
@@ -708,7 +732,7 @@ xpopup
         }
         h3 {
             color: $darkgray;
-            font-size: 42px;
+            font-size: 36px;
             letter-spacing: 2px;
         }
     }
@@ -716,7 +740,7 @@ xpopup
         font-size: 26px;
         text-align: left;
         color: $darkgray;
-        width: 40%;
+        width: 25%;
         font-family: $Ubuntu;
     }
 
@@ -846,7 +870,6 @@ table.reports {
             width: 300px;
             text-align: center;
         }
-        .button:hover{cursor: pointer;}
     }
 }
 
