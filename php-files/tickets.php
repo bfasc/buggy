@@ -38,6 +38,7 @@ function fetchTickets($userID, $progress) {
 
         $sql = "SELECT * FROM ticketinfo WHERE (status = $progress)";
         if($availableProjects) $sql .= " AND ($where)";
+        print $sql;
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
