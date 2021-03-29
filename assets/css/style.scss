@@ -125,7 +125,9 @@ body {height: 100vh; padding-bottom: 100px;}
     background-color: $lightgray;
     height: auto;
 }
-
+#report select {
+    margin: 30px 0;
+}
 .button {
     background-color: $red;
     padding: 10px 15px;
@@ -567,14 +569,14 @@ xpopup
   }
 
   label.active {
-    transform:translateY(50px);
+    transform:translateY(-25px);
     left:2px;
     font-size:14px;
     .req {
       opacity:0;
     }
   }
-  label[for=textarea].active{transform:translateY(75px);}
+  label[for=textarea].active{transform:translateY(-25px);}
   label[for=date], label[for=radio], label[for=select]{
       transform:translateY(-35px);
       font-size: 18px;

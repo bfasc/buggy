@@ -69,7 +69,7 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
 <body>
     <?php printSidebar("report", NULL); ?>
     <div class="main">
-        <section id="developer">
+        <section id="report">
             <?php
             //IF ERROR FETCHING COMPANY INFO
             if ($response != NULL) {
@@ -82,22 +82,6 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
 
                 <div class="forms">
                     <h1>Report A Bug</h1>
-                    <!-- <p>Report a bug for <?php print $projectName; ?></p> -->
-                    <!-- <label>Project Name<span class="req">*</span></label> -->
-                    <!-- <select name="projectName" id="projectName">
-                        <?php
-                        $db = db_connect();
-                        //$values = [$projectID];
-                        $sql = "SELECT projectName FROM projectinfo";
-                        $stmt = $db->prepare($sql);
-                        $stmt->execute();
-                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        foreach ($result as $row) {
-                            print("
-                            <option value='" . $row['projectName'] . "'>" . $row['projectName'] . "</option>
-                            ");
-                        } ?>
-                    </select> -->
                     <div id="signin">
                         <form id="signup" method="post" action="" autocomplete="off">
                             <div class="tab-content">

@@ -114,6 +114,9 @@ body {
   background-color: #EEEEEE;
   height: auto; }
 
+#report select {
+  margin: 30px 0; }
+
 .button {
   background-color: #E75858;
   padding: 10px 15px;
@@ -545,13 +548,13 @@ xpopup
     left: 2px;
     font-size: 18px; }
   .forms label.active {
-    transform: translateY(50px);
+    transform: translateY(-25px);
     left: 2px;
     font-size: 14px; }
     .forms label.active .req {
       opacity: 0; }
   .forms label[for=textarea].active {
-    transform: translateY(75px); }
+    transform: translateY(-25px); }
   .forms label[for=date], .forms label[for=radio], .forms label[for=select] {
     transform: translateY(-35px);
     font-size: 18px;

@@ -158,7 +158,7 @@ function printSidebar($type, $current)
                 ");
             break;
         case "report":
-            print("<a href='https://project-buggy.herokuapp.com/'><img src='assets/img/LOGO_MAIN.png'></a>");
+            print("<a href='http://www.projectbuggy.tk'><img src='assets/img/LOGO_MAIN.png'></a>");
             break;
         default:
             print("<a>Sorry, there was an error in the sidebar.</a>");
