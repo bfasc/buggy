@@ -4,11 +4,11 @@
  * Parameters: userID (session user ID)
  * Return Value: none (void)
  */
-function fetchTickets($userID, $progress) {
+function fetchTickets($userID, $progressShort) {
     try {
         $db = db_connect();
         //update progress var for correct sql syntax
-        if($progress == "In Progress") $progress = "'In Progress' OR status = 'Needs Review' OR status = 'Needs Revisions'";
+        if($progressShort == "In Progress") $progress = "'In Progress' OR status = 'Needs Review' OR status = 'Needs Revisions'";
         else $progress = "'Not Started'";
         // get list of projects available to user
         $assignedProjects = getUserInfo($userID, "assignedProjects");
@@ -60,7 +60,7 @@ function fetchTickets($userID, $progress) {
         $response = "";
 
         if(!$results)
-            $response .= "<h2>You currently have no assigned tickets.</h2>";
+            $response .= "<h2>You currently have no " . strtolower($progressShort) . " assigned tickets.</h2>";
         foreach($yourTickets as $ticket) {
             $id = $ticket['id'];
             $title = $ticket['name'];
