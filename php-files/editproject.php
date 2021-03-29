@@ -35,7 +35,8 @@ function editProject($name, $category, $progress, $priority, $startDate, $endDat
             $projectList = explode(",", $allProjects);
             if(array_search($projectID, $projectList) !== TRUE) { //not already in array
                 $projectString = implode(",", $projectList);
-                $projectString .= ",$projectID";
+                if($projectString) $projectString .= ",";
+                $projectString .= "$projectID";
                 $values = [$projectString, $developerID];
                 $sql = "UPDATE userinfo SET assignedProjects = ? WHERE id = ?";
                 $stmt = $db->prepare($sql);
