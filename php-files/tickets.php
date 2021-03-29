@@ -31,14 +31,15 @@ function fetchTickets($userID, $progress) {
         $where = "";
 
         foreach($availableProjects as $key => $projectID) {
-            $where .= "associatedProjectID = $projectID";
-            if($key != count($availableProjects)-1)
-                $where .= " OR ";
+            if($projectID) {
+                $where .= "associatedProjectID = $projectID";
+                if($key != count($availableProjects)-1)
+                    $where .= " OR ";
+            }
         }
 
         $sql = "SELECT * FROM ticketinfo WHERE (status = $progress)";
         if($availableProjects) $sql .= " AND ($where)";
-        print $sql;
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
