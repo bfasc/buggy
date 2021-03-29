@@ -33,8 +33,8 @@ function editProject($name, $category, $progress, $priority, $startDate, $endDat
             //grab their assigned projects, check if it's already in there by exploding. If not, implode and append.
             $allProjects = getUserInfo($developerID, "assignedProjects");
             $projectList = explode(",", $allProjects);
-            print_r($projectList);
-            if(array_search($projectID, $projectList) !== TRUE) { //not already in array
+
+            if(array_search($projectID, $projectList) === FALSE) { //not already in array
                 $projectString = implode(",", $projectList);
                 if($projectString) $projectString .= ",";
                 $projectString .= "$projectID";
