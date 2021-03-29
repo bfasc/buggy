@@ -51,7 +51,7 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
         $subject = "Your recent bug submission for project $projectName";
         $content = "Thank you for your bug submission. We have sent it
             to the developers, and you will be notified when there&#39;s an update.";
-        sendEmail($subject, $_POST['email'], "project-buggy@trustifi.com", $content);
+        sendEmail($subject, $_POST['email'], "noreply@projectbuggy.tk", $content);
 
         $response = "Thank you for submitting your bug.";
         $responseDetails = "A confirmation email has been sent to the email you

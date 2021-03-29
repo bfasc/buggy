@@ -25,7 +25,7 @@ function createDevUser($email, $firstName, $lastName, $password, $companyCode) {
         $subject = "Please verify your Buggy account";
         $content = "Thank you for signing up for your Buggy account! Please click the link below to verify your account.<br><a href='www.projectbuggy.tk/verify?code=$hash&email=$email'>Click Here to verify your account</a>";
 
-        sendEmail($subject, $_POST['email'], "project-buggy@trustifi.com", $content);
+        sendEmail($subject, $_POST['email'], "noreply@projectbuggy.tk", $content);
         return TRUE;
     } catch (Exception $e) {
         return FALSE;
@@ -75,7 +75,7 @@ function createManUser($email, $firstName, $lastName, $password, $companyName, $
         $subject = "Please verify your Buggy account";
         $content = "Thank you for signing up for your Buggy account! Please click the link below to verify your account.<br><a href='www.projectbuggy.tk/verify?code=$hash&email=$email'>Click Here to verify your account</a>";
 
-        sendEmail($subject, $_POST['email'], "project-buggy@trustifi.com", $content);
+        sendEmail($subject, $_POST['email'], "noreply@projectbuggy.tk", $content);
         return TRUE;
     } catch (Exception $e) {
         return FALSE;
