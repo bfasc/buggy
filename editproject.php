@@ -16,6 +16,7 @@ if(isset($_GET['project'])) {
         $projectPriority = getProjectInfo($projectID, "priority");
         $projectStartDate = getProjectInfo($projectID, "startDate");
         $projectEndDate = getProjectInfo($projectID, "endDate");
+        $customLink = getProjectInfo($projectID, "customLink");
     }
 } else {
     header("Location: projects");
@@ -117,6 +118,13 @@ if(isset($_GET['project'])) {
                             </label>
                             <div id='developerSelect'></div>
                         </div>
+                        <div class="field-wrap">
+                            <p class='info-circle'><i class="fas fa-info-circle" onclick="alert('This will be the extension for the link that your users click to report a bug. An example would be: PRO, which would allow users visiting projectbuggy.tk/report?PRO to report bugs. It must be less than 26 characters long, unique, and only contain alphanumeric characters and/or the characters - and _');"></i></p>
+                            <label>
+                                Your Custom Bug Report Link<span class="req">*</span>
+                            </label>
+                            <input type="text" id="link">
+                        </div>
                         <input type="submit" class="button button-block" value="Edit Project">
                     </div>
                 </form>
@@ -128,9 +136,11 @@ if(isset($_GET['project'])) {
     <script>
         $(document).ready(function(){
             $('#name').prev('label').addClass('active highlight');
+            $('#link').prev('label').addClass('active highlight');
             $('#name').val("<?php echo $projectName; ?>");
             var projectID = "<?php echo $projectID; ?>";
             $('#developerSelect').load('scripts/getDeveloperList.php?id&selected&projectEdit=' + projectID);
+            $('#link').val("<?php echo $customLink; ?>");
         })
 
         $('#form').on("submit", function(e){
@@ -144,6 +154,7 @@ if(isset($_GET['project'])) {
             var enddate = $('#end-date').val();
             var projectID = "<?php echo $projectID; ?>";
             var developers = document.querySelectorAll('.developer-list');
+            var customlink = $('#link').val();
 
             var developerList = [];
             var unassignedDeveloperList = [];
@@ -162,9 +173,12 @@ if(isset($_GET['project'])) {
                 url: 'scripts/editproject.php',
                 type: 'post',
                 dataType: 'JSON',
-                data: {"name": name, "category": category, "progress": progress, "priority": priority, "startdate": startdate, "enddate": enddate, "projectID": projectID, "developers": developerList, "unassignedDevelopers": unassignedDeveloperList},
+                data: {"name": name, "category": category, "progress": progress, "priority": priority, "startdate": startdate, "enddate": enddate, "projectID": projectID, "developers": developerList, "unassignedDevelopers": unassignedDeveloperList, "link": customlink},
                 success: function(response) {
-                    window.location.href = "";
+                    if(response.response != "")
+                        alert(response.response);
+                    else
+                        window.location.href = "";
                 }
             });
         });

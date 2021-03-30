@@ -97,6 +97,13 @@ printHead("Create a Project | Buggy - Let's Code Together");
                                 <input type="date" id="end-date">
                             </div>
                         </div>
+                        <div class="field-wrap">
+                            <p class='info-circle'><i class="fas fa-info-circle" onclick="alert('This will be the extension for the link that your users click to report a bug. An example would be: PRO, which would allow users visiting projectbuggy.tk/report?PRO to report bugs. It must be less than 26 characters long, unique, and only contain alphanumeric characters and/or the characters - and _');"></i></p>
+                            <label>
+                                Your Custom Bug Report Link<span class="req">*</span>
+                            </label>
+                            <input type="text" id="link">
+                        </div>
                         <input type="submit" class="button button-block" value="Create Project">
                     </div>
                 </form>
@@ -117,14 +124,20 @@ printHead("Create a Project | Buggy - Let's Code Together");
             var startdate = $('#start-date').val();
             var enddate = $('#end-date').val();
             var companyID = "<?php print(getUserInfo($_SESSION['userID'], "associatedCompany")); ?>";
+            var customlink = $('#link').val();
+
+            var validation = "";
 
             $.ajax({
                 url: 'scripts/createproject.php',
                 type: 'post',
                 dataType: 'JSON',
-                data: {"name": name, "category": category, "progress": progress, "priority": priority, "startdate": startdate, "enddate": enddate, "companyID": companyID},
+                data: {"name": name, "category": category, "progress": progress, "priority": priority, "startdate": startdate, "enddate": enddate, "companyID": companyID, "link": customlink},
                 success: function(response) {
-                    window.location.href = "projects";
+                    if(response.response != "")
+                        alert(response.response);
+                    else
+                        window.location.href = "projects";
                 }
             });
         });

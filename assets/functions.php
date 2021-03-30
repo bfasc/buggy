@@ -74,6 +74,14 @@ function printHeader($userID)
                         <p>You have <a id='ticketnum'>" . getTicketNum($userID) . "</a> unfinished tickets.</p>
                     </div>
                 </header>
+                <!-- custom alert box code from: https://codepen.io/XemsDoom/pen/uzoaD-->
+                <div class='customAlertWrap'>
+                    <div class='customAlert'>
+                        <p class='message'></p>
+                	    <input type='button' class='confirmButton' value='OK'>
+                    </div>
+                </div>
+                <script src='scripts/alerts.js'></script>
         ");
 }
 
@@ -579,6 +587,29 @@ function getAllProjects($userID)
         }
     } catch (Exception $e) {
         return [];
+    } finally {
+        $db = NULL;
+    }
+}
+
+/* Function Name: checkUniqueLink
+      * Description: check if project link entered is unique
+      * Parameters: link (string, link to be checked)
+      * Return Value: boolean T/F
+      */
+function checkUniqueLink($link) {
+    try {
+        $db = db_connect();
+        $values = [$link];
+        $sql = "SELECT * FROM projectinfo WHERE customLink = ?";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
+        $exists = $stmt->fetchColumn();
+        if ($exists) return FALSE;
+        else return TRUE;
+    } catch (Exception $e) {
+        return "Error: $e";
     } finally {
         $db = NULL;
     }

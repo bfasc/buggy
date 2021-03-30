@@ -1,18 +1,19 @@
 <?php
-function editProject($name, $category, $progress, $priority, $startDate, $endDate, $projectID) {
+function editProject($name, $category, $progress, $priority, $startDate, $endDate, $projectID, $customLink) {
     try {
         if($startDate) $startDate = date('Y-m-d H:i:s', strtotime($startDate));
         if($endDate) $endDate = date('Y-m-d H:i:s', strtotime($endDate));
 
         $db = db_connect();
-        $values = [$name, $category, $startDate, $endDate, $progress, $priority, $projectID];
+        $values = [$name, $category, $startDate, $endDate, $progress, $priority, $customLink, $projectID];
         $sql = "UPDATE projectinfo
         SET projectName = ?,
         projectCategory = ?,
         startDate = ?,
         endDate = ?,
         status = ?,
-        priority = ?
+        priority = ?,
+        customLink = ?
         WHERE id = ?";
 
         $stmt = $db->prepare($sql);
