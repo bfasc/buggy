@@ -24,23 +24,26 @@ if(isset($_GET['project']) && !empty($_GET['project'])) {
 //PROCESS FORM DATA
 
 if (isset($_POST['email']) && !empty($_POST['email'])) {
-    $projectID = $projectInfo['id'];
+    if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+        $projectID = $projectInfo['id'];
 
-    if (addBugReport($_POST['firstName'], $_POST['lastName'], $projectID, $_POST['email'], $_POST['details'])) {
-        //send email to reporter
-        $subject = "Your recent bug submission for $projectName";
-        $content = "Thank you for your bug submission. You reported: " . $_POST['details'] . ". We have sent it
-            to the developers, and you will be notified when there is an update.";
-        sendEmail($subject, $_POST['email'], "noreply@projectbuggy.tk", $content);
+        if (addBugReport($_POST['firstName'], $_POST['lastName'], $projectID, $_POST['email'], $_POST['details'])) {
+            //send email to reporter
+            $subject = "Your recent bug submission for $projectName";
+            $content = "Thank you for your bug submission. You reported: " . $_POST['details'] . ". We have sent it
+                to the developers, and you will be notified when there is an update.";
+            sendEmail($subject, $_POST['email'], "noreply@projectbuggy.tk", $content);
 
-        $response = "Thank you for submitting your bug.";
-        $responseDetails = "A confirmation email has been sent to the email you
-            provided. We have also forwarded this information to the lead developer at
-            $projectName. A representative from their company was given your
-            email address to inform you of the ticket progress.";
-    } else {
-        $response = "There was an error submitting your bug report into our database.";
-    }
+            $response = "Thank you for submitting your bug.";
+            $responseDetails = "A confirmation email has been sent to the email you
+                provided. We have also forwarded this information to the lead developer at
+                $projectName. A representative from their company was given your
+                email address to inform you of the ticket progress.";
+        } else {
+            $response = "There was an error submitting your bug report into our database.";
+        }
+    } else $response = "Please check the box that says \"I am not a robot\" before continuing.";
+
 }
 
 printHead("Report a bug for $projectName | Buggy - Let's Code Together");
