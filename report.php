@@ -62,6 +62,8 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
                     <h1>Report A Bug</h1>
                     <p>Report a bug for <?php echo $projectName; ?> </p>
                     <div id="signin">
+                        <!-- RE-CAPTCHA SCRIPT -->
+                        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
                         <form id="signup" method="post" action="" autocomplete="off">
                             <div class="tab-content">
                                 <div class="field-row">
@@ -90,6 +92,7 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
                                     </label>
                                     <textarea name="details" required></textarea>
                                 </div>
+                                <div class="g-recaptcha" data-sitekey="6Ldf55YaAAAAAEjTyFkESkJszbQJcf09Yik0Je6-"></div>
                                 <input type="submit" class="button button-block" value="Submit Bug">
                             </div>
                         </form>
