@@ -1,6 +1,6 @@
 RewriteEngine On
 
-RewriteRule ^\/?(report\.php+)\/(.*)$ report.php?project=$2 [NC,L,E=END]
+RewriteRule ^\/?(report\.php+)\/(.*)$ report.php?project=$1 [NC,L,E=END]
 
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
