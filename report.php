@@ -9,55 +9,35 @@ require_once 'assets/dbconnect.php';
 // GET COMPANY INFO FROM GET VAR
 $response = NULL;
 $responseDetails = NULL;
-$companyInfo = [];
-//$projectName = "";
+$projectName = "";
 
 
 
-// if(isset($_GET['project']) && !empty($_GET['project'])) {
-//     $companyCode = substr($_GET['project'], 0, 10);
-//     $projectID = substr($_GET['project'], 10);
-//     $companyInfo = getCompanyReportInfo($companyCode, $projectID);
-//     if($companyInfo) {
-//         $companyName = $companyInfo['companyName'];
-//         $companyID = $companyInfo['companyID'];
-//         $projectName = $companyInfo['projectName'];
-//         $projectID = $companyInfo['projectID'];
-//     } else {
-//         $response = "There was an error fetching this company's information! Please contact the developer directly.";
-//     }
-// } else {
-//     $response = "Broken Link! Please contact the developer directly.";
-// }
+if(isset($_GET['project']) && !empty($_GET['project'])) {
+    $projectInfo = getProjectFromReport($_GET['project']);
+    $projectName = $projectInfo['projectName'];
+} else {
+    $response = "Broken Link! Please contact the developer directly.";
+}
 
 
 //PROCESS FORM DATA
 
 if (isset($_POST['email']) && !empty($_POST['email'])) {
-    $projectName = $_POST['projectName'];
-    $db = db_connect();
-    $values = [$projectName];
-    $query = "SELECT id FROM projectinfo WHERE projectName = ?";
-    $state = $db->prepare($query);
-    $state->execute($values);
-    $result = $state->fetchColumn();
+    $projectID = $projectInfo['id'];
 
-    $associatedprojectID = $result;
-
-    if (addBugReport($_POST['firstName'], $_POST['lastName'], $associatedprojectID, $_POST['email'], $_POST['details'])) {
-        //$projectID - goes where the  post project name is
+    if (addBugReport($_POST['firstName'], $_POST['lastName'], $projectID, $_POST['email'], $_POST['details'])) {
         //send email to reporter
-        // $subject = "Your recent bug submission for $companyName&#39;s project $projectName";
-        $subject = "Your recent bug submission for project $projectName";
-        $content = "Thank you for your bug submission. We have sent it
-            to the developers, and you will be notified when there&#39;s an update.";
+        $subject = "Your recent bug submission for $projectName";
+        $content = "Thank you for your bug submission. You reported: " . $_POST['details'] . ". We have sent it
+            to the developers, and you will be notified when there is an update.";
         sendEmail($subject, $_POST['email'], "noreply@projectbuggy.tk", $content);
 
         $response = "Thank you for submitting your bug.";
         $responseDetails = "A confirmation email has been sent to the email you
-            provided."; // We have also forwarded this information to the lead developer at
-        // $companyName. A representative from their company was given your
-        // email address to inform you of the ticket progress.";
+            provided. We have also forwarded this information to the lead developer at
+            $projectName. A representative from their company was given your
+            email address to inform you of the ticket progress.";
     } else {
         $response = "There was an error submitting your bug report into our database.";
     }
@@ -71,35 +51,20 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
     <div class="main">
         <section id="report">
             <?php
-            //IF ERROR FETCHING COMPANY INFO
+            //IF ERROR FETCHING PROJECT INFO
             if ($response != NULL) {
                 print("<h2>$response</h2>");
                 if ($responseDetails != NULL)
                     print("<p>$responseDetails</p>");
             } else {
             ?>
-
-
                 <div class="forms">
                     <h1>Report A Bug</h1>
+                    <p>Report a bug for <?php echo $projectName; ?> </p>
                     <div id="signin">
                         <form id="signup" method="post" action="" autocomplete="off">
                             <div class="tab-content">
                                 <div class="field-row">
-                                    <select name="projectName" id="projectName">
-                                        <?php
-                                        $db = db_connect();
-                                        //$values = [$projectID];
-                                        $sql = "SELECT projectName FROM projectinfo";
-                                        $stmt = $db->prepare($sql);
-                                        $stmt->execute();
-                                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                        foreach ($result as $row) {
-                                            print("
-                            <option value='" . $row['projectName'] . "'>" . $row['projectName'] . "</option>
-                            ");
-                                        } ?>
-                                    </select>
                                     <div class="field-wrap">
                                         <label>
                                             First Name<span class="req">*</span>

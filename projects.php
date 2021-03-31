@@ -25,7 +25,7 @@ printHead("Projects | Buggy - Let's Code Together");
             $status = getProjectInfo($projectID, "status");
             $priority = getProjectInfo($projectID, "priority");
             $companyName = getCompanyInfo(getProjectInfo($projectID, "associatedCompany"), "companyName");
-            $reportCode = getCompanyInfo(getProjectInfo($projectID, "associatedCompany"), "companyCode") . $projectID;
+            $reportCode = getProjectInfo($projectID,"customLink");
             print("<div class='project'>");
             print("<img src='assets/img/project-icons/$projectIcon'>");
             print("<div class='info'>");
@@ -48,10 +48,33 @@ printHead("Projects | Buggy - Let's Code Together");
             if(getAccountType($_SESSION['userID']) == "management") {
                 print("<a class='button' href='editproject?project=$projectID'>Edit</a>");
             }
+
+            print("<div id='reportLink-wrap'>
+                <p>Give your users this link to report bugs they find in your project:
+                    <textarea disabled id='reportLink-$projectID'>http://www.projectbuggy.tk/report?project=$reportCode</textarea>
+                    <a class='copyLink button' id='report-$projectID'>Copy Link</a>
+                </p>
+            </div>");
             print("</div>");
         }
         ?>
     </div>
+    <script>
+    function copyLink(id) {
+        var copyText = document.getElementById("reportLink-"+id);
+        copyText.disabled = false;
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        copyText.disabled = true;
+        window.getSelection().removeAllRanges();
+        alert("Copied Link");
+    }
+    $('.copyLink').click(function(){
+        copyLink($(this).attr('id').substring(7, $(this).attr('id').length));
+    });
+
+    </script>
 
     <?php printFooter("basic"); ?>
 </body>

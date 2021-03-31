@@ -774,6 +774,24 @@ xpopup
     width: 30%;
     font-size: 22px;
     text-align: center; }
+  .project #reportLink-wrap {
+    width: 100%; }
+    .project #reportLink-wrap p, .project #reportLink-wrap textarea {
+      width: 100%;
+      text-align: center;
+      font-family: "PT Sans", sans-serif; }
+    .project #reportLink-wrap p {
+      color: #3C4A54; }
+    .project #reportLink-wrap textarea {
+      background: none;
+      border: none;
+      outline: none;
+      color: #E75858;
+      font-weight: bold;
+      font-size: 32px;
+      padding: 10px; }
+    .project #reportLink-wrap .button {
+      margin: auto; }
 
 .project:nth-of-type(even) {
   background: #c8c8c8; }

@@ -98,7 +98,7 @@ printHead("Create a Project | Buggy - Let's Code Together");
                             </div>
                         </div>
                         <div class="field-wrap">
-                            <p class='info-circle'><i class="fas fa-info-circle" onclick="alert('This will be the extension for the link that your users click to report a bug. An example would be: PRO, which would allow users visiting projectbuggy.tk/report?PRO to report bugs. It must be less than 26 characters long, unique, and only contain alphanumeric characters and/or the characters - and _');"></i></p>
+                            <p class='info-circle'><i class="fas fa-info-circle" onclick="alert('This will be the extension for the link that your users click to report a bug. An example would be: MYPROJECT, which would allow users visiting projectbuggy.tk/report/MYPROJECT to report bugs. It must be less than 26 characters long, unique, and only contain alphanumeric characters and/or the characters - and _');"></i></p>
                             <label>
                                 Your Custom Bug Report Link<span class="req">*</span>
                             </label>

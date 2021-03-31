@@ -842,6 +842,26 @@ xpopup
         font-size: 22px;
         text-align: center;
     }
+
+    #reportLink-wrap {
+        width: 100%;
+        p, textarea {
+            width: 100%;
+            text-align: center;
+            font-family: $PTSans;
+        }
+        p {color: $bluegray;}
+        textarea {
+            background: none;
+            border: none;
+            outline: none;
+            color: $red;
+            font-weight: bold;
+            font-size: 32px;
+            padding: 10px;
+        }
+        .button {margin: auto;}
+    }
 }
 .project:nth-of-type(even) {background: darken($lightgray, 15%);}
 /* REPORT TABLES */

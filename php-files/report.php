@@ -1,21 +1,17 @@
 <?php
-    /* Function Name: getCompanyInfo
-    * Description: retrieve company and project information from database by code
-    * Parameters: code (string - company code), projectID (id - associated project ID)
-    * Return Value: arary with company ID, project ID, company name, project name
+    /* Function Name: getProjectFromReport
+    * Description: retrieve array of project info from report code
+    * Parameters: reportCode (string - report code)
+    * Return Value: arary with project info
     */
-    function getCompanyReportInfo($code, $projectID){
+    function getProjectFromReport($reportCode){
         try {
             $db = db_connect();
 
-            //get company information
-            $sql = "SELECT
-                companyinfo.companyName, companyinfo.id AS companyID, projectinfo.projectName, projectinfo.id AS projectID
-                FROM companyinfo
-                INNER JOIN projectinfo
-                ON companyinfo.id = projectinfo.associatedCompany
-                WHERE companyinfo.companyCode=? AND projectinfo.id=?";
-            $values = [$code, $projectID];
+            //get project info
+            $sql = "SELECT * FROM projectinfo
+                WHERE customLink = ?";
+            $values = [$reportCode];
             $stmt = $db->prepare($sql);
             $stmt -> execute($values);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
