@@ -10,14 +10,19 @@ require_once 'assets/dbconnect.php';
 $response = NULL;
 $responseDetails = NULL;
 $projectName = "";
-
+$broken = FALSE;
 
 
 if(isset($_GET['project']) && !empty($_GET['project'])) {
     $projectInfo = getProjectFromReport($_GET['project']);
     $projectName = $projectInfo['projectName'];
+    if(!$projectName) {
+        $response = "Broken Link! Please contact the developer directly.";
+        $broken = TRUE;
+    }
 } else {
     $response = "Broken Link! Please contact the developer directly.";
+    $broken = TRUE;
 }
 
 
@@ -70,6 +75,7 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
                 if ($responseDetails != NULL)
                     print("<p>$responseDetails</p>");
             }
+            if($broken == FALSE) {
             ?>
                 <div class="forms">
                     <h1>Report A Bug</h1>
@@ -111,7 +117,7 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
                         </form>
                     </div>
                 </div>
-                </form>
+            <?php } //end broken link ?>
         </section>
 
     </div>
