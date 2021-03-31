@@ -273,14 +273,14 @@ function sendEmail($subject, $to, $content)
     $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
     //email template usage
-    $template = file_get_contents("/assets/emailtemplate.html");
+    $template = file_get_contents("http://www.projectbuggy.tk/assets/emailtemplate.html");
 
     foreach($content as $key => $value)
     {
         $template = str_replace('{{ '.$key.' }}', $value, $template);
     }
     print($template);
-    if(file_get_contents("/assets/emailtemplate.html")) print("It's here"); else print("Not here");
+    if(file_get_contents("http://www.projectbuggy.tk/assets/emailtemplate.html")) print("It's here"); else print("Not here");
     // mail($to, $subject, $template, $headers);
 }
 
