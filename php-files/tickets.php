@@ -107,7 +107,7 @@ function fetchTickets($userID, $progressShort) {
                 <option id='needsRevisions'>Needs Revisions</option>
                 </select><a class='button progressChange'id='$id'>Change Progress</a>";
             }
-            $response .= "</p><div class='button-wrap'><a href='ticket?$id' class='button'>View Ticket Page</a>";
+            $response .= "</p><div class='button-wrap'><a href='ticket?ticket=$id' class='button'>View Ticket Page</a>";
             if(getUserInfo($userID, "accountType") == "management") {
                 $response .= "<a class='button edit cd-popup-trigger' id='$id' class='button'>Edit</a>";
                 $response .= "<a class='button delete cd-popup-trigger' id='$id' class='button'>Delete</a>";
