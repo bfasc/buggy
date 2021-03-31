@@ -30,9 +30,18 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
         if (addBugReport($_POST['firstName'], $_POST['lastName'], $projectID, $_POST['email'], $_POST['details'])) {
             //send email to reporter
             $subject = "Your recent bug submission for $projectName";
-            $content = "Thank you for your bug submission. You reported: " . $_POST['details'] . ". We have sent it
-                to the developers, and you will be notified when there is an update.";
-            sendEmail($subject, $_POST['email'], "noreply@projectbuggy.tk", $content);
+
+            $variables = array();
+            $variables['name'] = $firstName . " " . $lastName;
+            $variables['header_msg'] = "You recently submitted a bug.";
+            $variables['header_subhead'] = "Thank you for using Buggy's Bug Tracking System!";
+            $variables['topic_sentence'] = "You sent a bug report for $projectName stating the following:";
+            $variables['topic_subhead'] = $_POST['details'];
+            $variables['description'] = "We have sent it to the developers, and you will be notified when there is an update.";
+            $variables['link_title'] = "";
+            $variables['link'] = "";
+
+            sendEmail($subject, $_POST['email'], $variables);
 
             $response = "Thank you for submitting your bug.";
             $responseDetails = "A confirmation email has been sent to the email you
@@ -59,7 +68,7 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
                 print("<h2>$response</h2>");
                 if ($responseDetails != NULL)
                     print("<p>$responseDetails</p>");
-            } else {
+            }
             ?>
                 <div class="forms">
                     <h1>Report A Bug</h1>
@@ -103,8 +112,6 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
                 </div>
                 </form>
         </section>
-    <?php } //END ELSE STMT FOR ERROR FETCHING COMPANY INFO
-    ?>
 
     </div>
     <script src="scripts/forms.js"></script>

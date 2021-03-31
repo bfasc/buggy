@@ -263,17 +263,24 @@ function getTicketNum($userID)
 
 /* Function Name: sendEmail
      * Description: send an email
-     * Parameters: header (string), to (string), from (string), content (string)
+     * Parameters: header (string), to (string), content (array, content vals)
      * Return Value: none (void)
      */
-function sendEmail($subject, $to, $from, $content)
+function sendEmail($subject, $to, $content)
 {
-    //replace apos and quot with html code so it's parsed correctly
-    // $content = str_replace("'", "", $content);
-    // $content = str_replace('"', "", $content);
+
     $headers = "From:noreply@projectbuggy.tk" . "\r\n";
     $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-    mail($to, $subject, $content, $headers);
+
+    //email template usage
+    $template = file_get_contents("emailtemplate.html");
+
+    foreach($content as $key => $value)
+    {
+        $template = str_replace('{{ '.$key.' }}', $value, $template);
+    }
+
+    mail($to, $subject, $template, $headers);
 }
 
 /* Function Name: emailExists

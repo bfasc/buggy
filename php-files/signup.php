@@ -23,9 +23,17 @@ function createDevUser($email, $firstName, $lastName, $password, $companyCode) {
         $stmt->execute($values);
 
         $subject = "Please verify your Buggy account";
-        $content = "Thank you for signing up for your Buggy account! Please click the link below to verify your account.<br><a href='www.projectbuggy.tk/verify?code=$hash&email=$email'>Click Here to verify your account</a>";
 
-        sendEmail($subject, $_POST['email'], "noreply@projectbuggy.tk", $content);
+        $variables = array();
+        $variables['name'] = $firstName . " " . $lastName;
+        $variables['header_msg'] = "Welcome to Buggy!";
+        $variables['header_subhead'] = "Thank you for creating your account!";
+        $variables['topic_sentence'] = "LET'S GET STARTED";
+        $variables['topic_subhead'] = "Verify Your Account";
+        $variables['description'] = "Now that you've created an account with us, it's time to verify your account. Click the link below.";
+        $variables['link_title'] = "Verify Your Account →";
+        $variables['link'] = "www.projectbuggy.tk/verify?code=$hash&email=$email";
+        sendEmail($subject, $_POST['email'], $variables);
         return TRUE;
     } catch (Exception $e) {
         return FALSE;
@@ -73,9 +81,17 @@ function createManUser($email, $firstName, $lastName, $password, $companyName, $
         $stmt->execute($values);
 
         $subject = "Please verify your Buggy account";
-        $content = "Thank you for signing up for your Buggy account! Please click the link below to verify your account.<br><a href='www.projectbuggy.tk/verify?code=$hash&email=$email'>Click Here to verify your account</a>";
 
-        sendEmail($subject, $_POST['email'], "noreply@projectbuggy.tk", $content);
+        $variables = array();
+        $variables['name'] = $firstName . " " . $lastName;
+        $variables['header_msg'] = "Welcome to Buggy!";
+        $variables['header_subhead'] = "Thank you for getting Buggy for your team!";
+        $variables['topic_sentence'] = "LET'S GET STARTED";
+        $variables['topic_subhead'] = "Verify Your Account";
+        $variables['description'] = "Now that you've created an account with us, it's time to verify your account. Click the link below.";
+        $variables['link_title'] = "Verify Your Account →";
+        $variables['link'] = "www.projectbuggy.tk/verify?code=$hash&email=$email";
+        sendEmail($subject, $_POST['email'], $variables);
         return TRUE;
     } catch (Exception $e) {
         return FALSE;

@@ -10,9 +10,18 @@
           $sql = "UPDATE bugreportinfo SET approval = 2, rejectionReason = ? WHERE id = ?";
 
           $subject = "An Update on Your Recent Bug Report";
-          $content = "Your recent bug report has been rejected by the management at " . getProjectInfo(getBugReportInfo($_POST['id'], "associatedProjectID"), "projectName") .
-          ". The listed reason for rejection is : " . $_POST['reason'] . ".";
-          sendEmail($subject, getBugReportInfo($_POST['id'], "reporterEmail"), "noreply@projectbuggy.tk", $content);
+
+          $variables = array();
+          $variables['name'] = getBugReportInfo($_POST['id'], "firstName") . " " . getBugReportInfo($_POST['id'], "lastName");
+          $variables['header_msg'] = "An update on your Bug Report";
+          $variables['header_subhead'] = "The bug report that you recently submitted to " . getProjectInfo(getBugReportInfo($_POST['id'], "associatedProjectID"), "projectName") . " was rejected.";
+          $variables['topic_sentence'] = "They gave the following reason for rejection: ";
+          $variables['topic_subhead'] = $_POST['reason'];
+          $variables['description'] = "Thank you for using Buggy's Bug Tracking System!";
+          $variables['link_title'] = "";
+          $variables['link'] = "";
+
+          sendEmail($subject, getBugReportInfo($_POST['id'], "reporterEmail"), $variables);
 
           $stmt = $db->prepare($sql);
           $stmt->execute($values);
@@ -24,9 +33,18 @@
           $sql = "DELETE FROM bugreportinfo WHERE id = ?";
 
           $subject = "An Update on Your Recent Bug Report";
-          $content = "Your recent bug report has been deleted by the management at " . getProjectInfo(getBugReportInfo($_POST['id'], "associatedProjectID"), "projectName") .
-          ". The listed reason for rejection is : " . $_POST['reason'] . ".";
-          sendEmail($subject, getBugReportInfo($_POST['id'], "reporterEmail"), "noreply@projectbuggy.tk", $content);
+
+          $variables = array();
+          $variables['name'] = getBugReportInfo($_POST['id'], "firstName") . " " . getBugReportInfo($_POST['id'], "lastName");
+          $variables['header_msg'] = "An update on your Bug Report";
+          $variables['header_subhead'] = "The bug report that you recently submitted to " . getProjectInfo(getBugReportInfo($_POST['id'], "associatedProjectID"), "projectName") . " was deleted.";
+          $variables['topic_sentence'] = "They gave the following reason for deletion: ";
+          $variables['topic_subhead'] = $_POST['reason'];
+          $variables['description'] = "Thank you for using Buggy's Bug Tracking System!";
+          $variables['link_title'] = "";
+          $variables['link'] = "";
+
+          sendEmail($subject, getBugReportInfo($_POST['id'], "reporterEmail"), $variables);
 
           $stmt = $db->prepare($sql);
           $stmt->execute($values);
