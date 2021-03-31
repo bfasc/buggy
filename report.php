@@ -63,9 +63,8 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
     <div class="main">
         <section id="report">
             <?php
-            //IF ERROR FETCHING PROJECT INFO
+            // PRINT RESPONSE MSG
             if ($response != NULL) {
-                sendEmail($subject, $_POST['email'], $variables);
                 print("<h2>$response</h2>");
                 if ($responseDetails != NULL)
                     print("<p>$responseDetails</p>");

@@ -279,9 +279,8 @@ function sendEmail($subject, $to, $content)
     {
         $template = str_replace('{{ '.$key.' }}', $value, $template);
     }
-    print($template);
-    if(file_get_contents("http://www.projectbuggy.tk/assets/emailtemplate.html")) print("It's here"); else print("Not here");
-    // mail($to, $subject, $template, $headers);
+    
+    mail($to, $subject, $template, $headers);
 }
 
 /* Function Name: emailExists
