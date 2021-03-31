@@ -273,7 +273,7 @@ function sendEmail($subject, $to, $content)
     $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
     //email template usage
-    $template = file_get_contents("emailtemplate.html");
+    $template = file_get_contents("/assets/emailtemplate.html");
 
     foreach($content as $key => $value)
     {
