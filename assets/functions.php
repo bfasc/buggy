@@ -71,7 +71,10 @@ function printHeader($userID)
                     <img src='assets/img/LOGO_MAIN.png'>
                     <div>
                         <h2>Hello, $firstName</h2>
-                        <p>You have <a id='ticketnum'>" . getTicketNum($userID) . "</a> unfinished tickets.</p>
+                        <p>You have <a id='ticketnum'>" . getTicketNum($userID) . "</a> unfinished ");
+                        if(getTicketNum($userID) == 1) print("ticket");
+                        else print("tickets");
+                        print(".</p>
                     </div>
                 </header>
                 <!-- custom alert box code from: https://codepen.io/XemsDoom/pen/uzoaD-->
@@ -279,7 +282,7 @@ function sendEmail($subject, $to, $content)
     {
         $template = str_replace('{{ '.$key.' }}', $value, $template);
     }
-    
+
     mail($to, $subject, $template, $headers);
 }
 
