@@ -93,44 +93,27 @@ function getTotalCompletedTickets($element)
         $db = NULL;
     }
 }
+
 /**
- * Returns an array of all of the projects employess are assigned to in order to
- * be looped over to then get the total amount of employess on a given project.
+ * Takes a project ID and returns its total employee count
  */
-function getEmployeeProjectArray($element, $companyID, &$projectArray)
+function getEmployeeCount($projectID)
 {
-    try {
-        $db = db_connect();
-        $sql = "SELECT assignedProjects FROM userinfo WHERE associatedCompany = $companyID AND accountType = 'developer' AND assignedProjects = $element";
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($result as $row) {
-            $newArray = explode(",", "$row[assignedProjects]");
-            foreach ($newArray as $e) {
-                array_push($projectArray, (int)$e);
-            }
-        }
-        return $projectArray;
-    } catch (Exception $e) {
-        return NULL;
-    } finally {
-        $db = NULL;
-    }
-}
-/**
- * Takes the array of project IDs and adds them up to get the total amount ot employess
- * for a specific project.
- */
-function getTotalEmployees($projectArray, $element)
-{
-    $x = (int)"$element";
+    $companyID = getProjectInfo($projectID, "associatedCompany");
     $totalEmployees = 0;
-    foreach ($projectArray as $p) {
-        if ($p === $x) {
+
+    //get all employees in company
+    $db = db_connect();
+    $sql = "SELECT assignedProjects FROM userinfo WHERE associatedCompany = $companyID AND accountType = 'developer'";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($result as $row) {
+        $allProjects = explode(",", $row['assignedProjects']);
+        if(array_search($projectID, $allProjects) !== FALSE)
             ++$totalEmployees;
-        }
     }
+
     return $totalEmployees;
 }
 ?>

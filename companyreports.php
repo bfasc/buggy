@@ -25,8 +25,7 @@ printHead("Company Reports | Buggy - Let's Code Together");
             $data[$totalProjects]["openTickets"] = getTotalOpenTickets($element);
             $data[$totalProjects]["unapprovedTickets"] = getTotalUnapprovedTickets($element);
             $data[$totalProjects]["completedTickets"] = getTotalCompletedTickets($element);
-            getEmployeeProjectArray($element, $companyID, $projectArray);
-            $data[$totalProjects]["employees"] = getTotalEmployees($projectArray, $element);
+            $data[$totalProjects]["employees"] = getEmployeeCount($element);
             ++$totalProjects;
         }
         print("<h2>Total Projects: $totalProjects</h2>");
