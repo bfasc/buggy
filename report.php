@@ -32,12 +32,13 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
             $subject = "Your recent bug submission for $projectName";
 
             $variables = array();
-            $variables['name'] = $firstName . " " . $lastName;
+            $variables['name'] = $_POST['firstName'] . " " . $_POST['lastName'];
             $variables['header_msg'] = "You recently submitted a bug.";
             $variables['header_subhead'] = "Thank you for using Buggy's Bug Tracking System!";
             $variables['topic_sentence'] = "You sent a bug report for $projectName stating the following:";
             $variables['topic_subhead'] = $_POST['details'];
             $variables['description'] = "We have sent it to the developers, and you will be notified when there is an update.";
+            $variables['src_img'] = "http://www.projectbuggy.tk/assets/emailImages/ReportBug.png";
             $variables['link_title'] = "";
             $variables['link'] = "";
 

@@ -31,6 +31,7 @@ function createDevUser($email, $firstName, $lastName, $password, $companyCode) {
         $variables['topic_sentence'] = "LET'S GET STARTED";
         $variables['topic_subhead'] = "Verify Your Account";
         $variables['description'] = "Now that you've created an account with us, it's time to verify your account. Click the link below.";
+        $variables['src_img'] = "http://www.projectbuggy.tk/assets/emailImages/SignUp.png";
         $variables['link_title'] = "Verify Your Account →";
         $variables['link'] = "www.projectbuggy.tk/verify?code=$hash&email=$email";
         sendEmail($subject, $_POST['email'], $variables);
@@ -89,6 +90,7 @@ function createManUser($email, $firstName, $lastName, $password, $companyName, $
         $variables['topic_sentence'] = "LET'S GET STARTED";
         $variables['topic_subhead'] = "Verify Your Account";
         $variables['description'] = "Now that you've created an account with us, it's time to verify your account. Click the link below.";
+        $variables['src_img'] = "http://www.projectbuggy.tk/assets/emailImages/SignUp.png";
         $variables['link_title'] = "Verify Your Account →";
         $variables['link'] = "www.projectbuggy.tk/verify?code=$hash&email=$email";
         sendEmail($subject, $_POST['email'], $variables);

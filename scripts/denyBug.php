@@ -18,6 +18,7 @@
           $variables['topic_sentence'] = "They gave the following reason for rejection: ";
           $variables['topic_subhead'] = $_POST['reason'];
           $variables['description'] = "Thank you for using Buggy's Bug Tracking System!";
+          $variables['src_img'] = "http://www.projectbuggy.tk/assets/emailImages/RejectedBug.png";
           $variables['link_title'] = "";
           $variables['link'] = "";
 
@@ -41,6 +42,7 @@
           $variables['topic_sentence'] = "They gave the following reason for deletion: ";
           $variables['topic_subhead'] = $_POST['reason'];
           $variables['description'] = "Thank you for using Buggy's Bug Tracking System!";
+          $variables['src_img'] = "http://www.projectbuggy.tk/assets/emailImages/RejectedBug.png";
           $variables['link_title'] = "";
           $variables['link'] = "";
 
