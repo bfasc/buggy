@@ -280,7 +280,7 @@ function sendEmail($subject, $to, $content)
         $template = str_replace('{{ '.$key.' }}', $value, $template);
     }
     print($template);
-    if(file_get_contents("/assets/emailtemplate.html")) print("It's here");
+    if(file_get_contents("/assets/emailtemplate.html")) print("It's here"); else print("Not here");
     // mail($to, $subject, $template, $headers);
 }
 
