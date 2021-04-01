@@ -1,6 +1,5 @@
 <?php
 require_once 'assets/functions.php';
-require_once 'php-files/search.php';
 printHead("Manage Company | Buggy - Let's Code Together");
 ?>
 

@@ -14,7 +14,7 @@ printHead("Buggy - Let's Code Together");
                 out your project's bugs with confidence.
             </p>
 
-            <a href="purchase.html" class="button">Get Buggy for your team</a>
+            <a href="purchase" class="button">Get Buggy for your team</a>
         </header>
         <section>
             <h1>Why choose buggy?</h1>
@@ -92,7 +92,7 @@ printHead("Buggy - Let's Code Together");
                 <p>Unlimited Accounts</p>
                 <p>Unlimited Bug Reports</p>
                 <p>99.9% Uptime</p>
-                <a href="purchase.html" class="button">Buy Now</a>
+                <a href="purchase" class="button">Buy Now</a>
             </div>
         </section>
     </div>
