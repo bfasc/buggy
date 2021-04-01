@@ -37,85 +37,88 @@ function fetchTickets($userID, $progressShort) {
                     $where .= " OR ";
             }
         }
+        //if user has at least one assigned project
+        if($where != "") {
+            $sql = "SELECT * FROM ticketinfo WHERE (status = $progress) AND ($where)";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $sql = "SELECT * FROM ticketinfo WHERE (status = $progress)";
-        if($availableProjects) $sql .= " AND ($where)";
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        //create array of all tickets assigned to you
-        $yourTickets = [];
-        foreach($results as $allTicket) {
-            if(getUserInfo($userID, "accountType") == "management") {
-                array_push($yourTickets, $allTicket);
-            } else {
-                $assignedDevelopers = $allTicket['assignedDevelopers'];
-                $assignedDevelopers = explode(",", $assignedDevelopers);
-                if(array_search($userID, $assignedDevelopers) !== FALSE) array_push($yourTickets, $allTicket);
-            }
-
-        }
-
-        $response = "";
-
-        if(!$results)
-            $response .= "<h2>You currently have no " . strtolower($progressShort) . " assigned tickets.</h2>";
-        foreach($yourTickets as $ticket) {
-            $id = $ticket['id'];
-            $title = $ticket['name'];
-            $description = $ticket['description'];
-            $priority = $ticket['priority'];
-            $status = $ticket['status'];
-            $associatedBugID = $ticket['associatedBugID'];
-            $associatedProjectID = $ticket['associatedProjectID'];
-            $lastEditedDate = $ticket['lastEditedDate'];
-            $approvalDate = $ticket['approvalDate'];
-            $assignedDevelopers = $ticket['assignedDevelopers'];
-
-            $developerString = "";
-            $assignedDevelopers = explode(",", $assignedDevelopers);
-            foreach($assignedDevelopers as $developer) {
-                $firstName = getUserInfo($developer, "firstName");
-                $lastName = getUserInfo($developer, "lastName");
-                $developerString .= "$firstName $lastName <br>";
-            }
-
-            //priority string
-            $priorityString = "";
-            for($i = 0; $i < 5; $i++){
-                $priorityString .= "<i class='fas fa-exclamation fa-fw";
-                if($i < $priority) {
-                    $priorityString .= " highlight";
+            //create array of all tickets assigned to you
+            $yourTickets = [];
+            foreach($results as $allTicket) {
+                if(getUserInfo($userID, "accountType") == "management") {
+                    array_push($yourTickets, $allTicket);
+                } else {
+                    $assignedDevelopers = $allTicket['assignedDevelopers'];
+                    $assignedDevelopers = explode(",", $assignedDevelopers);
+                    if(array_search($userID, $assignedDevelopers) !== FALSE) array_push($yourTickets, $allTicket);
                 }
-                $priorityString .= "'></i>";
             }
 
-            $response .= "
-            <div class='ticket'>
-                <p class='name'>#$id : $title</p>
-                <p class='info'><a class='label'>Priority : </a><a>$priorityString</a></p>
-                <p class='info'><a class='label'>Assignees: </a><a>$developerString</a></p>
-                <p class='info'><a class='label'>Progress: </a><a>$status</a>
-                ";
-            if(getUserInfo($userID, "accountType") == "developer") {
-                $response .= "<select id='progress'>
-                <option selected disabled>Change Ticket Progress</option>
-                <option id='notStarted'>Not Yet Started</option>
-                <option id='inProgress'>In Progress</option>
-                <option id='review'>Review</option>
-                <option id='needsRevisions'>Needs Revisions</option>
-                </select><a class='button progressChange'id='$id'>Change Progress</a>";
-            }
-            $response .= "</p><div class='button-wrap'><a href='ticket?ticket=$id' class='button'>View Ticket Page</a>";
-            if(getUserInfo($userID, "accountType") == "management") {
-                $response .= "<a class='button edit cd-popup-trigger' id='$id' class='button'>Edit</a>";
-                $response .= "<a class='button delete cd-popup-trigger' id='$id' class='button'>Delete</a>";
-            }
+            $response = "";
 
-            $response .= "</div></div>";
+            if(!$results)
+                $response .= "<h2>You currently have no " . strtolower($progressShort) . " assigned tickets.</h2>";
+            foreach($yourTickets as $ticket) {
+                $id = $ticket['id'];
+                $title = $ticket['name'];
+                $description = $ticket['description'];
+                $priority = $ticket['priority'];
+                $status = $ticket['status'];
+                $associatedBugID = $ticket['associatedBugID'];
+                $associatedProjectID = $ticket['associatedProjectID'];
+                $lastEditedDate = $ticket['lastEditedDate'];
+                $approvalDate = $ticket['approvalDate'];
+                $assignedDevelopers = $ticket['assignedDevelopers'];
+
+                $developerString = "";
+                $assignedDevelopers = explode(",", $assignedDevelopers);
+                foreach($assignedDevelopers as $developer) {
+                    $firstName = getUserInfo($developer, "firstName");
+                    $lastName = getUserInfo($developer, "lastName");
+                    $developerString .= "$firstName $lastName <br>";
+                }
+
+                //priority string
+                $priorityString = "";
+                for($i = 0; $i < 5; $i++){
+                    $priorityString .= "<i class='fas fa-exclamation fa-fw";
+                    if($i < $priority) {
+                        $priorityString .= " highlight";
+                    }
+                    $priorityString .= "'></i>";
+                }
+
+                $response .= "
+                <div class='ticket'>
+                    <p class='name'>#$id : $title</p>
+                    <p class='info'><a class='label'>Priority : </a><a>$priorityString</a></p>
+                    <p class='info'><a class='label'>Assignees: </a><a>$developerString</a></p>
+                    <p class='info'><a class='label'>Progress: </a><a>$status</a>
+                    ";
+                if(getUserInfo($userID, "accountType") == "developer") {
+                    $response .= "<select id='progress'>
+                    <option selected disabled>Change Ticket Progress</option>
+                    <option id='notStarted'>Not Yet Started</option>
+                    <option id='inProgress'>In Progress</option>
+                    <option id='review'>Review</option>
+                    <option id='needsRevisions'>Needs Revisions</option>
+                    </select><a class='button progressChange'id='$id'>Change Progress</a>";
+                }
+                $response .= "</p><div class='button-wrap'><a href='ticket?ticket=$id' class='button'>View Ticket Page</a>";
+                if(getUserInfo($userID, "accountType") == "management") {
+                    $response .= "<a class='button edit cd-popup-trigger' id='$id' class='button'>Edit</a>";
+                    $response .= "<a class='button delete cd-popup-trigger' id='$id' class='button'>Delete</a>";
+                }
+
+                $response .= "</div></div>";
+            }
+            print $response;
+        } else {
+            print("<h2>You currently have no projects assigned to you.</h2>");
         }
-        print $response;
+
 
 
     } catch (Exception $e) {

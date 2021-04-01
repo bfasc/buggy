@@ -240,7 +240,7 @@
             </div><!-- tab-content -->
             <?php } //end else in management_submit set?>
         </div> <!-- /form -->
-
+    </div>
 
     <script src="scripts/forms.js"></script>
     <script>

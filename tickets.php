@@ -6,23 +6,23 @@
 <body>
         <?php printSidebar(getAccountType($_SESSION['userID']), "tickets"); ?>
         <div class="main" id="tickets">
+            <div class="cd-popup" role="alert">
+                <div class="cd-popup-container">
+                </div>
+            </div>
             <?php printHeader($_SESSION['userID']);
             if(getAccountType($_SESSION['userID']) == "management" && getAllProjects($_SESSION['userID']) == []) {
                 print("<h2>You need to create a Project to get started.</h2>
                 <a href='createproject' class='button'>Create Your First Project</a>
                 ");
-            }
+            } else {
             ?>
-            <div class="cd-popup" role="alert">
-                <div class="cd-popup-container">
-                </div>
-            </div>
-
             <h1>In Progress</h1>
             <?php fetchTickets($_SESSION['userID'], "In Progress"); ?>
 
             <h1>New Tickets</h1>
-            <?php fetchTickets($_SESSION['userID'], "New"); ?>
+            <?php fetchTickets($_SESSION['userID'], "New");
+            } ?>
         </div>
         <?php printFooter("basic"); ?>
 

@@ -513,6 +513,11 @@ xpopup
   height: 100px;
   overflow-y: scroll; }
 
+#noAccount .button {
+  text-align: center; }
+  #noAccount .button:hover {
+    color: #FFFFFF; }
+
 /*SIGN IN PAGE*/
 #signin {
   display: flex;

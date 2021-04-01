@@ -536,6 +536,12 @@ xpopup
     height: 100px;
     overflow-y: scroll;
 }
+#noAccount .button {
+    text-align: center;
+    &:hover {
+        color: $white;
+    }
+}
 /*SIGN IN PAGE*/
 #signin {
     @include flexColumn;
