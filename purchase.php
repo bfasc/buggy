@@ -43,7 +43,7 @@ if(isset($_POST['continue_submit'])) {
             if($success) {
                 ?>
                 <h1>Thank you for your purchase!</h1>
-                <p>Description</p>
+                <p>We're glad you chose Buggy for your bug-tracking system. Sign in <a href='signin'>Here</a> to create your first project and start working!</p>
 
                 <?php
             } // end if success
