@@ -128,7 +128,6 @@ function printSidebar($type, $current)
                         <a href='more'>Learn More</a>
                         <a href='signin'>Sign In</a>
                         <a href='signup'>Sign Up</a>
-                        <a href='report'>Report Bug</a>
                     </section>
                     <section id='side-info'>
                         <img src='assets/img/LOGO_FOOTER.png'>
