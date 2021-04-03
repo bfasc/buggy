@@ -10,6 +10,12 @@ if(isset($_GET['ticket']) && !empty($_GET['ticket'])) {
     $response = "Invalid link.";
 }
 printHead("Viewing Ticket $ticketTitle | Buggy - Let's Code Together");
+
+if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllProjects($_SESSION['userID'])) === FALSE) {
+    //user does not have access to ticket
+    header("Location: tickets");
+    exit();
+}
 ?>
 
 <body>
