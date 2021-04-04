@@ -35,6 +35,9 @@ function createDevUser($email, $firstName, $lastName, $password, $companyCode) {
         $variables['link_title'] = "Verify Your Account →";
         $variables['link'] = "www.projectbuggy.tk/verify?code=$hash&email=$email";
         sendEmail($subject, $_POST['email'], $variables);
+
+        //send notif to management account to inform of new developer account
+        newNotification("A new developer named $firstName $lastName has registered under your company.", getCompanyInfo(getCompanyID($companyCode), "managementAccountAssociated"), "");
         return TRUE;
     } catch (Exception $e) {
         return FALSE;

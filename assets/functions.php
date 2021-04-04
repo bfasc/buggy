@@ -118,7 +118,9 @@ function printSidebar($type, $current)
     }
     print("<div class='wrap'>");
     print("<div class='sidebar $report'>");
-    $unread = checkUnreadNotif($_SESSION['userID']);
+    if(isset($_SESSION['userID']) && !empty($_SESSION['userID']))
+        $unread = checkUnreadNotif($_SESSION['userID']);
+    else $unread = FALSE;
     switch ($type) {
         case "notloggedin":
             print("
