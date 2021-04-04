@@ -62,6 +62,15 @@ body {height: 100vh; padding-bottom: 100px;}
 ::-webkit-scrollbar-thumb:hover {
   background: darken($red, 15%);
 }
+h2.subhead {
+    font-family: $Ubuntu;
+    color: $red;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 5px;
+    padding-left: 50px;
+    font-size: 36px;
+}
 
 .sidebar {
     width: 275px;
@@ -138,6 +147,8 @@ body {height: 100vh; padding-bottom: 100px;}
     text-transform: uppercase;
     font-family: $PTSans;
     font-weight: bold;
+    transition: all 0.3s ease;
+    &:hover {background: darken($red, 5%);}
 }
 
 footer {
@@ -233,12 +244,8 @@ header {
        color: $darkgray;
    }
    h2 {
-       font-size: 48px;
-       font-weight: bold;
-       font-family: $PTSans;
        padding-bottom: 5px;
        border-bottom: solid $red 3px;
-       letter-spacing: 10px;
    }
    p {
        font-size: 24px;
@@ -554,14 +561,6 @@ xpopup
 }
 
 /*TICKET PAGE*/
-#tickets h1 {
-    font-size: 48px;
-    color: $red;
-    padding-left: 50px;
-    letter-spacing: 10px;
-    font-family: $Ubuntu;
-    text-transform: uppercase;
-}
 .ticket {
     width: 100%;
     padding-left: 75px;
@@ -590,8 +589,107 @@ xpopup
         font-weight: bold;
     }
 }
+
+.thread {
+    width: 100%;
+    @include flexColumn;
+    align-items: flex-start;
+    h2 {text-align: left;}
+    .comment, .reply {
+        width: 100%;
+        padding: 10px 15px;
+        .comment-info {
+            font-weight: bold;
+            width: 70%;
+            @include flexRow;
+            font-family: $PTSans;
+            .poster {
+                margin: 0 10px;
+                color: $darkgray;
+                font-size: 26px;
+            }
+            .date {
+                margin: 0 10px;
+                color: $red;
+                font-size: 22px;
+            }
+            i {
+                color: $red;
+                font-size: 22px;
+                padding-left: 30px;
+                &:hover {
+                    color: darken($red, 15%);
+                    cursor: pointer;
+                }
+            }
+        }
+        .comment-text {
+            padding: 10px 25px;
+        }
+    }
+    .reply {
+        padding-left: 75px;
+        border-left: solid $red 3px;
+    }
+    .comment:nth-of-type(even) {
+        background: darken($lightgray, 15%);
+    }
+
+    .post {
+        width: 100%;
+        @include flexColumn;
+        padding: 30px;
+        h2 {
+            margin: 0;
+            font-size: 26px;
+        }
+        textarea {
+            resize: none;
+            background: $bluegray;
+            color: $lightgray;
+            border: none;
+            width: 50%;
+            height: 100px;
+            outline: none;
+            font-size: 26px;
+            font-family: $Ubuntu;
+        }
+        input[type="submit"] {
+            font-size: 22px;
+            width: 20%;
+            border: none;
+            outline: none;
+        }
+    }
+    .post.reply {
+        align-items: flex-start;
+        input[type="submit"] {
+            font-size: 22px;
+            margin: 10px 0;
+        }
+    }
+}
 .ticket .button-wrap .button {
     font-size: 24px;
+}
+
+/* Individual Ticket Page */
+#ticket {
+    .ticket {
+        .name { font-size: 32px; }
+        .info {font-size: 24px; border: none;}
+        .label {font-size: 28px; }
+        .desc {
+            width: 50%;
+            padding: 20px;
+        }
+        .button-wrap {
+            width: 30%;
+            flex-direction: column;
+            .button {width: 100%;}
+        }
+    }
+
 }
 /*SIGN UP PAGE*/
 
@@ -793,15 +891,7 @@ xpopup
 }
 .main#projects {
     @include flexRow;
-    h1 {
-        font-size: 48px;
-        width: 100%;
-        color: $red;
-        text-align: center;
-        letter-spacing: 10px;
-        font-family: $Ubuntu;
-        text-transform: uppercase;
-    }
+    .subhead {margin-right: 100px;}
 }
 
 .project {
@@ -811,62 +901,70 @@ xpopup
     padding: 20px;
     padding-left: 75px;
     img {
-        width: 300px;
-        height: 300px;
+        width: 225px;
+        height: 225px;
     }
     .info {
-        width: 60%;
-        height: 300px;
+        width: 40%;
         @include flexColumn;
-        justify-content: flex-end;
+        justify-content: flex-start;
         h2, h3 {
             width: 100%;
-            font-family: $PTSans;
-            font-size: 48px;
-            color: $red;
-            text-transform: uppercase;
-            font-weight: bold;
             margin: 10px 75px;
-            letter-spacing: 5px;
         }
         h3 {
+            padding-left: 50px;
             color: $darkgray;
-            font-size: 36px;
+            font-size: 28px;
             letter-spacing: 2px;
         }
     }
     p {
-        font-size: 26px;
+        font-size: 22px;
+        margin: 5px 0;
         text-align: left;
         color: $darkgray;
-        width: 25%;
+        width: 100%;
         font-family: $Ubuntu;
     }
-
-    .button {
+    .button-wrap {
         width: 30%;
-        font-size: 22px;
-        text-align: center;
+        @include flexColumn;
+        justify-content: space-evenly;
+        .button {
+            width: 100%;
+            font-size: 22px;
+            text-align: center;
+        }
     }
+
 
     #reportLink-wrap {
         width: 100%;
+        padding-top: 50px;
         p, textarea {
             width: 100%;
             text-align: center;
             font-family: $PTSans;
         }
-        p {color: $bluegray;}
+        p {
+            color: $bluegray;
+            font-size: 22px;
+        }
         textarea {
             background: none;
             border: none;
             outline: none;
             color: $red;
             font-weight: bold;
-            font-size: 32px;
+            font-size: 18px;
             padding: 10px;
         }
-        .button {margin: auto;}
+        .button {
+            margin: auto;
+            font-size: 16px;
+            width: 150px;
+        }
     }
 }
 .project:nth-of-type(even) {background: darken($lightgray, 15%);}
@@ -929,15 +1027,9 @@ table.reports {
     @include flexColumn;
     justify-content: space-between;
     p, h2 {
-        font-family: $PTSans;
         font-size: 36px;
         text-align: center;
         width: 850px;
-    }
-    h2 {
-        font-weight: bold;
-        text-transform: uppercase;
-
     }
 }
 #splash section {
@@ -959,26 +1051,39 @@ table.reports {
 
 /* BUG APPROVAL */
 .bug, .ticket {
-    width: 100%;
-    @include flexColumn;
+    padding-right: 25%;
+    @include flexRow;
     align-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     .name {
         font-family: $TitilliumWeb;
         color: $darkgray;
-        font-size: 36px;
+        font-size: 22px;
+        width: 100%;
     }
     .info {
-        margin: 5px 0;
+        border-bottom: solid $red 2px;
+        margin: 5px 20px;
+        align-self: baseline;
+        padding-bottom: 5px;
         .label {
             font-family: $PTSans;
             font-weight: bold;
-            font-size: 24px;
-            width: 200px;
+            font-size: 18px;
         }
         a {
+            margin-left: 10px;
             font-weight: normal;
             display: inline-block;
+        }
+    }
+    .info.desc {
+        border: none;
+        font-size: 22px;
+        width: 60%;
+        a {
+            width: 100%;
+            margin-top: 10px;
         }
     }
     .button-wrap {
@@ -986,9 +1091,18 @@ table.reports {
         @include flexRow;
         justify-content: space-evenly;
         .button {
-            width: 300px;
+            font-size: 18px;
+            width: 200px;
             text-align: center;
         }
+    }
+    &:nth-of-type(even) {background: darken($lightgray, 15%);}
+}
+.bug {
+    padding-left: 75px;
+    padding-right: 10%;
+    .button-wrap {
+        width: 20%;
     }
 }
 

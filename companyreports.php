@@ -28,7 +28,7 @@ printHead("Company Reports | Buggy - Let's Code Together");
             $data[$totalProjects]["employees"] = getEmployeeCount($element);
             ++$totalProjects;
         }
-        print("<h2>Total Projects: $totalProjects</h2>");
+        print("<h2 class='subhead'>Total Projects: $totalProjects</h2 class='subhead'>");
 
         foreach($data as $project) {
             print("<th>" . getProjectInfo($project["projectID"], "projectName") . "</th>");

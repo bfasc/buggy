@@ -8,7 +8,7 @@ printHead("Buggy - Let's Code Together");
     <div class="main" id="splash">
         <header>
             <img src="assets/img/LOGO_MAIN.png">
-            <h2>Collaborative & Intuitive Workspace</h2>
+            <h2 class='subhead'>Collaborative & Intuitive Workspace</h2 class='subhead'>
 
             <p>Buggy provides your team with an easy and efficient method to knock
                 out your project's bugs with confidence.
@@ -87,7 +87,7 @@ printHead("Buggy - Let's Code Together");
         <section>
             <h1>Let's get you started.</h1>
             <div class="padded">
-                <h2>Purchase your plan</h2>
+                <h2 class='subhead'>Purchase your plan</h2 class='subhead'>
                 <h3>$49.99/month</h3>
                 <p>Unlimited Accounts</p>
                 <p>Unlimited Bug Reports</p>

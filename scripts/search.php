@@ -104,7 +104,7 @@
         $response = "<h1>Search Results</h1>";
 
         if(!$results)
-            $response .= "<h2>No results found. Try changing your filters.</h2>";
+            $response .= "<h2 class='subhead'>No results found. Try changing your filters.</h2 class='subhead'>";
         foreach($results as $ticket) {
             $id = $ticket['id'];
             $title = $ticket['name'];

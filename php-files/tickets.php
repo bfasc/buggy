@@ -59,7 +59,7 @@ function fetchTickets($userID, $progressShort) {
             $response = "";
 
             if(!$results)
-                $response .= "<h2>You currently have no " . strtolower($progressShort) . " assigned tickets.</h2>";
+                $response .= "<h2 class='subhead'>You currently have no " . strtolower($progressShort) . " assigned tickets.</h2 class='subhead'>";
             foreach($yourTickets as $ticket) {
                 $id = $ticket['id'];
                 $title = $ticket['name'];
@@ -116,7 +116,7 @@ function fetchTickets($userID, $progressShort) {
             }
             print $response;
         } else {
-            print("<h2>You currently have no projects assigned to you.</h2>");
+            print("<h2 class='subhead'>You currently have no projects assigned to you.</h2 class='subhead'>");
         }
 
 

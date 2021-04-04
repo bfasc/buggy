@@ -7,19 +7,17 @@
         <?php printSidebar(getAccountType($_SESSION['userID']), "approval"); ?>
         <div class="main">
             <?php printHeader($_SESSION['userID']); ?>
-            <section id='reports'>
-                <h1>Approve Bugs</h1>
-                <div class="cd-popup" role="alert">
-                    <div class="cd-popup-container">
-                    </div>
+            <h2 class='subhead'>Approve Bugs</h2>
+            <div class="cd-popup" role="alert">
+                <div class="cd-popup-container">
                 </div>
-                <?php
-                $projectArray = getAllProjects($_SESSION['userID']);
-                foreach($projectArray as $row) {
-                    listBugs($row);
-                }
-                ?>
-            </section>
+            </div>
+            <?php
+            $projectArray = getAllProjects($_SESSION['userID']);
+            foreach($projectArray as $row) {
+                listBugs($row);
+            }
+            ?>
         </div>
 
         <script>

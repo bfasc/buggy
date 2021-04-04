@@ -10,13 +10,13 @@ printHead("Projects | Buggy - Let's Code Together");
     <div class="main" id="projects">
 
         <?php printHeader($_SESSION['userID']); ?>
-        <h1>Your Projects</h1>
+        <h2 class='subhead'>Your Projects</h2>
         <?php if(getUserInfo($_SESSION['userID'], "accountType") == "management") print("<a href=\"createproject\" class=\"button\">Add a New Project</a>"); ?>
         <?php
         $projectList = getAllProjects($_SESSION['userID']);
         if($projectList == []) {
-            print("<h2>You currently have no assigned projects.</h2>");
-            if(getUserInfo($_SESSION['userID'], "accountType") == "management") print("<h2>Create your first project.</h2>");
+            print("<h2 class='subhead'>You currently have no assigned projects.</h2 class='subhead'>");
+            if(getUserInfo($_SESSION['userID'], "accountType") == "management") print("<h2 class='subhead'>Create your first project.</h2 class='subhead'>");
         }
         foreach($projectList as $projectID) {
             $projectName = getProjectInfo($projectID, "projectName");
@@ -29,9 +29,8 @@ printHead("Projects | Buggy - Let's Code Together");
             print("<div class='project'>");
             print("<img src='assets/img/project-icons/$projectIcon'>");
             print("<div class='info'>");
-                print("<h2>PROJECT: $projectName</h2>");
+                print("<h2 class='subhead'>PROJECT: $projectName</h2 class='subhead'>");
                 print("<h3>COMPANY: $companyName</h3>");
-            print("</div>");
             //priority string
             $priorityString = "";
             for($i = 0; $i < 5; $i++){
@@ -42,12 +41,16 @@ printHead("Projects | Buggy - Let's Code Together");
                 $priorityString .= "'></i>";
             }
             print("<p>Category: $category</p><p>Status: $status</p><p>Priority: $priorityString</p>");
+            print("</div>"); //end info
 
+            print("<div class='button-wrap'>");
             print("<a class='button' href='report?project=$reportCode'>Report a Bug</a>");
 
             if(getAccountType($_SESSION['userID']) == "management") {
                 print("<a class='button' href='editproject?project=$projectID'>Edit</a>");
             }
+            print("</div>"); //end button wrap
+
 
             print("<div id='reportLink-wrap'>
                 <p>Give your users this link to report bugs they find in your project:

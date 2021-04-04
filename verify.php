@@ -39,7 +39,7 @@ if (isset($_GET['code']) && !empty($_GET['code']) && isset($_GET['email']) && !e
     <div class="main">
         <h1>Verify your Buggy Account</h1>
         <section>
-            <h2> <?php print($response); ?> </h2>
+            <h2 class='subhead'> <?php print($response); ?> </h2 class='subhead'>
         </section>
     </div>
     <?php printFooter("basic"); ?>

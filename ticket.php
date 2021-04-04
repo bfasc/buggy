@@ -1,5 +1,6 @@
 <?php
 require_once 'assets/functions.php';
+require_once 'php-files/ticket.php';
 
 $response = "";
 
@@ -21,13 +22,13 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
 <body>
     <?php printSidebar(getAccountType($_SESSION['userID']), "projects"); ?>
 
-    <div class="main" id="tickets">
+    <div class="main" id="ticket">
         <?php printHeader($_SESSION['userID']);
         if($response != "")
             print("<h1>$response</h1>");
         else {
             ?>
-            <h1>Viewing Ticket <?php echo $ticketTitle; ?></h1>
+            <h2 class='subhead'>Viewing Ticket : <?php echo $ticketTitle; ?></h2>
             <div class="cd-popup" role="alert">
                 <div class="cd-popup-container">
                 </div>
@@ -68,7 +69,7 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
                 <p class='info'><a class='label'>Priority : </a><a>$priorityString</a></p>
                 <p class='info'><a class='label'>Assignees: </a><a>$developerString</a></p>
                 <p class='info'><a class='label'>Progress: </a><a>$status</a>
-                <p class='info'><a class='label'>Description: </a><a>$description</a></p>
+                <p class='info desc'><a class='label'>Description: </a><a>$description</a></p>
                 ";
             if(getUserInfo($_SESSION['userID'], "accountType") == "developer") {
                 print "<select id='progress'>
@@ -85,7 +86,47 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
                 print "<a class='button delete cd-popup-trigger' id='$id' class='button'>Delete</a>";
             }
 
-            print "</div></div>";
+            print "</div>";
+
+            $threadInfo = getThreadInfo($id);
+            print "</div>"; // end ticket div
+            print "<div class='thread'>";
+            print "<h2 class='subhead'>Discussion</h2 class='subhead'>";
+
+            print "<div class='comment'>
+                        <div class='comment-info'>
+                            <p class='poster'>POSTER NAME</p>
+                            <p class='date'>01/01/2020 5:39PM</p>
+                            <i class='fas fa-reply' id='22'></i>
+                        </div>
+                        <p class='comment-text'>If it’s cropped, the door in the image will be cut off. Is this okay?</p>
+                        ";
+            print "<div class='reply'>
+                            <div class='comment-info'>
+                                <p class='poster'>POSTER NAME</p>
+                                <p class='date'>01/01/2020 5:39PM</p>
+                            </div>
+                            <p class='comment-text'>Yes, this is fine.</p>
+                    </div>";
+                    print "<div class='comment-reply' id='reply-22'></div>";
+            print "</div>"; //end comment
+
+            print "<div class='comment'>
+                        <div class='comment-info'>
+                            <p class='poster'>POSTER NAME</p>
+                            <p class='date'>01/01/2020 5:39PM</p>
+                            <i class='fas fa-reply' id='21'></i>
+                        </div>
+                        <p class='comment-text'>I'm going to re-do this.</p>";
+                    print "<div class='comment-reply' id='reply-21'></div>";
+            print "</div>"; //end comment
+
+            print "<div class='post new'>";
+                print "<h2 class='subhead'>Post Comment</h2 class='subhead'>";
+                print "<textarea id='$id-text'></textarea>";
+                print "<input type='submit' value='Post' class='button comment-submit' id='$id'>";
+            print "</div>"; //end post new
+            print "</div>"; //end thread div
         } //end response
         ?>
     </div>
@@ -112,6 +153,19 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
                 $('.cd-popup').removeClass('is-visible');
             }
         });
+    });
+
+    $('.fa-reply').click(function(){
+        var id = $(this).attr('id');
+        if(document.getElementById('reply-'+id).innerHTML == "") {
+            $('.comment-reply').html("");
+            document.getElementById('reply-'+id).innerHTML = "<div class='post reply'>"+
+                    "<h2 class='subhead'>Reply</h2 class='subhead'>"+
+                    "<textarea id='reply-"+id+"-text'></textarea>"+
+                    "<input type='submit' value='Post' class='button reply-submit' id='reply-"+id+"'>"+
+                    "</div>";
+        } else document.getElementById('reply-'+id).innerHTML = "";
+
     });
 
     $('.edit').click(function(){

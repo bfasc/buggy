@@ -47,6 +47,15 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #d41e1e; }
 
+h2.subhead {
+  font-family: "Titillium Web", sans-serif;
+  color: #E75858;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 5px;
+  padding-left: 50px;
+  font-size: 36px; }
+
 .sidebar {
   width: 275px;
   position: fixed;
@@ -126,7 +135,10 @@ body {
   margin: 10px;
   text-transform: uppercase;
   font-family: "PT Sans", sans-serif;
-  font-weight: bold; }
+  font-weight: bold;
+  transition: all 0.3s ease; }
+  .button:hover {
+    background: #e44242; }
 
 footer {
   height: 100px;
@@ -226,12 +238,8 @@ header {
     padding-right: 20%;
     color: #2A2A2A; }
   header h2 {
-    font-size: 48px;
-    font-weight: bold;
-    font-family: "PT Sans", sans-serif;
     padding-bottom: 5px;
-    border-bottom: solid #E75858 3px;
-    letter-spacing: 10px; }
+    border-bottom: solid #E75858 3px; }
   header p {
     font-size: 24px;
     font-weight: lighter;
@@ -531,14 +539,6 @@ xpopup
     text-align: center; }
 
 /*TICKET PAGE*/
-#tickets h1 {
-  font-size: 48px;
-  color: #E75858;
-  padding-left: 50px;
-  letter-spacing: 10px;
-  font-family: "Titillium Web", sans-serif;
-  text-transform: uppercase; }
-
 .ticket {
   width: 100%;
   padding-left: 75px; }
@@ -564,8 +564,98 @@ xpopup
     padding: 5px 10px;
     font-weight: bold; }
 
+.thread {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  align-items: flex-start; }
+  .thread h2 {
+    text-align: left; }
+  .thread .comment, .thread .reply {
+    width: 100%;
+    padding: 10px 15px; }
+    .thread .comment .comment-info, .thread .reply .comment-info {
+      font-weight: bold;
+      width: 70%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-items: center;
+      font-family: "PT Sans", sans-serif; }
+      .thread .comment .comment-info .poster, .thread .reply .comment-info .poster {
+        margin: 0 10px;
+        color: #2A2A2A;
+        font-size: 26px; }
+      .thread .comment .comment-info .date, .thread .reply .comment-info .date {
+        margin: 0 10px;
+        color: #E75858;
+        font-size: 22px; }
+      .thread .comment .comment-info i, .thread .reply .comment-info i {
+        color: #E75858;
+        font-size: 22px;
+        padding-left: 30px; }
+        .thread .comment .comment-info i:hover, .thread .reply .comment-info i:hover {
+          color: #d41e1e;
+          cursor: pointer; }
+    .thread .comment .comment-text, .thread .reply .comment-text {
+      padding: 10px 25px; }
+  .thread .reply {
+    padding-left: 75px;
+    border-left: solid #E75858 3px; }
+  .thread .comment:nth-of-type(even) {
+    background: #c8c8c8; }
+  .thread .post {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px; }
+    .thread .post h2 {
+      margin: 0;
+      font-size: 26px; }
+    .thread .post textarea {
+      resize: none;
+      background: #3C4A54;
+      color: #EEEEEE;
+      border: none;
+      width: 50%;
+      height: 100px;
+      outline: none;
+      font-size: 26px;
+      font-family: "Titillium Web", sans-serif; }
+    .thread .post input[type="submit"] {
+      font-size: 22px;
+      width: 20%;
+      border: none;
+      outline: none; }
+  .thread .post.reply {
+    align-items: flex-start; }
+    .thread .post.reply input[type="submit"] {
+      font-size: 22px;
+      margin: 10px 0; }
+
 .ticket .button-wrap .button {
   font-size: 24px; }
+
+/* Individual Ticket Page */
+#ticket .ticket .name {
+  font-size: 32px; }
+#ticket .ticket .info {
+  font-size: 24px;
+  border: none; }
+#ticket .ticket .label {
+  font-size: 28px; }
+#ticket .ticket .desc {
+  width: 50%;
+  padding: 20px; }
+#ticket .ticket .button-wrap {
+  width: 30%;
+  flex-direction: column; }
+  #ticket .ticket .button-wrap .button {
+    width: 100%; }
 
 /*SIGN UP PAGE*/
 .forms {
@@ -727,14 +817,8 @@ xpopup
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center; }
-  .main#projects h1 {
-    font-size: 48px;
-    width: 100%;
-    color: #E75858;
-    text-align: center;
-    letter-spacing: 10px;
-    font-family: "Titillium Web", sans-serif;
-    text-transform: uppercase; }
+  .main#projects .subhead {
+    margin-right: 100px; }
 
 .project {
   width: 100%;
@@ -746,57 +830,63 @@ xpopup
   padding: 20px;
   padding-left: 75px; }
   .project img {
-    width: 300px;
-    height: 300px; }
+    width: 225px;
+    height: 225px; }
   .project .info {
-    width: 60%;
-    height: 300px;
+    width: 40%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end; }
+    justify-content: flex-start; }
     .project .info h2, .project .info h3 {
       width: 100%;
-      font-family: "PT Sans", sans-serif;
-      font-size: 48px;
-      color: #E75858;
-      text-transform: uppercase;
-      font-weight: bold;
-      margin: 10px 75px;
-      letter-spacing: 5px; }
+      margin: 10px 75px; }
     .project .info h3 {
+      padding-left: 50px;
       color: #2A2A2A;
-      font-size: 36px;
+      font-size: 28px;
       letter-spacing: 2px; }
   .project p {
-    font-size: 26px;
+    font-size: 22px;
+    margin: 5px 0;
     text-align: left;
     color: #2A2A2A;
-    width: 25%;
+    width: 100%;
     font-family: "Titillium Web", sans-serif; }
-  .project .button {
+  .project .button-wrap {
     width: 30%;
-    font-size: 22px;
-    text-align: center; }
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly; }
+    .project .button-wrap .button {
+      width: 100%;
+      font-size: 22px;
+      text-align: center; }
   .project #reportLink-wrap {
-    width: 100%; }
+    width: 100%;
+    padding-top: 50px; }
     .project #reportLink-wrap p, .project #reportLink-wrap textarea {
       width: 100%;
       text-align: center;
       font-family: "PT Sans", sans-serif; }
     .project #reportLink-wrap p {
-      color: #3C4A54; }
+      color: #3C4A54;
+      font-size: 22px; }
     .project #reportLink-wrap textarea {
       background: none;
       border: none;
       outline: none;
       color: #E75858;
       font-weight: bold;
-      font-size: 32px;
+      font-size: 18px;
       padding: 10px; }
     .project #reportLink-wrap .button {
-      margin: auto; }
+      margin: auto;
+      font-size: 16px;
+      width: 150px; }
 
 .project:nth-of-type(even) {
   background: #c8c8c8; }
@@ -858,13 +948,9 @@ table.reports {
   align-items: center;
   justify-content: space-between; }
   #splash header p, #splash header h2 {
-    font-family: "PT Sans", sans-serif;
     font-size: 36px;
     text-align: center;
     width: 850px; }
-  #splash header h2 {
-    font-weight: bold;
-    text-transform: uppercase; }
 
 #splash section {
   text-align: center; }
@@ -881,27 +967,38 @@ table.reports {
 
 /* BUG APPROVAL */
 .bug, .ticket {
-  width: 100%;
+  padding-right: 25%;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   align-items: flex-start;
-  justify-content: space-evenly; }
+  justify-content: flex-start; }
   .bug .name, .ticket .name {
     font-family: "Ubuntu", sans-serif;
     color: #2A2A2A;
-    font-size: 36px; }
+    font-size: 22px;
+    width: 100%; }
   .bug .info, .ticket .info {
-    margin: 5px 0; }
+    border-bottom: solid #E75858 2px;
+    margin: 5px 20px;
+    align-self: baseline;
+    padding-bottom: 5px; }
     .bug .info .label, .ticket .info .label {
       font-family: "PT Sans", sans-serif;
       font-weight: bold;
-      font-size: 24px;
-      width: 200px; }
+      font-size: 18px; }
     .bug .info a, .ticket .info a {
+      margin-left: 10px;
       font-weight: normal;
       display: inline-block; }
+  .bug .info.desc, .ticket .info.desc {
+    border: none;
+    font-size: 22px;
+    width: 60%; }
+    .bug .info.desc a, .ticket .info.desc a {
+      width: 100%;
+      margin-top: 10px; }
   .bug .button-wrap, .ticket .button-wrap {
     width: 100%;
     display: flex;
@@ -910,8 +1007,17 @@ table.reports {
     align-items: center;
     justify-content: space-evenly; }
     .bug .button-wrap .button, .ticket .button-wrap .button {
-      width: 300px;
+      font-size: 18px;
+      width: 200px;
       text-align: center; }
+  .bug:nth-of-type(even), .ticket:nth-of-type(even) {
+    background: #c8c8c8; }
+
+.bug {
+  padding-left: 75px;
+  padding-right: 10%; }
+  .bug .button-wrap {
+    width: 20%; }
 
 /* Rating Star Widgets Style */
 .rating-widget p {

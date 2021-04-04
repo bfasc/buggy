@@ -12,15 +12,15 @@
             </div>
             <?php printHeader($_SESSION['userID']);
             if(getAccountType($_SESSION['userID']) == "management" && getAllProjects($_SESSION['userID']) == []) {
-                print("<h2>You need to create a Project to get started.</h2>
+                print("<h2 class='subhead'>You need to create a Project to get started.</h2 class='subhead'>
                 <a href='createproject' class='button'>Create Your First Project</a>
                 ");
             } else {
             ?>
-            <h1>In Progress</h1>
+            <h2 class='subhead'>In Progress</h2>
             <?php fetchTickets($_SESSION['userID'], "In Progress"); ?>
 
-            <h1>New Tickets</h1>
+            <h2 class='subhead'>New Tickets</h2>
             <?php fetchTickets($_SESSION['userID'], "New");
             } ?>
         </div>

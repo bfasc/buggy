@@ -20,7 +20,7 @@ function listBugs($projectID) {
                     <p class='info'><a class='label'>Reported By: </a><a>" . $row['firstName'] . " " . $row['lastName'] . "</a></p>
                     <p class='info'><a class='label'>Email: </a><a>" . $row['reporterEmail'] . "</a></p>
                     <p class='info'><a class='label'>Project Name: </a><a>" . getProjectInfo($row['associatedProjectID'], "projectName") . "</a></p>
-                    <p class='info'><a class='label'>Bug Details: </a><a>" . $row['bugDescription'] . "</a></p>
+                    <p class='info desc'><a class='label'>Bug Details: </a><a>" . $row['bugDescription'] . "</a></p>
                     <div class='button-wrap'>
                         <a class='button approve cd-popup-trigger' id='" . $row['id'] . "' class='button'>Approve</a>
                         <a class='button deny cd-popup-trigger' id='" . $row['id'] . "' class='button'>Deny</a>
