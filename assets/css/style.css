@@ -96,6 +96,10 @@ h2.subhead {
       height: 2px;
       background: #E75858;
       transition: width .3s; }
+    .sidebar #nav a i {
+      color: #E75858;
+      margin-left: 10px;
+      font-size: 18px; }
   .sidebar .current {
     border-bottom: solid #E75858 2px; }
   .sidebar #info-links {
@@ -459,6 +463,43 @@ xpopup
 @media only screen and (min-width: 1170px) {
   .cd-popup-container {
     margin: 8em auto; } }
+/* NOTIFICATION PAGE */
+.notif {
+  width: 60%;
+  border-radius: 10px;
+  background: #3C4A54;
+  margin: auto;
+  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  align-items: space-between;
+  padding: 30px;
+  padding-top: 0; }
+  .notif p {
+    font-family: "Titillium Web", sans-serif;
+    width: 75%;
+    font-size: 28px;
+    font-weight: lighter;
+    margin-top: 0;
+    margin-top: 50px;
+    color: #FFFFFF; }
+  .notif .date {
+    width: 25%;
+    color: #E75858;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: -75px; }
+    .notif .date i {
+      margin-right: 15px; }
+  .notif .button {
+    width: 300px;
+    font-size: 22px;
+    margin: auto;
+    text-align: center; }
+
 /*SEARCH PAGE */
 #search .forms {
   margin: 40px 0; }

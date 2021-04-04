@@ -6,7 +6,9 @@
         $response = "You must fill out all of the form fields.";
     else {
         if(preg_match("/^[A-Za-z0-9_-]*$/",$_POST['link'])){
-            if(!checkUniqueLink($_POST['link'])) $response = "This custom link is already taken.";
+            if(getProjectInfo($_POST['projectID'], "customLink") != $_POST['link']){
+                if(!checkUniqueLink($_POST['link'])) $response = "This custom link is already taken.";
+            }
             else {
                 if(!editProject($_POST['name'], $_POST['category'], $_POST['progress'], $_POST['priority'], $_POST['startdate'], $_POST['enddate'], $_POST['projectID'], $_POST['link']))
                     $response = "Error editing project.";

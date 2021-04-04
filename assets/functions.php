@@ -118,6 +118,7 @@ function printSidebar($type, $current)
     }
     print("<div class='wrap'>");
     print("<div class='sidebar $report'>");
+    $unread = checkUnreadNotif($_SESSION['userID']);
     switch ($type) {
         case "notloggedin":
             print("
@@ -141,13 +142,15 @@ function printSidebar($type, $current)
                     <a href='projects'>Your Projects</a>
                     <a href='search'>Search All Tickets</a>
                     <a href='accountmanagement'>Manage Account</a>
-                    <a href='notifications'>Notifications</a>
+                    <a href='notifications'>Notifications");
+            if($unread) print("<sup><i class='fas fa-exclamation-circle'></i></sup>");
+            print("</a>
                     <a href='signout'>Sign Out</a>
                 </section>
                 <section id='side-info'>
                     <img src='assets/img/LOGO_FOOTER.png'>
                 </section>
-                ");
+            ");
             break;
         case "management":
             print("
@@ -159,7 +162,9 @@ function printSidebar($type, $current)
                     <a href='companymanagement'>Manage Company</a>
                     <a href='employeemanagement'>Manage Employees</a>
                     <a href='approval'>Bug Approval</a>
-                    <a href='notifications'>Notifications</a>
+                    <a href='notifications'>Notifications");
+            if($unread) print("<sup><i class='fas fa-exclamation-circle'></i></sup>");
+            print("</a>
                     <a href='signout'>Sign Out</a>
                 </section>
                 <section id='side-info'>
@@ -671,6 +676,30 @@ function newNotification($text, $user, $link) {
             $stmt->execute($values);
         }
         return TRUE;
+    } catch (Exception $e) {
+        return FALSE;
+    } finally {
+        $db = NULL;
+    }
+}
+
+/* Function Name: checkUnreadNotif
+      * Description: check if user has unread notifications
+      * Parameters: tuser (userID to check)
+      * Return Value: boolean T/F on success
+      */
+function checkUnreadNotif($user) {
+    try {
+        $db = db_connect();
+        $values = [$user];
+        $sql = "SELECT * FROM notifications WHERE viewed = 0 AND user = ?";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
+
+        $result = $stmt->fetchColumn();
+        if ($result) return TRUE;
+        else return FALSE;
     } catch (Exception $e) {
         return FALSE;
     } finally {
