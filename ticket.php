@@ -20,7 +20,7 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
 ?>
 
 <body>
-    <?php printSidebar(getAccountType($_SESSION['userID']), "projects"); ?>
+    <?php printSidebar(getAccountType($_SESSION['userID']), "tickets"); ?>
 
     <div class="main" id="ticket">
         <?php printHeader($_SESSION['userID']);

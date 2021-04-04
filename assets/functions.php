@@ -651,3 +651,29 @@ function checkUniqueLink($link) {
         $db = NULL;
     }
 }
+
+/* Function Name: newNotification
+      * Description: send a user a notification
+      * Parameters: text (notification text), user (userID to send to), link (link in notification)
+      * Return Value: boolean T/F on success
+      */
+function newNotification($text, $user, $link) {
+    try {
+        if($user) {
+            $db = db_connect();
+            $date = date('Y-m-d H:i:s');
+            $values = [$user, $text, $link, $date];
+            $sql = "INSERT INTO notifications
+            (user, notifText, link, notifDate)
+            VALUES (?, ?, ?, ?)";
+
+            $stmt = $db->prepare($sql);
+            $stmt->execute($values);
+        }
+        return TRUE;
+    } catch (Exception $e) {
+        return FALSE;
+    } finally {
+        $db = NULL;
+    }
+}

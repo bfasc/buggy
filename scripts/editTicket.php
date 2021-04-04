@@ -42,6 +42,13 @@
             $stmt->execute($values);
             $response = "success";
         }
+
+        // Send notification to each assigned dev
+        $newDevs = getTicketInfo($_POST['id'], "assignedDevelopers");
+        $newDevs = explode(",", $newDevs);
+        foreach($newDevs as $dev) {
+            newNotification("A ticket you're working (Ticket " . $_POST['id'] . " : " . $_POST['name'] . ") on has been updated.", $dev, "ticket?ticket=" . $_POST['id']);
+        }
     } catch (Exception $e) {
         $response = $e;
     } finally {

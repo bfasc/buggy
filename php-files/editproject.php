@@ -73,6 +73,13 @@ function editProject($name, $category, $progress, $priority, $startDate, $endDat
             }
         }
 
+        // Send notification to each assigned dev
+        $newDevs = getProjectInfo($projectID, "assignedDevelopers");
+        $newDevs = explode(",", $newDevs);
+        foreach($newDevs as $dev) {
+            newNotification("A project you're working on has been updated.", $dev, "");
+        }
+
         return TRUE;
     } catch (Exception $e) {
         return FALSE;
