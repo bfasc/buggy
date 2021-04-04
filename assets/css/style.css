@@ -891,6 +891,50 @@ xpopup
 .project:nth-of-type(even) {
   background: #c8c8c8; }
 
+/* COMPANY MANAGEMENT */
+#company h2 {
+  width: 100%; }
+#company .button {
+  margin: 20px;
+  width: 300px;
+  font-size: 22px;
+  text-align: center; }
+#company .copylink-wrap {
+  width: 100%;
+  padding-left: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  align-items: flex-start; }
+  #company .copylink-wrap h3 {
+    font-family: "PT Sans", sans-serif;
+    font-size: 22px;
+    color: #3C4A54;
+    width: 100%;
+    padding-left: 50px; }
+  #company .copylink-wrap p, #company .copylink-wrap textarea {
+    text-align: left;
+    font-family: "PT Sans", sans-serif;
+    margin: 0; }
+  #company .copylink-wrap p {
+    width: 100%;
+    color: #3C4A54;
+    font-size: 22px; }
+  #company .copylink-wrap textarea {
+    background: none;
+    border: none;
+    outline: none;
+    color: #E75858;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px;
+    width: 550px; }
+  #company .copylink-wrap .button.copy {
+    margin: 0;
+    font-size: 16px;
+    width: 150px; }
+
 /* REPORT TABLES */
 h1.reports {
   font-size: 48px;
