@@ -176,14 +176,14 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
 
     $('.edit').click(function(){
         var id = $(this).attr('id');
-        $('.cd-popup-container').load('scripts/editForm.php?id='+id);
+        $('.cd-popup-container').load('/scripts/editForm.php?id='+id);
     });
     $('.progressChange').click(function(){
         var id = $(this).attr('id');
         var progress = document.getElementById('progress').value;
 
         $.ajax({
-            url: 'scripts/editTicket.php',
+            url: '/scripts/editTicket.php',
             type: 'post',
             dataType: 'JSON',
             data: {"id": id, "type": "editProgress", "progress": progress},
@@ -221,7 +221,7 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
         developerList = JSON.stringify(developerList);
 
         $.ajax({
-            url: 'scripts/editTicket.php',
+            url: '/scripts/editTicket.php',
             type: 'post',
             dataType: 'JSON',
             data: {"id": ticketID,
@@ -240,7 +240,7 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
     }
     function deleteTicket(ticketID) {
         $.ajax({
-            url: 'scripts/deleteTicket.php',
+            url: '/scripts/deleteTicket.php',
             type: 'post',
             dataType: 'JSON',
             data: {"id": ticketID},
@@ -262,7 +262,7 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
     function submitComment(id, text){
         //id is the ticket ID that the comment will be posted under.
         $.ajax({
-            url: 'scripts/submitComment.php',
+            url: '/scripts/submitComment.php',
             type: 'post',
             dataType: 'JSON',
             data: {"id": id, "text": text, "reply": "false"},
@@ -274,7 +274,7 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
     function submitReply(id, text){
         //id is the comment ID that this reply is going to.
         $.ajax({
-            url: 'scripts/submitComment.php',
+            url: '/scripts/submitComment.php',
             type: 'post',
             dataType: 'JSON',
             data: {"id": id, "text": text, "reply": "true"},

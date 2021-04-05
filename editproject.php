@@ -1,6 +1,6 @@
 <?php
-require_once '/assets/functions.php';
-require_once '/php-files/editproject.php';
+require_once 'assets/functions.php';
+require_once 'php-files/editproject.php';
 printHead("Edit a Project | Buggy - Let's Code Together");
 
 if(isset($_GET['project'])) {
@@ -131,15 +131,15 @@ if(isset($_GET['project'])) {
             </div>
         </div>
     </div>
-    <script src="scripts/priority.js"></script>
-    <script src="scripts/forms.js"></script>
+    <script src="/scripts/priority.js"></script>
+    <script src="/scripts/forms.js"></script>
     <script>
         $(document).ready(function(){
             $('#name').prev('label').addClass('active highlight');
             $('#link').prev('label').addClass('active highlight');
             $('#name').val("<?php echo $projectName; ?>");
             var projectID = "<?php echo $projectID; ?>";
-            $('#developerSelect').load('scripts/getDeveloperList.php?id&selected&projectEdit=' + projectID);
+            $('#developerSelect').load('/scripts/getDeveloperList.php?id&selected&projectEdit=' + projectID);
             $('#link').val("<?php echo $customLink; ?>");
         })
 
@@ -170,7 +170,7 @@ if(isset($_GET['project'])) {
             unassignedDeveloperList = JSON.stringify(unassignedDeveloperList);
 
             $.ajax({
-                url: 'scripts/editproject.php',
+                url: '/scripts/editproject.php',
                 type: 'post',
                 dataType: 'JSON',
                 data: {"name": name, "category": category, "progress": progress, "priority": priority, "startdate": startdate, "enddate": enddate, "projectID": projectID, "developers": developerList, "unassignedDevelopers": unassignedDeveloperList, "link": customlink},
