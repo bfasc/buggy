@@ -142,7 +142,7 @@ function printSidebar($type, $current)
                     <a href='/tickets'>Your Tickets</a>
                     <a href='/projects'>Your Projects</a>
                     <a href='/search'>Search All Tickets</a>
-                    <a href='/accountmanagement'>Manage Account</a>
+                    <a href='/account'>Manage Account</a>
                     <a href='/notifications'>Notifications");
             if($unread) print("<sup><i class='fas fa-exclamation-circle'></i></sup>");
             print("</a>
@@ -159,9 +159,9 @@ function printSidebar($type, $current)
                     <a href='/tickets'>Your Tickets</a>
                     <a href='/projects'>Your Projects</a>
                     <a href='/search'>Search Tickets</a>
-                    <a href='/accountmanagement'>Manage Account</a>
-                    <a href='/companymanagement'>Manage Company</a>
-                    <a href='/employeemanagement'>Manage Employees</a>
+                    <a href='/account'>Manage Account</a>
+                    <a href='/company'>Manage Company</a>
+                    <a href='/employees'>Manage Employees</a>
                     <a href='/approval'>Bug Approval</a>
                     <a href='/notifications'>Notifications");
             if($unread) print("<sup><i class='fas fa-exclamation-circle'></i></sup>");

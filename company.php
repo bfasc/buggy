@@ -4,7 +4,7 @@ printHead("Manage Company | Buggy - Let's Code Together");
 ?>
 
 <body>
-    <?php printSidebar(getAccountType($_SESSION['userID']), "companymanagement"); ?>
+    <?php printSidebar(getAccountType($_SESSION['userID']), "company"); ?>
 
     <div class="main" id="company">
         <?php printHeader($_SESSION['userID']);

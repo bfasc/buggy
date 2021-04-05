@@ -5,7 +5,7 @@ printHead("Company Reports | Buggy - Let's Code Together");
 ?>
 
 <body>
-    <?php printSidebar(getAccountType($_SESSION['userID']), "companymanagement"); ?>
+    <?php printSidebar(getAccountType($_SESSION['userID']), "company"); ?>
     <div class="main">
         <?php printHeader($_SESSION['userID']); ?>
         <h1 class="reports">Company Reports for <?php print(getCompanyInfo(getUserInfo($_SESSION['userID'], "associatedCompany"), "companyName")); ?></h1>

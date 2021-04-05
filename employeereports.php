@@ -4,7 +4,7 @@
 ?>
 
 <body>
-    <?php printSidebar(getAccountType($_SESSION['userID']), "employeemanagement"); ?>
+    <?php printSidebar(getAccountType($_SESSION['userID']), "employees"); ?>
     <div class="main">
         <?php printHeader($_SESSION['userID']); ?>
         <h1 class="reports">Employee Reports for <?php print(getCompanyInfo(getUserInfo($_SESSION['userID'], "associatedCompany"), "companyName")); ?></h1>

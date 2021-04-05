@@ -1,10 +1,10 @@
 <?php
 require_once 'assets/functions.php';
-printHead("Manage Employees | Buggy - Let's Code Together");
+printHead("Manage Account | Buggy - Let's Code Together");
 ?>
 
 <body>
-    <?php printSidebar(getAccountType($_SESSION['userID']), "employeemanagement"); ?>
+    <?php printSidebar(getAccountType($_SESSION['userID']), "account"); ?>
 
     <div class="main">
         <?php printHeader($_SESSION['userID']);
