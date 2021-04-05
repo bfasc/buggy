@@ -40,8 +40,8 @@ function printHead($title)
 
           <!-- CSS
           –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-          <link rel='stylesheet' href='assets/css/normalize.css'>
-          <link rel='stylesheet' href='assets/css/style.css'>
+          <link rel='stylesheet' href='/assets/css/normalize.css'>
+          <link rel='stylesheet' href='/assets/css/style.css'>
 
           <!-- Favicon
           –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -66,9 +66,8 @@ function printHead($title)
 function printHeader($userID)
 {
     $firstName = getUserInfo($userID, "firstName");
-    $ticketNum = 0; //TODO : GET TICKET NUMBER
     print("<header>
-                    <img src='assets/img/LOGO_MAIN.png'>
+                    <img src='/assets/img/LOGO_MAIN.png'>
                     <div>
                         <h2 class='subhead'>Hello, $firstName</h2 class='subhead'>
                         <p>You have <a id='ticketnum'>" . getTicketNum($userID) . "</a> unfinished ");
@@ -84,7 +83,7 @@ function printHeader($userID)
                 	    <input type='button' class='confirmButton' value='OK'>
                     </div>
                 </div>
-                <script src='scripts/alerts.js'></script>
+                <script src='/scripts/alerts.js'></script>
         ");
 }
 
@@ -125,57 +124,57 @@ function printSidebar($type, $current)
         case "notloggedin":
             print("
                     <section id='nav'>
-                        <a href='index'>Home</a>
-                        <a href='about'>About Us</a>
-                        <a href='purchase'>Get Buggy</a>
-                        <a href='more'>Learn More</a>
-                        <a href='signin'>Sign In</a>
-                        <a href='signup'>Sign Up</a>
+                        <a href='/index'>Home</a>
+                        <a href='/about'>About Us</a>
+                        <a href='/purchase'>Get Buggy</a>
+                        <a href='/more'>Learn More</a>
+                        <a href='/signin'>Sign In</a>
+                        <a href='/signup'>Sign Up</a>
                     </section>
                     <section id='side-info'>
-                        <img src='assets/img/LOGO_FOOTER.png'>
+                        <img src='/assets/img/LOGO_FOOTER.png'>
                     </section>
                 ");
             break;
         case "developer":
             print("
                 <section id='nav'>
-                    <a href='tickets'>Your Tickets</a>
-                    <a href='projects'>Your Projects</a>
-                    <a href='search'>Search All Tickets</a>
-                    <a href='accountmanagement'>Manage Account</a>
-                    <a href='notifications'>Notifications");
+                    <a href='/tickets'>Your Tickets</a>
+                    <a href='/projects'>Your Projects</a>
+                    <a href='/search'>Search All Tickets</a>
+                    <a href='/accountmanagement'>Manage Account</a>
+                    <a href='/notifications'>Notifications");
             if($unread) print("<sup><i class='fas fa-exclamation-circle'></i></sup>");
             print("</a>
-                    <a href='signout'>Sign Out</a>
+                    <a href='/signout'>Sign Out</a>
                 </section>
                 <section id='side-info'>
-                    <img src='assets/img/LOGO_FOOTER.png'>
+                    <img src='/assets/img/LOGO_FOOTER.png'>
                 </section>
             ");
             break;
         case "management":
             print("
                 <section id='nav'>
-                    <a href='tickets'>Your Tickets</a>
-                    <a href='projects'>Your Projects</a>
-                    <a href='search'>Search Tickets</a>
-                    <a href='accountmanagement'>Manage Account</a>
-                    <a href='companymanagement'>Manage Company</a>
-                    <a href='employeemanagement'>Manage Employees</a>
-                    <a href='approval'>Bug Approval</a>
-                    <a href='notifications'>Notifications");
+                    <a href='/tickets'>Your Tickets</a>
+                    <a href='/projects'>Your Projects</a>
+                    <a href='/search'>Search Tickets</a>
+                    <a href='/accountmanagement'>Manage Account</a>
+                    <a href='/companymanagement'>Manage Company</a>
+                    <a href='/employeemanagement'>Manage Employees</a>
+                    <a href='/approval'>Bug Approval</a>
+                    <a href='/notifications'>Notifications");
             if($unread) print("<sup><i class='fas fa-exclamation-circle'></i></sup>");
             print("</a>
-                    <a href='signout'>Sign Out</a>
+                    <a href='/signout'>Sign Out</a>
                 </section>
                 <section id='side-info'>
-                    <img src='assets/img/LOGO_FOOTER.png'>
+                    <img src='/assets/img/LOGO_FOOTER.png'>
                 </section>
                 ");
             break;
         case "report":
-            print("<a href='http://www.projectbuggy.tk'><img src='assets/img/LOGO_MAIN.png'></a>");
+            print("<a href='http://www.projectbuggy.tk'><img src='/assets/img/LOGO_MAIN.png'></a>");
             break;
         default:
             print("<a>Sorry, there was an error in the sidebar.</a>");
@@ -185,7 +184,7 @@ function printSidebar($type, $current)
     //JS to add current attribute
     print("
         <script>
-            var current = $(\"a[href='$current']\");
+            var current = $(\"a[href='/$current']\");
             current.addClass('current');
         </script>
         ");
@@ -560,6 +559,29 @@ function getBugReportInfo($reportID, $column)
         $values = [$reportID];
 
         $sql = "SELECT $column FROM bugreportinfo WHERE id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute($values);
+        $result = $stmt->fetchColumn();
+        return $result;
+    } catch (Exception $e) {
+        return NULL;
+    } finally {
+        $db = NULL;
+    }
+}
+
+/* Function Name: getCommentInfo
+      * Description: get comment info belonging to the corresponding comment id
+      * Parameters: commentID (project ID), column (db column to grab)
+      * Return Value: comment info
+      */
+function getCommentInfo($commentID, $column)
+{
+    try {
+        $db = db_connect();
+        $values = [$commentID];
+
+        $sql = "SELECT $column FROM comments WHERE id = ?";
         $stmt = $db->prepare($sql);
         $stmt->execute($values);
         $result = $stmt->fetchColumn();

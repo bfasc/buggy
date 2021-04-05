@@ -2,6 +2,7 @@ RewriteEngine On
 
 RewriteRule ^report/(.*)$ ./report.php?project=$1
 RewriteRule ^ticket/(.*)$ ./ticket.php?ticket=$1
+RewriteRule ^editproject/(.*)$ ./editproject.php?project=$1
 
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 RewriteRule ^([^\.]+)$ $1.html [NC,L]

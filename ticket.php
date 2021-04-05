@@ -164,6 +164,12 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
                     "<textarea id='reply-"+id+"-text'></textarea>"+
                     "<input type='submit' value='Post' class='button reply-submit' id='reply-"+id+"'>"+
                     "</div>";
+            $('.reply-submit').click(function(){
+                //ID will be reply-ID
+                //id is the comment ID that this reply is going to.
+                var text = document.getElementById("reply-"+id+"-text").value;
+                submitReply(id, text);
+            });
         } else document.getElementById('reply-'+id).innerHTML = "";
 
     });
@@ -240,6 +246,39 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
             data: {"id": ticketID},
             success: function(response) {
                 closePopup();
+                window.location.href = "";
+            }
+        });
+    }
+
+
+    $('.comment-submit').click(function(){
+        //id is the ticket ID that the comment will be posted under.
+        var id = $(this).attr('id');
+        var text = document.getElementById(id+"-text").value;
+        submitComment(id, text);
+    });
+
+    function submitComment(id, text){
+        //id is the ticket ID that the comment will be posted under.
+        $.ajax({
+            url: 'scripts/submitComment.php',
+            type: 'post',
+            dataType: 'JSON',
+            data: {"id": id, "text": text, "reply": "false"},
+            success: function(response) {
+                window.location.href = "";
+            }
+        });
+    }
+    function submitReply(id, text){
+        //id is the comment ID that this reply is going to.
+        $.ajax({
+            url: 'scripts/submitComment.php',
+            type: 'post',
+            dataType: 'JSON',
+            data: {"id": id, "text": text, "reply": "true"},
+            success: function(response) {
                 window.location.href = "";
             }
         });

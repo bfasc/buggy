@@ -4,7 +4,7 @@
         $db = db_connect();
         $decision = $_POST['deletebug'];
 
-        if ($decision == "false"){ //I don't know why it's taking the string instead of boolean here. But it works this way.
+        if ($decision == "false"){
           $values = [$_POST['reason'], $_POST['id']];
 
           $sql = "UPDATE bugreportinfo SET approval = 2, rejectionReason = ? WHERE id = ?";

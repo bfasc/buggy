@@ -44,17 +44,17 @@ printHead("Projects | Buggy - Let's Code Together");
             print("</div>"); //end info
 
             print("<div class='button-wrap'>");
-            print("<a class='button' href='report?project=$reportCode'>Report a Bug</a>");
+            print("<a class='button' href='report/$reportCode'>Report a Bug</a>");
 
             if(getAccountType($_SESSION['userID']) == "management") {
-                print("<a class='button' href='editproject?project=$projectID'>Edit</a>");
+                print("<a class='button' href='editproject/$projectID'>Edit</a>");
             }
             print("</div>"); //end button wrap
 
 
             print("<div id='reportLink-wrap'>
                 <p>Give your users this link to report bugs they find in your project:
-                    <textarea disabled id='reportLink-$projectID'>http://www.projectbuggy.tk/report?project=$reportCode</textarea>
+                    <textarea disabled id='reportLink-$projectID'>http://www.projectbuggy.tk/report/$reportCode</textarea>
                     <a class='copyLink button' id='report-$projectID'>Copy Link</a>
                 </p>
             </div>");
