@@ -2,9 +2,6 @@
 //TODO: ADD JS VALIDATION
 require_once 'assets/functions.php';
 require_once 'php-files/report.php';
-// Databse connection
-require_once 'assets/dbconnect.php';
-
 
 // GET COMPANY INFO FROM GET VAR
 $response = NULL;
@@ -121,7 +118,7 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
         </section>
 
     </div>
-    <script src="scripts/forms.js"></script>
+    <script src="/scripts/forms.js"></script>
     <?php printFooter("report"); ?>
 </body>
 

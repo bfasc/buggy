@@ -45,7 +45,7 @@ function printHead($title)
 
           <!-- Favicon
           –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-          <link rel='icon' type='image/png' href='assets/img/favicon.ico'>
+          <link rel='icon' type='image/png' href='/assets/img/favicon.ico'>
 
           <!-- JQUERY
           –––––––––––––––––––––––––––––––––––––––––––––––––– -->

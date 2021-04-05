@@ -1,6 +1,6 @@
 <?php
-require_once 'assets/functions.php';
-require_once 'php-files/editproject.php';
+require_once '/assets/functions.php';
+require_once '/php-files/editproject.php';
 printHead("Edit a Project | Buggy - Let's Code Together");
 
 if(isset($_GET['project'])) {
