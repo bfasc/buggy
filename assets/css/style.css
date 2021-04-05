@@ -1048,7 +1048,73 @@ table.reports {
     width: 100%; }
   #splash section .third {
     width: 30%;
-    margin: 5% 0; }
+    margin: 20px 0; }
+    #splash section .third p {
+      padding: 10px 40px;
+      font-size: 18px;
+      line-height: 36px;
+      font-family: "Ubuntu", sans-serif; }
+  #splash section .whole {
+    width: 100%;
+    height: 400px;
+    background: #3C4A54;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center; }
+    #splash section .whole p, #splash section .whole .section-img {
+      width: 50%;
+      height: 450px; }
+    #splash section .whole .section-img {
+      background-image: url("/assets/img/bugreport.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: top center; }
+    #splash section .whole p {
+      background: #3C4A54;
+      color: white;
+      font-family: "Titillium Web", sans-serif;
+      font-size: 20px;
+      line-height: 40px;
+      padding: 50px;
+      text-align: left;
+      margin: 0; }
+  #splash section .half {
+    width: 50%; }
+    #splash section .half p {
+      font-size: 26px;
+      font-family: "PT Sans", sans-serif;
+      color: #2A2A2A;
+      line-height: 38px;
+      padding: 0 50px; }
+  #splash section .padded {
+    width: 60%;
+    margin: auto;
+    background: #E75858; }
+    #splash section .padded h2 {
+      color: #2A2A2A;
+      font-family: "Titillium Web", sans-serif;
+      font-size: 42px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font-weight: bold; }
+    #splash section .padded h3 {
+      color: #FFFFFF;
+      font-size: 48px;
+      font-family: "PT Sans", sans-serif;
+      font-weight: lighter; }
+    #splash section .padded p {
+      color: #FFFFFF;
+      font-family: "PT Sans", sans-serif;
+      font-size: 24px;
+      margin: 5px 0; }
+    #splash section .padded .button {
+      background: #FFFFFF;
+      color: #E75858;
+      width: 60%;
+      margin: 15px auto; }
+      #splash section .padded .button:hover {
+        background: #d9d9d9; }
 
 /* BUG APPROVAL */
 .bug, .ticket {

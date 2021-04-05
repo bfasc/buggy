@@ -55,7 +55,6 @@ printHead("Buggy - Let's Code Together");
             <h1>Easy to set up, easy to use.</h1>
             <div class="whole">
                 <div class="section-img">
-                    <img src="assets/img/bugreport.png">
                 </div>
                 <p>Once you’ve created an account for your team and added a
                     Project, a report.buggy.com custom link will be generated.
@@ -87,7 +86,7 @@ printHead("Buggy - Let's Code Together");
         <section>
             <h1>Let's get you started.</h1>
             <div class="padded">
-                <h2 class='subhead'>Purchase your plan</h2 class='subhead'>
+                <h2>Purchase your plan</h2 class='subhead'>
                 <h3>$49.99/month</h3>
                 <p>Unlimited Accounts</p>
                 <p>Unlimited Bug Reports</p>
