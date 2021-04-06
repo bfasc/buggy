@@ -57,7 +57,7 @@ printHead("Buggy - Let's Code Together");
                 <div class="section-img">
                 </div>
                 <p>Once you’ve created an account for your team and added a
-                    Project, a report.buggy.com custom link will be generated.
+                    Project, a projectbuggy.tk/report custom link will be generated.
                     Your users can click this link to take them to a simple,
                     easy-to-use form where they can submit information about a bug.
                     This information will go directly to your Project Manager’s
