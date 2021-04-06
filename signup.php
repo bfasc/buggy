@@ -303,10 +303,10 @@
                 e.preventDefault();
                 response = "You must fill out all of the form fields.";
             } else {
-                var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+                var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
                 if(!pass1.match(passw)) {
                     e.preventDefault();
-                    response = "Your password must be 8 characters long and contain at least one number, one uppercase, and one lowercase letter.";
+                    response = "Your password must be at least 8 characters long and contain at least one number, one uppercase, and one lowercase letter.";
                 } else {
                     if(pass1 != pass2){
                         e.preventDefault();
@@ -329,10 +329,10 @@
                 e.preventDefault();
                 response = "You must fill out all of the form fields.";
             } else {
-                var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+                var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
                 if(!pass1.match(passw)) {
                     e.preventDefault();
-                    response = "Your password must be 8 characters long and contain at least one number, one uppercase, and one lowercase letter.";
+                    response = "Your password must be at least 8 characters long and contain at least one number, one uppercase, and one lowercase letter.";
                 } else {
                     if(pass1 != pass2){
                         e.preventDefault();
