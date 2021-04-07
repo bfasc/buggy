@@ -4,7 +4,7 @@
             $db = db_connect();
             $date = date('Y-m-d H:i:s');
             $values = [$userID];
-            $sql = "SELECT * FROM notifications WHERE user = ? AND viewed = 0";
+            $sql = "SELECT * FROM notifications WHERE user = ? AND viewed = 0 ORDER BY notifDate DESC";
 
             $stmt = $db->prepare($sql);
             $stmt->execute($values);
