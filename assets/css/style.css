@@ -241,9 +241,10 @@ header {
     width: 60%;
     padding-right: 20%;
     color: #2A2A2A; }
-  header h2 {
+  header h2.subhead {
     padding-bottom: 5px;
-    border-bottom: solid #E75858 3px; }
+    border-bottom: solid #E75858 3px;
+    padding-left: 0; }
   header p {
     font-size: 24px;
     font-weight: lighter;
@@ -253,6 +254,8 @@ header {
       color: #E75858;
       font-weight: bold;
       display: inline-block; }
+  header p.accttype {
+    text-transform: uppercase; }
 
 .button:hover {
   cursor: pointer; }
@@ -1204,5 +1207,58 @@ table.reports {
 
 /* Tablet */
 /* Mobile */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    display: none; }
+
+  .main {
+    width: 100%;
+    padding: 0; }
+
+  footer {
+    padding: 0 10px; }
+    footer .logo, footer .links {
+      width: 36%;
+      height: 100px; }
+    footer a {
+      font-size: 16px; }
+    footer .logo .emphasis {
+      font-size: 28px;
+      margin: 0;
+      text-align: center; }
+    footer .logo a {
+      width: 100%;
+      text-align: center; }
+
+  #splash header p, #splash header h2, #splash header .button {
+    width: 100%;
+    height: auto; }
+  #splash header h2 {
+    font-size: 20px;
+    padding: 0; }
+  #splash header p {
+    font-size: 18px;
+    letter-spacing: 2px; }
+  #splash header .button {
+    font-size: 18px;
+    text-align: center; }
+  #splash section h1 {
+    font-size: 24px;
+    letter-spacing: 2px; }
+  #splash section .third, #splash section .half, #splash section .padded {
+    width: 100%; }
+  #splash section .third p, #splash section .half p {
+    font-size: 18px;
+    line-height: 32px; }
+  #splash section .whole {
+    height: 700px; }
+  #splash section .whole .section-img, #splash section .whole p {
+    width: 100%; }
+  #splash section .whole p {
+    line-height: 25px;
+    padding: 20px;
+    height: 400px; }
+  #splash section .whole .section-img {
+    height: 300px; } }
 
 /*# sourceMappingURL=style.css.map */

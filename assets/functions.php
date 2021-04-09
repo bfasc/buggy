@@ -70,7 +70,7 @@ function printHeader($userID)
     print("<header>
                     <img src='/assets/img/LOGO_MAIN.png'>
                     <div>
-                        <p>$accountType Account</p>
+                        <p class='accttype'>$accountType Account</p>
                         <h2 class='subhead'>Hello, $firstName</h2 class='subhead'>
                         <p>You have <a id='ticketnum'>" . getTicketNum($userID) . "</a> unfinished ");
                         if(getTicketNum($userID) == 1) print("ticket");
