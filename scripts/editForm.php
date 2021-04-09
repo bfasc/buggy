@@ -77,7 +77,7 @@
             </div>
         </div>
         <ul class='cd-buttons'>
-            <li onclick='editTicket($ticketID)'><a>Edit</a></li>
+            <li onclick='editTicket($ticketID)'><a>Save</a></li>
             <li onclick='closePopup()'><a>Cancel</a></li>
         </ul>
         <a class='cd-popup-close img-replace'></a>
