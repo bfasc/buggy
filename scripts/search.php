@@ -1,6 +1,7 @@
 <?php
     session_start();
     $content = $_POST['content'];
+    $id = $_POST['idnum'];
     $assigned = $_POST['assigned'];
     $discussion = $_POST['discussion'];
     $completed = $_POST['completed'];
@@ -44,6 +45,12 @@
             if($whereCount > 0) $where .= " AND ";
             $where .= "assignedDevelopers LIKE ?";
             array_push($values, "%" . $_SESSION['userID'] . "%");
+            $whereCount++;
+        }
+        if($id) {
+            if($whereCount > 0) $where .= " AND ";
+            $where .= "id = ?";
+            array_push($values, $id);
             $whereCount++;
         }
         //TODO discussion sql

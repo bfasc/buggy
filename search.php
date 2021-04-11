@@ -20,6 +20,10 @@ printHead("Search Tickets | Buggy - Let's Code Together");
                                     <i class="fas fa-search"></i> Search Tickets by Name/Content
                                 </label>
                                 <input type="text" id="search-text">
+                                <label>
+                                    <i class="fas fa-search"></i> Search Tickets by Ticket ID#
+                                </label>
+                                <input type="text" id="search-id">
                             </div>
                             <div class="field-row radios">
                                 <div class="field-wrap">
@@ -144,6 +148,7 @@ printHead("Search Tickets | Buggy - Let's Code Together");
 
             //grab selected filters
             var content = $('#search-text').val();
+            var idnum = $('#search-id').val();
             var assigned = $('#assigned').is(':checked');
             var discussion = $('#discussion').is(':checked');
             var completed = $('#completed').is(':checked');
@@ -178,6 +183,7 @@ printHead("Search Tickets | Buggy - Let's Code Together");
                 dataType: 'JSON',
                 data: {
                     "content": content,
+                    "idnum": idnum,
                     "assigned": assigned,
                     "discussion": discussion,
                     "completed": completed,
