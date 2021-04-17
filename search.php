@@ -179,7 +179,7 @@ printHead("Search Tickets | Buggy - Let's Code Together");
             var discussion = $('#discussion').is(':checked');
             var completed = $('#completed').is(':checked');
             var inProgress = $('#inProgress').is(':checked');
-
+            console.log(priority);
             if (assigned) assigned = 1;
             else assigned = 0;
 

@@ -54,7 +54,7 @@
             array_push($values, $id);
             $whereCount++;
         }
-        if($priority) {
+        if($priority != 0) {
             if($whereCount > 0) $where .= " AND ";
             $where .= "priority = ?";
             array_push($values, $priority);
