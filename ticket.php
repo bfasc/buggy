@@ -273,6 +273,7 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
             dataType: 'JSON',
             data: {"id": id, "text": text, "reply": "false"},
             success: function(response) {
+                console.log(response.success);
                 window.location.href = "";
             }
         });
@@ -285,6 +286,7 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
             dataType: 'JSON',
             data: {"id": id, "text": text, "reply": "true"},
             success: function(response) {
+                console.log(response.success);
                 window.location.href = "";
             }
         });

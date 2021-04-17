@@ -2,13 +2,14 @@
 REQUIRE_ONCE "../assets/functions.php";
 REQUIRE_ONCE "../php-files/ticket.php";
 session_start();
-try {
+//try {
     $db = db_connect();
     $date = date('Y-m-d H:i:s');
     if($_POST['reply'] == "true") { //reply to comment
         //$_POST id is the comment ID that this reply is going to.
-        $ticketID = getReplyTicketID($_POST['id']);
-        $values = [227, 401, "Testing Reply", 2, $date];
+        //$ticketID = getReplyTicketID($_POST['id']);
+        $ticketID = 227;
+        $values = [$ticketID, $_SESSION['userID'], $_POST['text'], $_POST['id'], $date];
         $sql = "INSERT INTO comments (ticket, user, commentText, reply, postDate)
         VALUES (?, ?, ?, ?)";
 
@@ -47,12 +48,12 @@ try {
 
         $response = "success";
     }
-} catch (Exception $e) {
-    $response = $e;
-} finally {
-    $db = NULL;
-}
-$return_arr = array("response" => $response);
+// } catch (Exception $e) {
+//     $response = $e;
+// } finally {
+//     $db = NULL;
+// }
+$return_arr = array("success" => $response);
 echo json_encode($return_arr);
 
 ?>
