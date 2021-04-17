@@ -532,6 +532,10 @@ xpopup
 /*SEARCH PAGE */
 #search .forms {
     margin: 40px 0;
+    input[type="text"] {
+        margin-bottom: 30px;
+    }
+    .rating-stars ul {padding: 40px 0;}
 }
 #search-results, #search-filters{
     float: left;
@@ -1063,6 +1067,26 @@ xpopup
         }
     }
 
+}
+
+/* EMPLOYEE MANAGEMENT */
+.employee {
+    width: 40%;
+    margin: 0 100px;
+    text-align: center;
+    @include flexRow;
+    justify-content: space-between;
+    .button {
+        width: 200px;
+        font-size: 18px;
+    }
+    h3 {
+        width: 60%;
+        color: $red;
+        font-weight: bold;
+        font-family: $PTSans;
+        font-size: 32px;
+    }
 }
 /* REPORT TABLES */
 h1.reports {

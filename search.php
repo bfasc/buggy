@@ -25,6 +25,31 @@ printHead("Search Tickets | Buggy - Let's Code Together");
                                 </label>
                                 <input type="text" id="search-id">
                             </div>
+                            <div class="field-wrap">
+                                <label>
+                                    Search Tickets by Priority
+                                </label>
+
+                                <div class='rating-stars'>
+                                    <ul id='stars' class='search'>
+                                      <li class='star' title='Lowest' data-value='1'>
+                                        <i class='fas fa-exclamation fa-fw'></i>
+                                      </li>
+                                      <li class='star' title='Low' data-value='2'>
+                                        <i class='fas fa-exclamation fa-fw'></i>
+                                      </li>
+                                      <li class='star' title='Medium' data-value='3'>
+                                        <i class='fas fa-exclamation fa-fw'></i>
+                                      </li>
+                                      <li class='star' title='High' data-value='4'>
+                                        <i class='fas fa-exclamation fa-fw'></i>
+                                      </li>
+                                      <li class='star' title='Top' data-value='5'>
+                                        <i class='fas fa-exclamation fa-fw'></i>
+                                      </li>
+                                    </ul>
+                                </div>
+                            </div>
                             <div class="field-row radios">
                                 <div class="field-wrap">
                                     <label for="radio">
@@ -149,6 +174,7 @@ printHead("Search Tickets | Buggy - Let's Code Together");
             //grab selected filters
             var content = $('#search-text').val();
             var idnum = $('#search-id').val();
+            var priority = parseInt($('#stars.search li.selected').last().data('value'), 10);
             var assigned = $('#assigned').is(':checked');
             var discussion = $('#discussion').is(':checked');
             var completed = $('#completed').is(':checked');
@@ -190,7 +216,8 @@ printHead("Search Tickets | Buggy - Let's Code Together");
                     "inProgress": inProgress,
                     "projectList": projectList,
                     "startDate": startDate,
-                    "endDate": endDate
+                    "endDate": endDate,
+                    "priority": priority
                 },
                 success: function(response) {
                     $('#search-results').html(response.htmlResponse);
@@ -228,6 +255,7 @@ printHead("Search Tickets | Buggy - Let's Code Together");
         });
     </script>
     <script src="scripts/forms.js"></script>
+    <script src="scripts/priority.js"></script>
 
     <?php printFooter("basic"); ?>
 </body>

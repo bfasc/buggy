@@ -9,6 +9,7 @@
     $projectList = json_decode($_POST['projectList']);
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
+    $priority = $_POST['priority'];
     REQUIRE_ONCE "../assets/functions.php";
     try {
         $db = db_connect();
@@ -51,6 +52,12 @@
             if($whereCount > 0) $where .= " AND ";
             $where .= "id = ?";
             array_push($values, $id);
+            $whereCount++;
+        }
+        if($priority) {
+            if($whereCount > 0) $where .= " AND ";
+            $where .= "priority = ?";
+            array_push($values, $priority);
             $whereCount++;
         }
         //TODO discussion sql

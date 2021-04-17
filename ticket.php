@@ -87,40 +87,44 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
             }
 
             print "</div>";
+            print "</div>"; // end ticket div
 
             $threadInfo = getThreadInfo($id);
-            print "</div>"; // end ticket div
             print "<div class='thread'>";
             print "<h2 class='subhead'>Discussion</h2 class='subhead'>";
+            foreach($threadInfo as $comment) {
+                $commentID = $comment['id'];
+                $firstname = getUserInfo($comment['user'], "firstName");
+                $lastname = getUserInfo($comment['user'], "lastName");
+                $content = $comment['commentText'];
+                $date = date("m/m/Y g:i a", strtotime($comment['postDate']));
 
-            print "<div class='comment'>
-                        <div class='comment-info'>
-                            <p class='poster'>POSTER NAME</p>
-                            <p class='date'>01/01/2020 5:39PM</p>
-                            <i class='fas fa-reply' id='22'></i>
-                        </div>
-                        <p class='comment-text'>If it’s cropped, the door in the image will be cut off. Is this okay?</p>
-                        ";
-            print "<div class='reply'>
+                print "<div class='comment'>
                             <div class='comment-info'>
-                                <p class='poster'>POSTER NAME</p>
-                                <p class='date'>01/01/2020 5:39PM</p>
+                                <p class='poster'>$firstname $lastname</p>
+                                <p class='date'>$date</p>
+                                <i class='fas fa-reply' id='$commentID'></i>
                             </div>
-                            <p class='comment-text'>Yes, this is fine.</p>
-                    </div>";
-                    print "<div class='comment-reply' id='reply-22'></div>";
-            print "</div>"; //end comment
-
-            print "<div class='comment'>
-                        <div class='comment-info'>
-                            <p class='poster'>POSTER NAME</p>
-                            <p class='date'>01/01/2020 5:39PM</p>
-                            <i class='fas fa-reply' id='21'></i>
-                        </div>
-                        <p class='comment-text'>I'm going to re-do this.</p>";
-                    print "<div class='comment-reply' id='reply-21'></div>";
-            print "</div>"; //end comment
-
+                            <p class='comment-text'>$content</p>
+                            ";
+                // get replies
+                $replies = getReplies($commentID);
+                foreach($replies as $reply) {
+                    $replyfirstname = getUserInfo($reply['user'], "firstName");
+                    $replylastname = getUserInfo($reply['user'], "lastName");
+                    $replycontent = $reply['commentText'];
+                    $replydate = date("m/m/Y g:i a", strtotime($reply['postDate']));
+                    print "<div class='reply'>
+                                    <div class='comment-info'>
+                                        <p class='poster'>$replyfirstname $replylastname</p>
+                                        <p class='date'>$replydate</p>
+                                    </div>
+                                    <p class='comment-text'>$replycontent</p>
+                            </div>";
+                }
+                print "<div class='comment-reply' id='reply-$commentID'></div>";
+                print "</div>"; //end comment
+            }
             print "<div class='post new'>";
                 print "<h2 class='subhead'>Post Comment</h2 class='subhead'>";
                 print "<textarea id='$id-text'></textarea>";
@@ -165,9 +169,11 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
                     "<input type='submit' value='Post' class='button reply-submit' id='reply-"+id+"'>"+
                     "</div>";
             $('.reply-submit').click(function(){
+
                 //ID will be reply-ID
                 //id is the comment ID that this reply is going to.
                 var text = document.getElementById("reply-"+id+"-text").value;
+                console.log(id, text);
                 submitReply(id, text);
             });
         } else document.getElementById('reply-'+id).innerHTML = "";

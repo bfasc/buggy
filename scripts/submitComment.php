@@ -20,7 +20,8 @@ try {
         $ticketTitle = getTicketInfo($ticketID, "name");
         $commentPoster = getCommentInfo($ticketID, "user");
 
-        newNotification("$firstName $lastName has replied to your comment on Ticket #$ticketID: $ticketTitle", $commentPoster, "ticket/$ticketID");
+        if($_SESSION['userID'] != $commentPoster)
+            newNotification("$firstName $lastName has replied to your comment on Ticket #$ticketID: $ticketTitle", $commentPoster, "ticket/$ticketID");
         $response = "success";
     } else { //new comment in thread
         //$_POST id is the ticket ID that the comment will be posted under.
@@ -39,7 +40,8 @@ try {
 
         $assignedDevelopers = explode(",", $assignedDevelopers);
         foreach($assignedDevelopers as $dev) {
-            newNotification("$firstName $lastName has commented on Ticket #" . $_POST['id'] . ": $ticketTitle", $dev, "ticket/" . $_POST['id']);
+            if($_SESSION['userID'] != $dev)
+                newNotification("$firstName $lastName has commented on Ticket #" . $_POST['id'] . ": $ticketTitle", $dev, "ticket/" . $_POST['id']);
         }
 
         $response = "success";
