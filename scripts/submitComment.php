@@ -9,7 +9,7 @@ session_start();
         //$_POST id is the comment ID that this reply is going to.
         //$ticketID = getReplyTicketID($_POST['id']);
         $ticketID = 227;
-        $values = [$ticketID, $_SESSION['userID'], $_POST['text'], $_POST['id'], $date];
+        $values = [227, 401, "test", 2, $date];
         $sql = "INSERT INTO comments (ticket, user, commentText, reply, postDate)
         VALUES (?, ?, ?, ?)";
 
