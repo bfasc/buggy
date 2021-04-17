@@ -8,7 +8,7 @@ try {
     if($_POST['reply'] == "true") { //reply to comment
         //$_POST id is the comment ID that this reply is going to.
         $ticketID = getReplyTicketID($_POST['id']);
-        $values = [$ticketID, $_SESSION['userID'], $_POST['text'], $_POST['id'], $date];
+        $values = [227, 401, "Testing Reply", 2, $date];
         $sql = "INSERT INTO comments (ticket, user, commentText, reply, postDate)
         VALUES (?, ?, ?, ?)";
 
@@ -23,6 +23,7 @@ try {
         if($_SESSION['userID'] != $commentPoster)
             newNotification("$firstName $lastName has replied to your comment on Ticket #$ticketID: $ticketTitle", $commentPoster, "ticket/$ticketID");
         $response = "success";
+
     } else { //new comment in thread
         //$_POST id is the ticket ID that the comment will be posted under.
         $values = [$_POST['id'], $_SESSION['userID'], $_POST['text'], $date];
