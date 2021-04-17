@@ -114,7 +114,7 @@ printHead("Search Tickets | Buggy - Let's Code Together");
         //TODO: click priority makes empty
         $('#stars li').on('click', function(){
           var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-          if(onStar.hasClass('selected')) {
+          if($(this).hasClass('selected')) {
               for (i = 0; i < stars.length; i++) {
                 $(stars[i]).removeClass('selected');
               }
