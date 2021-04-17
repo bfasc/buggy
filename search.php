@@ -111,6 +111,8 @@ printHead("Search Tickets | Buggy - Let's Code Together");
     </div>
 
     <script>
+        //TODO: click priority makes empty
+
         // Fill Project List Search Results
         $(document).ready(function() {
             var userID = "<?php echo ($_SESSION['userID']); ?>";
@@ -174,7 +176,7 @@ printHead("Search Tickets | Buggy - Let's Code Together");
             //grab selected filters
             var content = $('#search-text').val();
             var idnum = $('#search-id').val();
-            var priority = parseInt($('#stars.search li.selected').last().data('value'), 10);
+            var priority = parseInt($('#stars li.selected').last().data('value'), 10);
             var assigned = $('#assigned').is(':checked');
             var discussion = $('#discussion').is(':checked');
             var completed = $('#completed').is(':checked');
