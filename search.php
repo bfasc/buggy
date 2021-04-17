@@ -194,6 +194,9 @@ printHead("Search Tickets | Buggy - Let's Code Together");
             if (inProgress) inProgress = 1;
             else inProgress = 0;
 
+            if(isNaN(priority))
+                priority = 0;
+
             var startDate = $('#start-date').val();
             var endDate = $('#end-date').val();
 
