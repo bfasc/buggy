@@ -112,6 +112,14 @@ printHead("Search Tickets | Buggy - Let's Code Together");
 
     <script>
         //TODO: click priority makes empty
+        $('#stars li').on('click', function(){
+          var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+          if(onStar.hasClass('selected')) {
+              for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+              }
+          }
+        });
 
         // Fill Project List Search Results
         $(document).ready(function() {
@@ -181,7 +189,6 @@ printHead("Search Tickets | Buggy - Let's Code Together");
             var discussion = $('#discussion').is(':checked');
             var completed = $('#completed').is(':checked');
             var inProgress = $('#inProgress').is(':checked');
-            console.log(priority);
             if (assigned) assigned = 1;
             else assigned = 0;
 
