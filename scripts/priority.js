@@ -23,63 +23,38 @@
   /* 2. Action to perform on click */
   var unClick = false;
   $('#stars li').on('click', function(){
-      var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-      var stars = $(this).parent().children('li.star');
-      //if last selected star
-      if(($(stars[onStar-1]).hasClass('selected') && !$(stars[onStar]).hasClass('selected')) || (onStar == 5 && $(stars[4]).hasClass('selected'))) {
-          for (i = 0; i < stars.length; i++) {
-            $(stars[i]).removeClass('selected');
-          }
-          unClick = false;
-      }
-      if(unClick == false) {
-          var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-          var stars = $(this).parent().children('li.star');
+    if(unClick == false) {
+        var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+        var stars = $(this).parent().children('li.star');
 
-          for (i = 0; i < stars.length; i++) {
-            $(stars[i]).removeClass('selected');
-          }
+        for (i = 0; i < stars.length; i++) {
+          $(stars[i]).removeClass('selected');
+        }
 
-          for (i = 0; i < onStar; i++) {
-            $(stars[i]).addClass('selected');
-          }
-          unClick = true;
-      }
+        for (i = 0; i < onStar; i++) {
+          $(stars[i]).addClass('selected');
+        }
+        unClick = true;
+    } else {
+        var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+        var stars = $(this).parent().children('li.star');
+        //if last selected star
+        if(($(stars[onStar-1]).hasClass('selected') && !$(stars[onStar]).hasClass('selected')) || (onStar == 5 && $(stars[4]).hasClass('selected'))) {
+            for (i = 0; i < stars.length; i++) {
+              $(stars[i]).removeClass('selected');
+            }
+            unClick = false;
+        } else {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+            var stars = $(this).parent().children('li.star');
 
+            for (i = 0; i < stars.length; i++) {
+              $(stars[i]).removeClass('selected');
+            }
 
-
-    // if(unClick == false) {
-    //     var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-    //     var stars = $(this).parent().children('li.star');
-    //
-    //     for (i = 0; i < stars.length; i++) {
-    //       $(stars[i]).removeClass('selected');
-    //     }
-    //
-    //     for (i = 0; i < onStar; i++) {
-    //       $(stars[i]).addClass('selected');
-    //     }
-    //     unClick = true;
-    // } else {
-    //     var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-    //     var stars = $(this).parent().children('li.star');
-    //     //if last selected star
-    //     if(($(stars[onStar-1]).hasClass('selected') && !$(stars[onStar]).hasClass('selected')) || (onStar == 5 && $(stars[4]).hasClass('selected'))) {
-    //         for (i = 0; i < stars.length; i++) {
-    //           $(stars[i]).removeClass('selected');
-    //         }
-    //         unClick = false;
-    //     } else {
-    //         var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-    //         var stars = $(this).parent().children('li.star');
-    //
-    //         for (i = 0; i < stars.length; i++) {
-    //           $(stars[i]).removeClass('selected');
-    //         }
-    //
-    //         for (i = 0; i < onStar; i++) {
-    //           $(stars[i]).addClass('selected');
-    //         }
-    //     }
-    // }
+            for (i = 0; i < onStar; i++) {
+              $(stars[i]).addClass('selected');
+            }
+        }
+    }
   });
