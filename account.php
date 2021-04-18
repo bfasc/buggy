@@ -93,16 +93,19 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
         var pass1 = document.getElementById('new-pw1').value;
         var pass2 = document.getElementById('new-pw2').value;
         var response = "";
-        if(pass1 != pass2) {
-            e.preventDefault();
-            alert("New passwords do not match.");
-        } else {
-            var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
-            if(!pass1.match(passw)) {
+        if(pass1 != "" && pass2 != "") {
+            if(pass1 != pass2) {
                 e.preventDefault();
-                alert("Your password must be at least 8 characters long and contain at least one number, one uppercase, and one lowercase letter.");
+                alert("New passwords do not match.");
+            } else {
+                var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
+                if(!pass1.match(passw)) {
+                    e.preventDefault();
+                    alert("Your password must be at least 8 characters long and contain at least one number, one uppercase, and one lowercase letter.");
+                }
             }
         }
+
     });
 
     </script>

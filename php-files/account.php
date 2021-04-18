@@ -11,7 +11,7 @@
             }
 
             $values = [$email, $firstName, $lastName, $id];
-            $sql = "UPDATE users SET email = ?, firstName = ?, lastName = ? WHERE id = ?";
+            $sql = "UPDATE userinfo SET email = ?, firstName = ?, lastName = ? WHERE id = ?";
             $stmt = $db->prepare($sql);
             $stmt->execute($values);
             return TRUE;
