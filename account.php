@@ -99,11 +99,11 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
         var oldpw = document.getElementById('old-pw').value;
         var response = "";
         if(oldpw == "" && pass1 != "" && pass2 != "") {
+            console.log(pass1, pass2);
             e.preventDefault();
             alert("You must enter your old password to change your password.");
         }
         else if(pass1 != "" && pass2 != "") {
-            console.log(pass1, pass2);
             if(pass1 != pass2) {
                 e.preventDefault();
                 alert("New passwords do not match.");
