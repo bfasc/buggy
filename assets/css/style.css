@@ -483,7 +483,7 @@ xpopup
   .notif p {
     font-family: "Titillium Web", sans-serif;
     width: 75%;
-    font-size: 28px;
+    font-size: 22px;
     font-weight: lighter;
     margin-top: 0;
     margin-top: 50px;
@@ -491,7 +491,7 @@ xpopup
   .notif .date {
     width: 25%;
     color: #E75858;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: bold;
     text-align: right;
     margin-top: -75px; }
@@ -499,7 +499,7 @@ xpopup
       margin-right: 15px; }
   .notif .button {
     width: 300px;
-    font-size: 22px;
+    font-size: 18px;
     margin: auto;
     text-align: center; }
 
