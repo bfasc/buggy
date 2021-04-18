@@ -120,6 +120,7 @@ printHead("Search Tickets | Buggy - Let's Code Together");
               for (i = 0; i < stars.length; i++) {
                 $(stars[i]).removeClass('selected');
               }
+              console.log("Deselect");
           }
         });
 
