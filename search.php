@@ -110,6 +110,8 @@ printHead("Search Tickets | Buggy - Let's Code Together");
         </section>
     </div>
 
+    <script src="scripts/forms.js"></script>
+    <script src="scripts/priority.js"></script>
     <script>
         //TODO: click priority makes empty
         $('#stars li').on('click', function(){
@@ -269,8 +271,6 @@ printHead("Search Tickets | Buggy - Let's Code Together");
             });
         });
     </script>
-    <script src="scripts/forms.js"></script>
-    <script src="scripts/priority.js"></script>
 
     <?php printFooter("basic"); ?>
 </body>
