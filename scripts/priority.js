@@ -49,5 +49,4 @@
         }
 
     }
-    console.log(unClick);
   });
