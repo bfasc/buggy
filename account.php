@@ -96,6 +96,12 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
         if(pass1 != pass2) {
             e.preventDefault();
             alert("New passwords do not match.");
+        } else {
+            var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
+            if(!pass1.match(passw)) {
+                e.preventDefault();
+                alert("Your password must be at least 8 characters long and contain at least one number, one uppercase, and one lowercase letter.");
+            }
         }
     });
 
