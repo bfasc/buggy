@@ -85,11 +85,11 @@
 
     //javascript to load developer list
     $response .= "<script>
-        $('#developerSelect').load('scripts/getDeveloperList.php?id=$ticketID&selectedList');
+        $('#developerSelect').load('/scripts/getDeveloperList.php?id=$ticketID&selectedList');
     </script>";
 
     //javascript for interactive priority selection
-    $response .= "<script src='scripts/priority.js'></script>";
+    $response .= "<script src='/scripts/priority.js'></script>";
 
     print($response);
 
