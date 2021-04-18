@@ -110,20 +110,9 @@ printHead("Search Tickets | Buggy - Let's Code Together");
         </section>
     </div>
 
+    <script src="scripts/forms.js"></script>
+    <script src="scripts/priority.js"></script>
     <script>
-        //TODO: click priority makes empty
-        $('#stars li').on('click', function(){
-          var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-          var stars = $(this).parent().children('li.star');
-          //if last selected star
-          if($(stars[onStar-1]).hasClass('selected') && !$(stars[onStar]).hasClass('selected')) {
-              for (i = 0; i < stars.length; i++) {
-                $(stars[i]).removeClass('selected');
-              }
-              console.log('deselect');
-          }
-        });
-
         // Fill Project List Search Results
         $(document).ready(function() {
             var userID = "<?php echo ($_SESSION['userID']); ?>";
@@ -269,8 +258,6 @@ printHead("Search Tickets | Buggy - Let's Code Together");
             });
         });
     </script>
-    <script src="scripts/forms.js"></script>
-    <script src="scripts/priority.js"></script>
 
     <?php printFooter("basic"); ?>
 </body>
