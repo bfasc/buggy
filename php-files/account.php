@@ -1,5 +1,4 @@
 <?php
-require_once "../php-files/resetpassword.php";
     function updateAccount($password, $email, $firstName, $lastName, $id) {
         try {
             if($password)

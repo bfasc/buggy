@@ -1,6 +1,7 @@
 <?php
 require_once 'assets/functions.php';
 require_once 'php-files/account.php';
+require_once 'php-files/resetpassword.php';
 printHead("Manage Account | Buggy - Let's Code Together");
 $firstName = getUserInfo($_SESSION['userID'], "firstName");
 $lastName = getUserInfo($_SESSION['userID'], "lastName");
