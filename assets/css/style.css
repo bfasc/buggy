@@ -917,10 +917,10 @@ xpopup
       width: 100%;
       font-size: 16px;
       text-align: center;
-      margin: 0; }
+      margin: 10px 0; }
   .project #reportLink-wrap {
     width: 30%;
-    padding-top: 50px; }
+    padding: 50px 20px; }
     .project #reportLink-wrap p, .project #reportLink-wrap textarea {
       width: 100%;
       text-align: center;
