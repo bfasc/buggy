@@ -890,7 +890,7 @@ xpopup
     justify-content: flex-start; }
     .project .info h2, .project .info h3 {
       width: 100%;
-      margin: 10px 30px; }
+      margin: 10px 0; }
     .project .info h2 {
       font-size: 28px; }
     .project .info h3 {
@@ -906,7 +906,7 @@ xpopup
     width: 100%;
     font-family: "Titillium Web", sans-serif; }
   .project .button-wrap {
-    width: 20%;
+    width: 25%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
