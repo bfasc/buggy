@@ -40,11 +40,14 @@
         var stars = $(this).parent().children('li.star');
         //if last selected star
         if($(stars[onStar-1]).hasClass('selected') && !$(stars[onStar]).hasClass('selected')) {
+            unClick = false;
+        }
+        if(unClick == false) {
             for (i = 0; i < stars.length; i++) {
               $(stars[i]).removeClass('selected');
             }
         }
-        unClick = false;
+
     }
     console.log(unClick);
   });
