@@ -43,7 +43,8 @@
             for (i = 0; i < stars.length; i++) {
               $(stars[i]).removeClass('selected');
             }
-        } else unClick = false;
+            unClick = false;
+        }
     }
     console.log(unClick);
   });
