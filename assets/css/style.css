@@ -996,13 +996,13 @@ xpopup
   justify-content: space-between; }
   .employee .button {
     width: 30%;
-    font-size: 18px; }
+    font-size: 14px; }
   .employee h3 {
     width: 30%;
     color: #E75858;
     font-weight: bold;
     font-family: "PT Sans", sans-serif;
-    font-size: 32px; }
+    font-size: 26px; }
 
 /* REPORT TABLES */
 h1.reports {
