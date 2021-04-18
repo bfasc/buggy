@@ -690,12 +690,12 @@ xpopup
 
 /* Individual Ticket Page */
 #ticket .ticket .name {
-  font-size: 32px; }
+  font-size: 26px; }
 #ticket .ticket .info {
-  font-size: 24px;
+  font-size: 18px;
   border: none; }
 #ticket .ticket .label {
-  font-size: 28px; }
+  font-size: 22px; }
 #ticket .ticket .desc {
   width: 50%;
   padding: 20px; }
@@ -820,7 +820,8 @@ xpopup
   .forms .radios {
     padding-top: 50px; }
   .forms textarea {
-    border: 2px solid #EEEEEE; }
+    border: 2px solid #EEEEEE;
+    height: 150px; }
   .forms .field-wrap {
     position: relative;
     margin-bottom: 30px; }

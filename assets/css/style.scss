@@ -723,9 +723,9 @@ xpopup
 /* Individual Ticket Page */
 #ticket {
     .ticket {
-        .name { font-size: 32px; }
-        .info {font-size: 24px; border: none;}
-        .label {font-size: 28px; }
+        .name { font-size: 26px; }
+        .info {font-size: 18px; border: none;}
+        .label {font-size: 22px; }
         .desc {
             width: 50%;
             padding: 20px;
@@ -877,6 +877,7 @@ xpopup
 
   textarea {
     border:2px solid $lightgray;
+    height: 150px;
   }
 
   .field-wrap {
