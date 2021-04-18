@@ -37,6 +37,7 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
         ?>
         <h2 class='subhead'>Account Management</h2 class='subhead'>
             <div class="forms" id="acct-form">
+                <h1>Edit Account Info</h1>
                 <form action="" method="post" autocomplete="off">
 
                     <div class="field-row">
@@ -83,7 +84,6 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
                     </div>
                     <input type="submit" class="button button-block" value="Edit Account" name="submit"/>
                 </form>
-
             </div>
 
     </div>
@@ -100,7 +100,6 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
         var pass2 = document.getElementById('new-pw2').value;
         var oldpw = document.getElementById('old-pw').value;
 
-        var response = "";
         if(oldpw == "" && (pass1 != "" || pass2 != "")) {
             e.preventDefault();
             alert("You must enter your old password to change your password.");

@@ -365,7 +365,7 @@
                 var zipReg = /^\d{5}(?:[-\s]\d{4})?$/;
                 if(!zip.match(zipReg)) {
                     e.preventDefault();
-                    response = "You must enter an integer for your zip code.";
+                    response = "You must enter a valid zip code.";
                 }
             }
             if(response != "") alert(response);
