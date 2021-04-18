@@ -10,7 +10,7 @@ function updateCompany($name, $phone, $address, $city, $state, $zip, $country, $
         city = ?,
         state = ?,
         zip = ?,
-        country = ?,
+        country = ?
         WHERE id = ?";
         $stmt = $db->prepare($sql);
         $stmt->execute($values);
