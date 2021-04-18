@@ -985,7 +985,7 @@ xpopup
 
 /* EMPLOYEE MANAGEMENT */
 .employee {
-  width: 40%;
+  width: 60%;
   margin: 0 100px;
   text-align: center;
   display: flex;
@@ -994,10 +994,10 @@ xpopup
   align-items: center;
   justify-content: space-between; }
   .employee .button {
-    width: 200px;
+    width: 30%;
     font-size: 18px; }
   .employee h3 {
-    width: 60%;
+    width: 30%;
     color: #E75858;
     font-weight: bold;
     font-family: "PT Sans", sans-serif;

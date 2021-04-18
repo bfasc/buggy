@@ -1071,17 +1071,17 @@ xpopup
 
 /* EMPLOYEE MANAGEMENT */
 .employee {
-    width: 40%;
+    width: 60%;
     margin: 0 100px;
     text-align: center;
     @include flexRow;
     justify-content: space-between;
     .button {
-        width: 200px;
+        width: 30%;
         font-size: 18px;
     }
     h3 {
-        width: 60%;
+        width: 30%;
         color: $red;
         font-weight: bold;
         font-family: $PTSans;

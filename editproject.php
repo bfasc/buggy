@@ -3,7 +3,7 @@ require_once 'assets/functions.php';
 require_once 'php-files/editproject.php';
 printHead("Edit a Project | Buggy - Let's Code Together");
 
-if(isset($_GET['project'])) {
+if(isset($_GET['project']) && !empty($_GET['project'])) {
     $projectID = $_GET['project'];
     //if user doesn't have access to that project
     if(array_search($projectID, getAllProjects($_SESSION['userID'])) === FALSE) {
@@ -125,6 +125,11 @@ if(isset($_GET['project'])) {
                             </label>
                             <input type="text" id="link">
                         </div>
+                        <div class="field-wrap">
+                            <label>Your Project Image
+                            </label>
+                            <input type="file" name="projectImg">
+                        </div>
                         <input type="submit" class="button button-block" value="Edit Project">
                     </div>
                 </form>
@@ -155,6 +160,11 @@ if(isset($_GET['project'])) {
             var projectID = "<?php echo $projectID; ?>";
             var developers = document.querySelectorAll('.developer-list');
             var customlink = $('#link').val();
+
+            //files vars
+            var filetmp_name = "<?php echo $_FILES["projectImg"]["tmp_name"]; ?>";
+            var file_name = "<?php echo $_FILES["projectImg"]["name"]; ?>";
+            var file_size = "<?php echo $_FILES["projectImg"]["size"]; ?>";
 
             var developerList = [];
             var unassignedDeveloperList = [];
