@@ -129,7 +129,6 @@ function printSidebar($type, $current)
                         <a href='/index'>Home</a>
                         <a href='/about'>About Us</a>
                         <a href='/purchase'>Get Buggy</a>
-                        <a href='/more'>Learn More</a>
                         <a href='/signin'>Sign In</a>
                         <a href='/signup'>Sign Up</a>
                     </section>
