@@ -6,6 +6,7 @@ $firstName = getUserInfo($_SESSION['userID'], "firstName");
 $lastName = getUserInfo($_SESSION['userID'], "lastName");
 $email = getUserInfo($_SESSION['userID'], "email");
 $continuePW = true;
+$response = "";
 if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['firstName']) && !empty($_POST['firstName']) && isset($_POST['lastName']) && !empty($_POST['lastName'])) {
 
     if(isset($_POST['password']) && !empty($_POST['password'])) {
@@ -94,24 +95,25 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
         $('#email').prev('label').addClass('active highlight');
     });
     $('#acct-form').submit(function(e){
+
         var pass1 = document.getElementById('new-pw1').value;
         var pass2 = document.getElementById('new-pw2').value;
         var oldpw = document.getElementById('old-pw').value;
+
         var response = "";
-        if(oldpw == "" && pass1 != "" && pass2 != "") {
-            console.log(pass1, pass2);
+        if(oldpw == "" && (pass1 != "" || pass2 != "")) {
             e.preventDefault();
             alert("You must enter your old password to change your password.");
         }
-        else if(pass1 != "" && pass2 != "") {
-            if(pass1 != pass2) {
+        else if(pass1 != "" || pass2 != "") {
+            else if(pass1 != pass2) {
                 e.preventDefault();
                 alert("New passwords do not match.");
             } else {
                 var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
                 if(!pass1.match(passw)) {
                     e.preventDefault();
-                    alert("Your password must be at least 8 characters long and contain at least one number, one uppercase, and one lowercase letter.");
+                    alert("Your new password must be at least 8 characters long and contain at least one number, one uppercase, and one lowercase letter.");
                 }
             }
         }
