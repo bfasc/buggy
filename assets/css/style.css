@@ -880,7 +880,8 @@ xpopup
   padding-left: 75px; }
   .project img {
     width: 200px;
-    height: 200px; }
+    height: 200px;
+    max-width: 10%; }
   .project .info {
     width: 30%;
     display: flex;
