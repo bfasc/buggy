@@ -39,7 +39,7 @@
         var onStar = parseInt($(this).data('value'), 10); // The star currently selected
         var stars = $(this).parent().children('li.star');
         //if last selected star
-        if(($(stars[onStar-1]).hasClass('selected') && !$(stars[onStar]).hasClass('selected')) || $(stars[4]).hasClass('selected')) {
+        if(($(stars[onStar-1]).hasClass('selected') && !$(stars[onStar]).hasClass('selected')) || (onStar == 5 && $(stars[4]).hasClass('selected'))) {
             for (i = 0; i < stars.length; i++) {
               $(stars[i]).removeClass('selected');
             }
