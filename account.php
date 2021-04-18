@@ -8,15 +8,10 @@ $email = getUserInfo($_SESSION['userID'], "email");
 $continuePW = true;
 if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['firstName']) && !empty($_POST['firstName']) && isset($_POST['lastName']) && !empty($_POST['lastName'])) {
 
-    if(isset($_POST['newPassword']) && !empty($_POST['newPassword'])) {
-        if(isset($_POST['password']) && !empty($_POST['password'])) {
-            $loginInfo = checkLogin($email, $_POST['password']);
-            if(!$loginInfo) {
-                $response = "You have entered in the wrong password for your current password.";
-                $continuePW = false;
-            }
-        } else {
-            $response = "Please enter your current password to change your password.";
+    if(isset($_POST['password']) && !empty($_POST['password'])) {
+        $loginInfo = checkLogin($email, $_POST['password']);
+        if(!$loginInfo) {
+            $response = "You have entered in the wrong password for your current password.";
             $continuePW = false;
         }
     }
@@ -69,7 +64,7 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
                         <label>
                             Current Password<span class="req">*</span>
                         </label>
-                        <input type="password" name="password"/>
+                        <input type="password" name="password" id="old-pw"/>
                     </div>
                     <div class="field-row">
                         <div class="field-wrap">
@@ -101,8 +96,13 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
     $('#acct-form').submit(function(e){
         var pass1 = document.getElementById('new-pw1').value;
         var pass2 = document.getElementById('new-pw2').value;
+        var oldpw = document.getElementById('old-pw').value;
         var response = "";
-        if(pass1 != "" && pass2 != "") {
+        if(oldpw == "" && pass1 != "" && pass2 != "") {
+            e.preventDefault();
+            alert("You must enter your old password to change your password.");
+        }
+        else if(pass1 != "" && pass2 != "") {
             if(pass1 != pass2) {
                 e.preventDefault();
                 alert("New passwords do not match.");
