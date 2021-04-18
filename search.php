@@ -116,7 +116,7 @@ printHead("Search Tickets | Buggy - Let's Code Together");
           var onStar = parseInt($(this).data('value'), 10); // The star currently selected
           var stars = $(this).parent().children('li.star');
           //if last selected star
-          if($(stars[onStar]).hasClass('selected') && !$(stars[onStar+1]).hasClass('selected')) {
+          if($(stars[onStar+1]).hasClass('selected') && !$(stars[onStar+2]).hasClass('selected')) {
               for (i = 0; i < stars.length; i++) {
                 $(stars[i]).removeClass('selected');
               }
