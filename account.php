@@ -31,7 +31,7 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
         echo "<p>" . $response . "</p>";
         ?>
         <h2 class='subhead'>Account Management</h2 class='subhead'>
-            <div class="forms">
+            <div class="forms" id="acct-form">
                 <form action="" method="post" autocomplete="off">
 
                     <div class="field-row">
@@ -39,21 +39,21 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
                             <label>
                                 First Name<span class="req">*</span>
                             </label>
-                            <input type="text" required name="firstName" value="<?php echo $firstName; ?>"/>
+                            <input type="text" required name="firstName" value="<?php echo $firstName; ?>" id="firstName"/>
                         </div>
 
                         <div class="field-wrap">
                             <label>
                                 Last Name<span class="req">*</span>
                             </label>
-                            <input type="text"required name="lastName" value="<?php echo $lastName; ?>"/>
+                            <input type="text"required name="lastName" value="<?php echo $lastName; ?>" id="lastName"/>
                         </div>
                     </div>
                     <div class="field-wrap">
                         <label>
                             Email Address<span class="req">*</span>
                         </label>
-                        <input type="email"required name="email" value="<?php echo $email; ?>"/>
+                        <input type="email"required name="email" value="<?php echo $email; ?>" id="email"/>
                     </div>
                     <h3>Change Password</h3>
                     <div class="field-wrap">
@@ -76,13 +76,30 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
                             <input type="password" name="newPassword2" id="new-pw2"/>
                         </div>
                     </div>
-                    <input type="submit" class="button button-block" value="Create Account" name="submit"/>
+                    <input type="submit" class="button button-block" value="Edit Account" name="submit"/>
                 </form>
 
             </div>
 
     </div>
+    <script src="/scripts/forms.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('#firstName').prev('label').addClass('active highlight');
+        $('#lastName').prev('label').addClass('active highlight');
+        $('#email').prev('label').addClass('active highlight');
+    });
+    $('#acct-form').submit(function(e){
+        var pass1 = document.getElementById('new-pw1').value;
+        var pass2 = document.getElementById('new-pw2').value;
+        var response = "";
+        if(pass1 != pass2) {
+            e.preventDefault();
+            alert("New passwords do not match.");
+        }
+    });
 
+    </script>
     <?php printFooter("basic"); ?>
 </body>
 
