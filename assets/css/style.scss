@@ -963,12 +963,12 @@ xpopup
         h3 {
             padding-left: 50px;
             color: $darkgray;
-            font-size: 28px;
+            font-size: 22px;
             letter-spacing: 2px;
         }
     }
     p {
-        font-size: 22px;
+        font-size: 16px;
         margin: 5px 0;
         text-align: left;
         color: $darkgray;
@@ -976,7 +976,7 @@ xpopup
         font-family: $Ubuntu;
     }
     .button-wrap {
-        width: 15%;
+        width: 20%;
         @include flexColumn;
         justify-content: space-evenly;
         .button {
