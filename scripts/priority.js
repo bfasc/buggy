@@ -23,7 +23,7 @@
   /* 2. Action to perform on click */
   var unClick = false;
   $('#stars li').on('click', function(){
-    if(starClicks == 0) {
+    if(unClick == false) {
         var onStar = parseInt($(this).data('value'), 10); // The star currently selected
         var stars = $(this).parent().children('li.star');
 
@@ -46,4 +46,5 @@
         }
         unClick = false;
     }
+    console.log(unClick);
   });
