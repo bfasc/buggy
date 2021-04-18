@@ -16,7 +16,7 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
         } else $response = "Please enter your current password to change your password.";
     }
 
-    if(updateAccount($_POST['newpassword'], $_POST['email'], $_POST['firstName'], $_POST['lastName'], $_SESSION['userID'])) {
+    if(updateAccount($_POST['newpassword'], $_POST['email'], $_POST['firstName'], $_POST['lastName'], $_SESSION['userID']))
         $response = "You have successfully changed your user information.";
     else $response = "Error changing your information.";
 }
