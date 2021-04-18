@@ -135,7 +135,6 @@ if(isset($_POST['submit'])) {
     });
 
     $('#company-form').submit(function(e){
-        e.preventDefault();
         var name = document.getElementById('companyname').value;
         var phone = document.getElementById('companyphone').value;
         var address = document.getElementById('companyaddress').value;
