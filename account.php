@@ -1,30 +1,34 @@
 <?php
 require_once 'assets/functions.php';
 require_once 'php-files/account.php';
-require_once 'php-files/resetpassword.php';
 printHead("Manage Account | Buggy - Let's Code Together");
 $firstName = getUserInfo($_SESSION['userID'], "firstName");
 $lastName = getUserInfo($_SESSION['userID'], "lastName");
 $email = getUserInfo($_SESSION['userID'], "email");
-
+$continuePW = true;
 if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['firstName']) && !empty($_POST['firstName']) && isset($_POST['lastName']) && !empty($_POST['lastName'])) {
 
     if(isset($_POST['newPassword']) && !empty($_POST['newPassword'])) {
         if(isset($_POST['password']) && !empty($_POST['password'])) {
             $loginInfo = checkLogin($email, $_POST['password']);
-            if(!$loginInfo)
+            if(!$loginInfo) {
                 $response = "You have entered in the wrong password for your current password.";
-        } else $response = "Please enter your current password to change your password.";
+                $continuePW = false;
+            }
+        } else {
+            $response = "Please enter your current password to change your password.";
+            $continuePW = false;
+        }
     }
-
-    if(updateAccount($_POST['newpassword'], $_POST['email'], $_POST['firstName'], $_POST['lastName'], $_SESSION['userID'])) {
-        $firstName = getUserInfo($_SESSION['userID'], "firstName");
-        $lastName = getUserInfo($_SESSION['userID'], "lastName");
-        $email = getUserInfo($_SESSION['userID'], "email");
-        $response = "You have successfully changed your user information.";
+    if($continuePW == true) {
+        if(updateAccount($_POST['newpassword'], $_POST['email'], $_POST['firstName'], $_POST['lastName'], $_SESSION['userID'])) {
+            $firstName = getUserInfo($_SESSION['userID'], "firstName");
+            $lastName = getUserInfo($_SESSION['userID'], "lastName");
+            $email = getUserInfo($_SESSION['userID'], "email");
+            $response = "You have successfully changed your user information.";
+        }
+        else $response = "Error changing your information.";
     }
-
-    else $response = "Error changing your information.";
 }
 ?>
 
