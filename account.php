@@ -106,7 +106,7 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
             alert("You must enter your old password to change your password.");
         }
         else if(pass1 != "" || pass2 != "") {
-            else if(pass1 != pass2) {
+            if(pass1 != pass2) {
                 e.preventDefault();
                 alert("New passwords do not match.");
             } else {
