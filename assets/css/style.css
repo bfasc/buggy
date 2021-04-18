@@ -890,9 +890,11 @@ xpopup
     justify-content: flex-start; }
     .project .info h2, .project .info h3 {
       width: 100%;
-      margin: 10px 75px; }
+      margin: 10px 30px; }
+    .project .info h2 {
+      font-size: 28px; }
     .project .info h3 {
-      padding-left: 50px;
+      padding-left: 25px;
       color: #2A2A2A;
       font-size: 22px;
       letter-spacing: 2px; }

@@ -958,10 +958,13 @@ xpopup
         justify-content: flex-start;
         h2, h3 {
             width: 100%;
-            margin: 10px 75px;
+            margin: 10px 30px;
+        }
+        h2 {
+            font-size: 28px;
         }
         h3 {
-            padding-left: 50px;
+            padding-left: 25px;
             color: $darkgray;
             font-size: 22px;
             letter-spacing: 2px;
