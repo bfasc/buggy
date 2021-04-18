@@ -882,7 +882,7 @@ xpopup
     width: 200px;
     height: 200px; }
   .project .info {
-    width: 35%;
+    width: 30%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -906,7 +906,7 @@ xpopup
     width: 100%;
     font-family: "Titillium Web", sans-serif; }
   .project .button-wrap {
-    width: 25%;
+    width: 20%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;

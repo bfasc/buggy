@@ -953,7 +953,7 @@ xpopup
         height: 200px;
     }
     .info {
-        width: 35%;
+        width: 30%;
         @include flexColumn;
         justify-content: flex-start;
         h2, h3 {
@@ -979,7 +979,7 @@ xpopup
         font-family: $Ubuntu;
     }
     .button-wrap {
-        width: 25%;
+        width: 20%;
         @include flexColumn;
         justify-content: space-evenly;
         .button {
