@@ -949,11 +949,11 @@ xpopup
     padding: 20px;
     padding-left: 75px;
     img {
-        width: 225px;
-        height: 225px;
+        width: 200px;
+        height: 200px;
     }
     .info {
-        width: 40%;
+        width: 35%;
         @include flexColumn;
         justify-content: flex-start;
         h2, h3 {
@@ -976,19 +976,19 @@ xpopup
         font-family: $Ubuntu;
     }
     .button-wrap {
-        width: 30%;
+        width: 15%;
         @include flexColumn;
         justify-content: space-evenly;
         .button {
             width: 100%;
-            font-size: 22px;
+            font-size: 16px;
             text-align: center;
         }
     }
 
 
     #reportLink-wrap {
-        width: 100%;
+        width: 20%;
         padding-top: 50px;
         p, textarea {
             width: 100%;
