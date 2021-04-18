@@ -949,8 +949,8 @@ xpopup
     padding: 20px;
     padding-left: 75px;
     img {
-        width: 200px;
-        height: 200px;
+        width: 100px;
+        height: 100px;
         max-width: 10%;
     }
     .info {
@@ -987,6 +987,7 @@ xpopup
             width: 100%;
             font-size: 16px;
             text-align: center;
+            margin: 0;
         }
     }
 

@@ -879,8 +879,8 @@ xpopup
   padding: 20px;
   padding-left: 75px; }
   .project img {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     max-width: 10%; }
   .project .info {
     width: 30%;
@@ -916,7 +916,8 @@ xpopup
     .project .button-wrap .button {
       width: 100%;
       font-size: 16px;
-      text-align: center; }
+      text-align: center;
+      margin: 0; }
   .project #reportLink-wrap {
     width: 30%;
     padding-top: 50px; }
