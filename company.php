@@ -12,8 +12,8 @@ $companyZip = getCompanyInfo($companyID, "zip");
 $companyCountry = getCompanyInfo($companyID, "country");
 
 $response = "";
-if(isset($_POST['submit'])) {
-    if(updateCompany($_POST['companyName'], $_POST['companyPhone'], $_POST['companyAddress'], $_POST['companyCity'], $_POST['companyState'], $_POST['companyZip'], $_POST['companyCountry'], $companyID)) {
+if (isset($_POST['submit'])) {
+    if (updateCompany($_POST['companyName'], $_POST['companyPhone'], $_POST['companyAddress'], $_POST['companyCity'], $_POST['companyState'], $_POST['companyZip'], $_POST['companyCountry'], $companyID)) {
         $companyID = getUserInfo($_SESSION['userID'], "associatedCompany");
         $companyName = $_POST['companyName'];
         $companyPhone = $_POST['companyPhone'];
@@ -23,8 +23,7 @@ if(isset($_POST['submit'])) {
         $companyZip = $_POST['companyZip'];
         $companyCountry = $_POST['companyCountry'];
         $response = "You have successfully changed your company information.";
-    }
-    else $response = "Error changing company information.";
+    } else $response = "Error changing company information.";
 }
 ?>
 
@@ -45,13 +44,13 @@ if(isset($_POST['submit'])) {
                         <label>
                             Company Name<span class="req">*</span>
                         </label>
-                        <input type="text"required name="companyName" id="companyname" value="<?php echo $companyName; ?>"/>
+                        <input type="text" required name="companyName" id="companyname" value="<?php echo $companyName; ?>" />
                     </div>
                     <div class="field-wrap">
                         <label>
                             Company Phone<span class="req">*</span>
                         </label>
-                        <input type="text"required name="companyPhone" id="companyphone" value="<?php echo $companyPhone; ?>"/>
+                        <input type="text" required name="companyPhone" id="companyphone" value="<?php echo $companyPhone; ?>" />
                     </div>
                 </div>
 
@@ -60,7 +59,7 @@ if(isset($_POST['submit'])) {
                     <label>
                         Company Address<span class="req">*</span>
                     </label>
-                    <input type="text"required name="companyAddress" id="companyaddress" value="<?php echo $companyAddress; ?>"/>
+                    <input type="text" required name="companyAddress" id="companyaddress" value="<?php echo $companyAddress; ?>" />
                 </div>
 
                 <div class="field-row">
@@ -68,13 +67,13 @@ if(isset($_POST['submit'])) {
                         <label>
                             City<span class="req">*</span>
                         </label>
-                        <input type="text"required name="companyCity" id="companycity" value="<?php echo $companyCity; ?>"/>
+                        <input type="text" required name="companyCity" id="companycity" value="<?php echo $companyCity; ?>" />
                     </div>
                     <div class="field-wrap">
                         <label>
                             State/Province<span class="req">*</span>
                         </label>
-                        <input type="text"required name="companyState" id="companystate" value="<?php echo $companyState; ?>"/>
+                        <input type="text" required name="companyState" id="companystate" value="<?php echo $companyState; ?>" />
                     </div>
                 </div>
 
@@ -83,16 +82,16 @@ if(isset($_POST['submit'])) {
                         <label>
                             Zip Code<span class="req">*</span>
                         </label>
-                        <input type="text"required name="companyZip" id="companyzip" value="<?php echo $companyZip; ?>"/>
+                        <input type="text" required name="companyZip" id="companyzip" value="<?php echo $companyZip; ?>" />
                     </div>
                     <div class="field-wrap">
                         <label>
                             Country<span class="req">*</span>
                         </label>
-                        <input type="text"required name="companyCountry" id="companycountry" value="<?php echo $companyCountry; ?>"/>
+                        <input type="text" required name="companyCountry" id="companycountry" value="<?php echo $companyCountry; ?>" />
                     </div>
                 </div>
-                <input type="submit" class="button button-block" value="Edit Company" name="submit"/>
+                <input type="submit" class="button button-block" value="Edit Company" name="submit" />
             </form>
         </div>
 
@@ -108,58 +107,59 @@ if(isset($_POST['submit'])) {
     </div>
     <script src="/scripts/forms.js"></script>
     <script>
-    $(document).ready(function(){
-        $('#companyname').prev('label').addClass('active highlight');
-        $('#companyphone').prev('label').addClass('active highlight');
-        $('#companyaddress').prev('label').addClass('active highlight');
-        $('#companycity').prev('label').addClass('active highlight');
-        $('#companystate').prev('label').addClass('active highlight');
-        $('#companyzip').prev('label').addClass('active highlight');
-        $('#companycountry').prev('label').addClass('active highlight');
-    });
-    function copy(id) {
-        var copyText = document.getElementById(id);
-        copyText.disabled = false;
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        document.execCommand("copy");
-        copyText.disabled = true;
-        window.getSelection().removeAllRanges();
-        if(id == 'copylink')
-            alert("Copied Link");
-        else
-            alert("Copied Code");
-    }
-    $('.copy').click(function(){
-        copy($(this).attr('id'));
-    });
+        $(document).ready(function() {
+            $('#companyname').prev('label').addClass('active highlight');
+            $('#companyphone').prev('label').addClass('active highlight');
+            $('#companyaddress').prev('label').addClass('active highlight');
+            $('#companycity').prev('label').addClass('active highlight');
+            $('#companystate').prev('label').addClass('active highlight');
+            $('#companyzip').prev('label').addClass('active highlight');
+            $('#companycountry').prev('label').addClass('active highlight');
+        });
 
-    $('#company-form').submit(function(e){
-        var name = document.getElementById('companyname').value;
-        var phone = document.getElementById('companyphone').value;
-        var address = document.getElementById('companyaddress').value;
-        var city = document.getElementById('companycity').value;
-        var state = document.getElementById('companystate').value;
-        var zip = document.getElementById('companyzip').value;
-        var country = document.getElementById('companycountry').value;
-
-        if(name == "" || phone == "" || address == ""  || city == "" || state == "" || zip == "" || country == "") {
-            e.preventDefault();
-            alert("You must fill out all of the form fields.");
-        } else {
-            var phoneReg = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
-            if(!phone.match(phoneReg)) {
-                e.preventDefault();
-                alert("You have entered an invalid value for phone number. Try using no spaces, dashes, or parentheses.");
-            }
-            var zipReg = /^\d{5}(?:[-\s]\d{4})?$/;
-            if(!zip.match(zipReg)) {
-                e.preventDefault();
-                alert("You must enter a valid zip code.");
-            }
+        function copy(id) {
+            var copyText = document.getElementById(id);
+            copyText.disabled = false;
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            copyText.disabled = true;
+            window.getSelection().removeAllRanges();
+            if (id == 'copylink')
+                alert("Copied Link");
+            else
+                alert("Copied Code");
         }
-    });
+        $('.copy').click(function() {
+            copy($(this).attr('id'));
+        });
 
+        $('#company-form').submit(function(e) {
+            var name = document.getElementById('companyname').value;
+            var phone = document.getElementById('companyphone').value;
+            var address = document.getElementById('companyaddress').value;
+            var city = document.getElementById('companycity').value;
+            var state = document.getElementById('companystate').value;
+            var zip = document.getElementById('companyzip').value;
+            var country = document.getElementById('companycountry').value;
+
+            if (name == "" || phone == "" || address == "" || city == "" || state == "" || zip == "" || country == "") {
+                e.preventDefault();
+                alert("You must fill out all of the form fields.");
+            } else {
+                //var phoneReg = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+                var newPhoneReg = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/;
+                if (!phone.match(newPhoneReg)) {
+                    e.preventDefault();
+                    alert("You have entered an invalid value for phone number. Try using no spaces, dashes, or parentheses.");
+                }
+                var zipReg = /^\d{5}(?:[-\s]\d{4})?$/;
+                if (!zip.match(zipReg)) {
+                    e.preventDefault();
+                    alert("You must enter a valid zip code.");
+                }
+            }
+        });
     </script>
     <?php printFooter("basic"); ?>
 </body>
