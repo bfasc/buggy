@@ -148,7 +148,7 @@ if (isset($_POST['submit'])) {
                 alert("You must fill out all of the form fields.");
             } else {
                 //var phoneReg = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
-                var newPhoneReg = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/;
+                var newPhoneReg = /^[0-9]{10}+$/;
                 if (!phone.match(newPhoneReg)) {
                     e.preventDefault();
                     alert("You have entered an invalid value for phone number. Try using no spaces, dashes, or parentheses.");
