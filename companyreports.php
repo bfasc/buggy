@@ -6,7 +6,7 @@ if(isset($_POST['projectID']) && !empty($_POST['projectID'])) {
     $projectID = $_POST['projectID'];
     $totalTickets = getTotalTickets($projectID);
     $totalOpenTickets = (getTotalOpenTickets($projectID) / $totalTickets) * 100;
-    $totalUnapprovedTickets = (getTotalUnapprovedTickets($projectID) / $totalTickets) * 100;
+    $totalUnapprovedTickets = (getTotalUnapprovedTickets($projectID) / $totalTickets);
     $totalCompletedTickets = (getTotalCompletedTickets($projectID) / $totalTickets) * 100;
     $totalEmployees = getEmployeeCount($projectID);
 }
@@ -52,7 +52,7 @@ if(isset($_POST['projectID']) && !empty($_POST['projectID'])) {
             print("<td>$totalOpenTickets%</td>");
             print("</tr><tr>");
             print("<td class='descriptor'>Unapproved Bug Reports</td>");
-            print("<td>$totalUnapprovedTickets%</td>");
+            print("<td>$totalUnapprovedTickets</td>");
             print("</tr><tr>");
             print("<td class='descriptor'>Completed Tickets</td>");
             print("<td>$totalCompletedTickets%</td>");
