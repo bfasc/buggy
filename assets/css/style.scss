@@ -494,7 +494,7 @@ xpopup
 
 /* NOTIFICATION PAGE */
 .notif {
-    width: 60%;
+    width: 45%;
     border-radius: 10px;
     background: $bluegray;
     margin: auto;
@@ -1026,17 +1026,18 @@ xpopup
 /* COMPANY MANAGEMENT */
 
 #company {
-
-    h2 {width: 100%;}
+    @include flexRow;
+    h2 {width: 65%;}
     .button {
         margin: 20px;
-        width: 300px;
+        width: 25%;
         font-size: 22px;
         text-align: center;
     }
+    .forms {width: 45%;}
+    .forms .button {margin: auto;}
     .copylink-wrap {
-        width: 100%;
-        padding-left: 50px;
+        width: 45%;
         @include flexRow;
         align-items: flex-start;
         h3 {
@@ -1075,6 +1076,9 @@ xpopup
 
 }
 
+/* ACCOUNT FORM */
+#acct-form h3 {color: $white; }
+
 /* EMPLOYEE MANAGEMENT */
 .employee {
     width: 60%;
@@ -1088,7 +1092,7 @@ xpopup
     }
     h3 {
         width: 30%;
-        color: $red;
+        color: $bluegray;
         font-weight: bold;
         font-family: $PTSans;
         font-size: 26px;
@@ -1102,6 +1106,13 @@ h1.reports {
     letter-spacing: 10px;
     font-family: $Ubuntu;
     text-transform: uppercase;
+}
+h2.reports {
+    form {
+        display: inline-block;
+        float: right;
+        padding-right: 100px;
+    }
 }
 table.reports {
     width: 80%;

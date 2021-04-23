@@ -2,6 +2,14 @@
 require_once 'assets/functions.php';
 require_once 'php-files/companyreports.php';
 printHead("Company Reports | Buggy - Let's Code Together");
+if(isset($_POST['projectID']) && !empty($_POST['projectID'])) {
+    $projectID = $_POST['projectID'];
+    $totalTickets = getTotalTickets($projectID);
+    $totalOpenTickets = (getTotalOpenTickets($projectID) / $totalTickets) * 100;
+    $totalUnapprovedTickets = (getTotalUnapprovedTickets($projectID) / $totalTickets) * 100;
+    $totalCompletedTickets = (getTotalCompletedTickets($projectID) / $totalTickets) * 100;
+    $totalEmployees = getEmployeeCount($projectID);
+}
 ?>
 
 <body>
@@ -9,74 +17,53 @@ printHead("Company Reports | Buggy - Let's Code Together");
     <div class="main">
         <?php printHeader($_SESSION['userID']); ?>
         <h1 class="reports">Company Reports for <?php print(getCompanyInfo(getUserInfo($_SESSION['userID'], "associatedCompany"), "companyName")); ?></h1>
-
-        <table class="reports">
-            <tr>
-                <th></th>
         <?php
         $totalProjects = 0;
-        $data = [];
-        $projectArray = [];
         $companyID = getUserInfo($_SESSION['userID'], "associatedCompany");
         $projects = getAllProjects($_SESSION['userID']);
         foreach ($projects as $element) {
-            $data[$totalProjects]["projectID"] = $element;
-            $data[$totalProjects]["totalTickets"] = getTotalTickets($element);
-            $data[$totalProjects]["openTickets"] = getTotalOpenTickets($element);
-            $data[$totalProjects]["unapprovedTickets"] = getTotalUnapprovedTickets($element);
-            $data[$totalProjects]["completedTickets"] = getTotalCompletedTickets($element);
-            $data[$totalProjects]["employees"] = getEmployeeCount($element);
             ++$totalProjects;
         }
-        print("<h2 class='subhead'>Total Projects: $totalProjects</h2 class='subhead'>");
-
-        foreach($data as $project) {
-            print("<th>" . getProjectInfo($project["projectID"], "projectName") . "</th>");
+        print("<h2 class='subhead reports'>Total Projects: $totalProjects
+        <form action='' method='post'>
+        <select name='projectID'>");
+        foreach($projects as $project) {
+            $projectID = $project;
+            $projectName = getProjectInfo($projectID, "projectName");
+            print("<option value='$projectID'>$projectName</option>");
         }
-        print("</tr>
-        <tr>
-            <td class='descriptor'>Total Tickets</td>
-        ");
+        print("</select>
+        <input type='submit' value='Show Reports'>
+        </form>
 
-        foreach($data as $project) {
-            print("<td>" . $project["totalTickets"] . "</td>");
+        </h2 class='subhead'>");
+
+
+        if(isset($_POST['projectID']) && !empty($_POST['projectID'])) {
+            print("<table class='reports'>");
+            print("<tr>");
+            print("<th>$projectName</th>");
+            print("<th></th>");
+            print("</tr><tr>");
+            print("<td class='descriptor'>Total Tickets</td>");
+            print("<td>$totalTickets</td>");
+            print("</tr><tr>");
+            print("<td class='descriptor'>Open Tickets</td>");
+            print("<td>$totalOpenTickets%</td>");
+            print("</tr><tr>");
+            print("<td class='descriptor'>Unapproved Bug Reports</td>");
+            print("<td>$totalUnapprovedTickets%</td>");
+            print("</tr><tr>");
+            print("<td class='descriptor'>Completed Tickets</td>");
+            print("<td>$totalCompletedTickets%</td>");
+            print("</tr><tr>");
+            print("<td class='descriptor'>Employees</td>");
+            print("<td>$totalEmployees</td>");
+            print("</tr>");
+            print("</table>");
         }
-        print("</tr>
-        <tr>
-            <td class='descriptor'>Open Tickets</td>
-        ");
-
-        foreach($data as $project) {
-            print("<td>" . $project["openTickets"] . "</td>");
-        }
-        print("</tr>
-        <tr>
-            <td class='descriptor'>Unapproved Bug Reports</td>
-        ");
-
-        foreach($data as $project) {
-            print("<td>" . $project["unapprovedTickets"] . "</td>");
-        }
-        print("</tr>
-        <tr>
-            <td class='descriptor'>Completed Tickets</td>
-        ");
-
-        foreach($data as $project) {
-            print("<td>" . $project["completedTickets"] . "</td>");
-        }
-        print("</tr>
-        <tr>
-            <td class='descriptor'>Employees</td>
-        ");
-
-        foreach($data as $project) {
-            print("<td>" . $project["employees"] . "</td>");
-        }
-
-        print("</tr>");
         ?>
-        </table>
+
     </div>
 
 <?php printFooter("basic"); ?>

@@ -82,7 +82,7 @@ if(isset($_POST['submit']) && isset($_POST['email']) && !empty($_POST['email']) 
                             <input type="password" name="newPassword2" id="new-pw2"/>
                         </div>
                     </div>
-                    <input type="submit" class="button button-block" value="Edit Account" name="submit"/>
+                    <input type="submit" class="button button-block" value="Save" name="submit"/>
                 </form>
             </div>
 

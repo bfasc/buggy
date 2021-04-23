@@ -468,7 +468,7 @@ xpopup
     margin: 8em auto; } }
 /* NOTIFICATION PAGE */
 .notif {
-  width: 60%;
+  width: 45%;
   border-radius: 10px;
   background: #3C4A54;
   margin: auto;
@@ -945,48 +945,60 @@ xpopup
   background: #c8c8c8; }
 
 /* COMPANY MANAGEMENT */
-#company h2 {
-  width: 100%; }
-#company .button {
-  margin: 20px;
-  width: 300px;
-  font-size: 22px;
-  text-align: center; }
-#company .copylink-wrap {
-  width: 100%;
-  padding-left: 50px;
+#company {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  align-items: center;
-  align-items: flex-start; }
-  #company .copylink-wrap h3 {
-    font-family: "PT Sans", sans-serif;
+  align-items: center; }
+  #company h2 {
+    width: 65%; }
+  #company .button {
+    margin: 20px;
+    width: 25%;
     font-size: 22px;
-    color: #3C4A54;
-    width: 100%;
-    padding-left: 50px; }
-  #company .copylink-wrap p, #company .copylink-wrap textarea {
-    text-align: left;
-    font-family: "PT Sans", sans-serif;
-    margin: 0; }
-  #company .copylink-wrap p {
-    width: 100%;
-    color: #3C4A54;
-    font-size: 22px; }
-  #company .copylink-wrap textarea {
-    background: none;
-    border: none;
-    outline: none;
-    color: #E75858;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px;
-    width: 550px; }
-  #company .copylink-wrap .button.copy {
-    margin: 0;
-    font-size: 16px;
-    width: 150px; }
+    text-align: center; }
+  #company .forms {
+    width: 45%; }
+  #company .forms .button {
+    margin: auto; }
+  #company .copylink-wrap {
+    width: 45%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    align-items: flex-start; }
+    #company .copylink-wrap h3 {
+      font-family: "PT Sans", sans-serif;
+      font-size: 22px;
+      color: #3C4A54;
+      width: 100%;
+      padding-left: 50px; }
+    #company .copylink-wrap p, #company .copylink-wrap textarea {
+      text-align: left;
+      font-family: "PT Sans", sans-serif;
+      margin: 0; }
+    #company .copylink-wrap p {
+      width: 100%;
+      color: #3C4A54;
+      font-size: 22px; }
+    #company .copylink-wrap textarea {
+      background: none;
+      border: none;
+      outline: none;
+      color: #E75858;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 10px;
+      width: 550px; }
+    #company .copylink-wrap .button.copy {
+      margin: 0;
+      font-size: 16px;
+      width: 150px; }
+
+/* ACCOUNT FORM */
+#acct-form h3 {
+  color: #FFFFFF; }
 
 /* EMPLOYEE MANAGEMENT */
 .employee {
@@ -1003,7 +1015,7 @@ xpopup
     font-size: 14px; }
   .employee h3 {
     width: 30%;
-    color: #E75858;
+    color: #3C4A54;
     font-weight: bold;
     font-family: "PT Sans", sans-serif;
     font-size: 26px; }
@@ -1016,6 +1028,11 @@ h1.reports {
   letter-spacing: 10px;
   font-family: "Titillium Web", sans-serif;
   text-transform: uppercase; }
+
+h2.reports form {
+  display: inline-block;
+  float: right;
+  padding-right: 100px; }
 
 table.reports {
   width: 80%;

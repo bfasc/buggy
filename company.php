@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) {
                         <input type="text" required name="companyCountry" id="companycountry" value="<?php echo $companyCountry; ?>" />
                     </div>
                 </div>
-                <input type="submit" class="button button-block" value="Edit Company" name="submit" />
+                <input type="submit" class="button button-block" value="Save" name="submit" />
             </form>
         </div>
 
