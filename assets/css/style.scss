@@ -942,7 +942,7 @@ xpopup
     .button {margin-left: 100px;}
 }
 
-.main#projects.project {
+.main#projects .project {
     width: 100%;
     @include flexRow;
     jusify-content: space-evenly;

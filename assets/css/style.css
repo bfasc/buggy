@@ -869,7 +869,7 @@ xpopup
   .main#projects .button {
     margin-left: 100px; }
 
-.main#projects.project {
+.main#projects .project {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -878,57 +878,57 @@ xpopup
   jusify-content: space-evenly;
   padding: 20px;
   padding-left: 75px; }
-  .main#projects.project img {
+  .main#projects .project img {
     width: 100px;
     height: 100px;
     max-width: 10%; }
-  .main#projects.project .info {
+  .main#projects .project .info {
     width: 30%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start; }
-    .main#projects.project .info h2, .main#projects.project .info h3 {
+    .main#projects .project .info h2, .main#projects .project .info h3 {
       width: 100%;
       margin: 10px 0; }
-    .main#projects.project .info h2 {
+    .main#projects .project .info h2 {
       font-size: 28px; }
-    .main#projects.project .info h3 {
+    .main#projects .project .info h3 {
       padding-left: 25px;
       color: #2A2A2A;
       font-size: 22px;
       letter-spacing: 2px; }
-  .main#projects.project p {
+  .main#projects .project p {
     font-size: 16px;
     margin: 5px 0;
     text-align: left;
     color: #2A2A2A;
     width: 100%;
     font-family: "Titillium Web", sans-serif; }
-  .main#projects.project .button-wrap {
+  .main#projects .project .button-wrap {
     width: 20%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly; }
-    .main#projects.project .button-wrap .button {
+    .main#projects .project .button-wrap .button {
       width: 100%;
       font-size: 16px;
       text-align: center;
       margin: 10px 0; }
-  .main#projects.project #reportLink-wrap {
+  .main#projects .project #reportLink-wrap {
     width: 30%;
     padding: 50px 20px; }
-    .main#projects.project #reportLink-wrap p, .main#projects.project #reportLink-wrap textarea {
+    .main#projects .project #reportLink-wrap p, .main#projects .project #reportLink-wrap textarea {
       width: 100%;
       text-align: center;
       font-family: "PT Sans", sans-serif; }
-    .main#projects.project #reportLink-wrap p {
+    .main#projects .project #reportLink-wrap p {
       color: #3C4A54;
       font-size: 22px; }
-    .main#projects.project #reportLink-wrap textarea {
+    .main#projects .project #reportLink-wrap textarea {
       background: none;
       border: none;
       outline: none;
@@ -936,7 +936,7 @@ xpopup
       font-weight: bold;
       font-size: 18px;
       padding: 10px; }
-    .main#projects.project #reportLink-wrap .button {
+    .main#projects .project #reportLink-wrap .button {
       margin: auto;
       font-size: 16px;
       width: 150px; }
