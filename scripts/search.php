@@ -68,7 +68,7 @@
         }
         if($inProgress) {
             if($whereCount > 0) $where .= " AND ";
-            $where .= "status = 'In Progress'";
+            $where .= "(status = 'In Progress' OR status = 'Review' OR status = 'Needs Revisions')";
             $whereCount++;
         }
         if($startDate) {
