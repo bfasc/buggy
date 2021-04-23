@@ -31,7 +31,9 @@ if(isset($_POST['projectID']) && !empty($_POST['projectID'])) {
         foreach($projects as $project) {
             $thisProjectID = $project;
             $thisProjectName = getProjectInfo($thisProjectID, "projectName");
-            print("<option value='$thisProjectID'>$thisProjectName</option>");
+            print("<option value='$thisProjectID'");
+            if(isset($_POST['projectID']) && !empty($_POST['projectID']) && $_POST['projectID'] == $thisProjectID) print "selected";
+            print(">$thisProjectName</option>");
         }
         print("</select>
         <input type='submit' value='Show Reports'>
