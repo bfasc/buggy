@@ -586,6 +586,11 @@ xpopup
     color: #3C4A54;
     text-align: center; }
 
+/* ALL TICKETS PAGE */
+#tickets .subhead.desc {
+  color: #3C4A54;
+  font-size: 18px; }
+
 /*TICKET PAGE*/
 .ticket {
   width: 100%;
