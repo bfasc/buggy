@@ -6,7 +6,7 @@ if(isset($_POST['projectID']) && !empty($_POST['projectID'])) {
     $projectID = $_POST['projectID'];
     $totalTickets = getTotalTickets($projectID);
     $totalOpenTickets = (getTotalOpenTickets($projectID) / $totalTickets) * 100;
-    $totalUnapprovedTickets = (getTotalUnapprovedTickets($projectID) / $totalTickets);
+    $totalUnapprovedTickets = getTotalUnapprovedTickets($projectID);
     $totalCompletedTickets = (getTotalCompletedTickets($projectID) / $totalTickets) * 100;
     $totalEmployees = getEmployeeCount($projectID);
 }
