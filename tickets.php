@@ -58,7 +58,7 @@
         $('.progressChange').click(function(){
             var id = $(this).attr('id');
             var progress = document.getElementById('progress').value;
-            if(progress != "" && progress != null) {
+            if(progress != "" && progress != null && progress != "Change Ticket Status") {
                 $.ajax({
                     url: 'scripts/editTicket.php',
                     type: 'post',
