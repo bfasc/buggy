@@ -33,7 +33,7 @@ body {
 /* SCROLLBAR CODE */
 /* width */
 ::-webkit-scrollbar {
-  width: 25px; }
+  width: 20px; }
 
 /* Track */
 ::-webkit-scrollbar-track {
@@ -1000,7 +1000,7 @@ xpopup
 
 /* ACCOUNT FORM */
 #acct-form {
-  margin: 0; }
+  margin: 50px 100px; }
   #acct-form h3 {
     color: #FFFFFF; }
 
