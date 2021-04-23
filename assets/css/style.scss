@@ -1100,7 +1100,7 @@ xpopup
 }
 /* REPORT TABLES */
 h1.reports {
-    font-size: 48px;
+    font-size: 32px;
     color: $red;
     text-align: center;
     letter-spacing: 10px;
@@ -1108,6 +1108,7 @@ h1.reports {
     text-transform: uppercase;
 }
 h2.reports {
+    font-size: 26px;
     form {
         display: inline-block;
         float: right;
@@ -1129,7 +1130,7 @@ table.reports {
         padding: 12px 15px;
         background-color: $red;
         color: $white;
-        font-size: 32px;
+        font-size: 22px;
     }
     th:first-of-type {
         border-top-left-radius: 25px;
@@ -1140,12 +1141,12 @@ table.reports {
     td {
         font-family: $Ubuntu;
         padding: 12px 15px;
-        font-size: 22px;
+        font-size: 16px;
     }
     td.descriptor {
         text-transform: uppercase;
         font-family: $PTSans;
-        font-size: 28px;
+        font-size: 18px;
         color: $bluegray;
     }
     tr:nth-of-type(even) {background: $lightgray;}
