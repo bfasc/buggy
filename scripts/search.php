@@ -43,48 +43,51 @@
             $whereCount++;
         }
         if($assigned) {
-            if($whereCount > 0) $where .= " OR ";
+            if($whereCount > 0) $where .= " AND ";
             $where .= "assignedDevelopers LIKE ?";
             array_push($values, "%" . $_SESSION['userID'] . "%");
             $whereCount++;
         }
         if($id) {
-            if($whereCount > 0) $where .= " OR ";
+            if($whereCount > 0) $where .= " AND ";
             $where .= "id = ?";
             array_push($values, $id);
             $whereCount++;
         }
         if($priority != 0) {
-            if($whereCount > 0) $where .= " OR ";
+            if($whereCount > 0) $where .= " AND ";
             $where .= "priority = ?";
             array_push($values, $priority);
             $whereCount++;
         }
         //TODO discussion sql
         if($completed) {
-            if($whereCount > 0) $where .= " OR ";
+            if($whereCount > 0) $where .= " AND ";
             $where .= "status = 'Completed'";
             $whereCount++;
         }
         if($inProgress) {
-            if($whereCount > 0) $where .= " OR ";
+            if($whereCount > 0 && $completed)
+                $where .= " OR ";
+            else if($whereCount > 0)
+                $where .= " AND ";
             $where .= "(status = 'In Progress' OR status = 'Review' OR status = 'Needs Revisions')";
             $whereCount++;
         }
         if($startDate) {
-            if($whereCount > 0) $where .= " OR ";
+            if($whereCount > 0) $where .= " AND ";
             $where .= "approvalDate >= ?";
             array_push($values, $startDate . " 00:00:00");
             $whereCount++;
         }
         if($endDate) {
-            if($whereCount > 0) $where .= " OR ";
+            if($whereCount > 0) $where .= " AND ";
             $where .= "approvalDate <= ?";
             array_push($values, $endDate . " 00:00:00");
             $whereCount++;
         }
         if($projectList) {
-            if($whereCount > 0) $where .= " OR ";
+            if($whereCount > 0) $where .= " AND ";
             $where .= "(";
             foreach($projectList as $key => $id) {
                 $where .= "associatedProjectID = $id";
