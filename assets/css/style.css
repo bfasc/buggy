@@ -1000,7 +1000,8 @@ xpopup
 
 /* ACCOUNT FORM */
 #acct-form h3 {
-  color: #FFFFFF; }
+  color: #FFFFFF;
+  margin: 0; }
 
 /* EMPLOYEE MANAGEMENT */
 .employee {

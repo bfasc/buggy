@@ -1077,7 +1077,10 @@ xpopup
 }
 
 /* ACCOUNT FORM */
-#acct-form h3 {color: $white; }
+#acct-form h3 {
+    color: $white;
+    margin: 0;
+}
 
 /* EMPLOYEE MANAGEMENT */
 .employee {
