@@ -62,7 +62,7 @@
         }
 
         if($completed && $inProgress) {
-            if($whereCount > 0) $where .= " OR ";
+            if($whereCount > 0) $where .= " AND ";
             $where .= "(status = 'Completed' OR (status = 'In Progress' OR status = 'Review' OR status = 'Needs Revisions'))";
             $whereCount++;
         }
