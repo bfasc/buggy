@@ -209,7 +209,6 @@ function printFooter($type)
                 <!--LINKEDIN-->
                 </div>
 
-                <a href='contact'>Contact Us</a>
                 <div class='logo'>
                     <a class='emphasis'>Buggy</a>
                     <a>All Rights Reserved</a>
