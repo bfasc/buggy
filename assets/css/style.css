@@ -866,8 +866,8 @@ xpopup
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center; }
-  .main#projects .subhead {
-    margin-right: 100px; }
+  .main#projects .button {
+    margin-left: 100px; }
 
 .project {
   width: 100%;
