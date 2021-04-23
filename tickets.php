@@ -58,18 +58,17 @@
         $('.progressChange').click(function(){
             var id = $(this).attr('id');
             var progress = document.getElementById('progress').value;
-            console.log(progress);
-            // if(progress != "" && progress != null && progress != "Change Ticket Status") {
-            //     $.ajax({
-            //         url: 'scripts/editTicket.php',
-            //         type: 'post',
-            //         dataType: 'JSON',
-            //         data: {"id": id, "type": "editProgress", "progress": progress},
-            //         success: function(response) {
-            //             window.location.href = "";
-            //         }
-            //     });
-            // }
+            if(progress != "" && progress != null && progress != "Change Ticket Progress") {
+                $.ajax({
+                    url: 'scripts/editTicket.php',
+                    type: 'post',
+                    dataType: 'JSON',
+                    data: {"id": id, "type": "editProgress", "progress": progress},
+                    success: function(response) {
+                        window.location.href = "";
+                    }
+                });
+            }
         });
         $('.delete').click(function(){
             var id = $(this).attr('id');
