@@ -34,7 +34,6 @@ if (isset($_POST['submit'])) {
         <?php printHeader($_SESSION['userID']);
         ?>
         <h2 class='subhead'>Company Management</h2 class='subhead'>
-        <a href="companyreports" class="button">Generate Reports</a>
         <div class="forms" id="company-form">
             <h1>Edit Company Info</h1>
             <form action="" method="post" autocomplete="off">
@@ -103,6 +102,7 @@ if (isset($_POST['submit'])) {
             <p>Or this code to enter in the signup form: </p>
             <textarea disabled id='code'><?php echo getCompanyInfo(getUserInfo($_SESSION['userID'], "associatedCompany"), "companyCode"); ?></textarea>
             <a class='copy button' id='code'>Copy Code</a>
+            <a href="companyreports" class="button">Generate Reports</a>
         </div>
     </div>
     <script src="/scripts/forms.js"></script>
