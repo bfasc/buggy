@@ -104,7 +104,7 @@ function getEmployeeCount($projectID)
 
     //get all employees in company
     $db = db_connect();
-    $sql = "SELECT assignedProjects FROM userinfo WHERE associatedCompany = $companyID AND accountType = 'developer'";
+    $sql = "SELECT assignedProjects FROM userinfo WHERE associatedCompany = $companyID";
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
