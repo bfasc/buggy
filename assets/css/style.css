@@ -33,7 +33,7 @@ body {
 /* SCROLLBAR CODE */
 /* width */
 ::-webkit-scrollbar {
-  width: 15px; }
+  width: 25px; }
 
 /* Track */
 ::-webkit-scrollbar-track {
@@ -999,9 +999,10 @@ xpopup
       width: 100%; }
 
 /* ACCOUNT FORM */
-#acct-form h3 {
-  color: #FFFFFF;
+#acct-form {
   margin: 0; }
+  #acct-form h3 {
+    color: #FFFFFF; }
 
 /* EMPLOYEE MANAGEMENT */
 .employee {
