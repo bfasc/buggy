@@ -60,19 +60,24 @@
             array_push($values, $priority);
             $whereCount++;
         }
-        //TODO discussion sql
-        if($completed) {
-            if($whereCount > 0) $where .= " AND ";
-            $where .= "status = 'Completed'";
+
+        if($completed && $inProgress) {
+            if($whereCount > 0) $where .= " OR ";
+            $where .= "(status = 'Completed' AND (status = 'In Progress' OR status = 'Review' OR status = 'Needs Revisions'))";
             $whereCount++;
         }
-        if($inProgress) {
-            if($whereCount > 0 && $completed)
-                $where .= " OR ";
-            else if($whereCount > 0)
-                $where .= " AND ";
-            $where .= "(status = 'In Progress' OR status = 'Review' OR status = 'Needs Revisions')";
-            $whereCount++;
+        else {
+            if($completed) {
+                if($whereCount > 0) $where .= " AND ";
+                $where .= "status = 'Completed'";
+                $whereCount++;
+            }
+            if($inProgress) {
+                if($whereCount > 0)
+                    $where .= " AND ";
+                $where .= "(status = 'In Progress' OR status = 'Review' OR status = 'Needs Revisions')";
+                $whereCount++;
+            }
         }
         if($startDate) {
             if($whereCount > 0) $where .= " AND ";
