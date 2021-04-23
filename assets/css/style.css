@@ -951,12 +951,7 @@ xpopup
   flex-direction: row;
   align-items: center; }
   #company h2 {
-    width: 65%; }
-  #company .button {
-    margin: 20px;
-    width: 25%;
-    font-size: 22px;
-    text-align: center; }
+    width: 100%; }
   #company .forms {
     width: 45%; }
   #company .forms .button {

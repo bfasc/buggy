@@ -1027,13 +1027,7 @@ xpopup
 
 #company {
     @include flexRow;
-    h2 {width: 65%;}
-    .button {
-        margin: 20px;
-        width: 25%;
-        font-size: 22px;
-        text-align: center;
-    }
+    h2 {width: 100%;}
     .forms {width: 45%;}
     .forms .button {margin: auto;}
     .copylink-wrap {
