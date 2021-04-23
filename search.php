@@ -84,13 +84,13 @@ printHead("Search Tickets | Buggy - Let's Code Together");
                                 <p>Within A Timeframe</p>
                                 <div class="field-wrap">
                                     <label for="date">
-                                        Start Date
+                                        From
                                     </label>
                                     <input type="date" id="start-date">
                                 </div>
                                 <div class="field-wrap">
                                     <label for="date">
-                                        End Date
+                                        To
                                     </label>
                                     <input type="date" id="end-date">
                                 </div>
