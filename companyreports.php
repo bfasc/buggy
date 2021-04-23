@@ -4,6 +4,7 @@ require_once 'php-files/companyreports.php';
 printHead("Company Reports | Buggy - Let's Code Together");
 if(isset($_POST['projectID']) && !empty($_POST['projectID'])) {
     $projectID = $_POST['projectID'];
+    $projectName = getProjectInfo($projectID, "projectName");
     $totalTickets = getTotalTickets($projectID);
     $totalOpenTickets = (getTotalOpenTickets($projectID) / $totalTickets) * 100;
     $totalUnapprovedTickets = getTotalUnapprovedTickets($projectID);
@@ -29,8 +30,8 @@ if(isset($_POST['projectID']) && !empty($_POST['projectID'])) {
         <select name='projectID'>");
         foreach($projects as $project) {
             $thisProjectID = $project;
-            $projectName = getProjectInfo($thisProjectID, "projectName");
-            print("<option value='$thisProjectID'>$projectName</option>");
+            $thisProjectName = getProjectInfo($thisProjectID, "projectName");
+            print("<option value='$thisProjectID'>$thisProjectName</option>");
         }
         print("</select>
         <input type='submit' value='Show Reports'>
