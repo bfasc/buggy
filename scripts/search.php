@@ -115,7 +115,7 @@
         else $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $response = "<h1>Search Results</h1>";
+        $response = "<h1>Search Results $sql</h1>";
 
         if(!$results)
             $response .= "<h2 class='subhead'>No results found. Try changing your filters.</h2 class='subhead'>";
