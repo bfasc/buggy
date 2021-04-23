@@ -100,7 +100,7 @@ function fetchTickets($userID, $progressShort) {
                 if(getUserInfo($userID, "accountType") == "developer") {
                     $response .= "<select id='progress'>
                     <option selected disabled>Change Ticket Progress</option>
-                    <option id='notStarted'>Not Yet Started</option>
+                    <option id='notStarted'>Not Started</option>
                     <option id='inProgress'>In Progress</option>
                     <option id='review'>Review</option>
                     <option id='needsRevisions'>Needs Revisions</option>
