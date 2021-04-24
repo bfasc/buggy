@@ -30,19 +30,22 @@ function fetchTickets($userID, $progressShort) {
         //set where statement to show all viewable projects
         $where = "";
 
-        foreach($availableProjects as $key => $projectID) {
+        $count = 0;
+        foreach($availableProjects as $projectID) {
             if($projectID) {
                 $where .= "associatedProjectID = $projectID";
-                if($key != count($availableProjects)-1)
+                if($count != count($availableProjects)-1) {
+                    $count++;
                     $where .= " OR ";
+                }
             }
         }
         //if user has at least one assigned project
         if($where != "") {
             $sql = "SELECT * FROM ticketinfo WHERE (status = $progress) AND ($where)";
             $stmt = $db->prepare($sql);
-            //$stmt->execute();
-            //$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             //create array of all tickets assigned to you
             $yourTickets = [];
@@ -56,7 +59,7 @@ function fetchTickets($userID, $progressShort) {
                 }
             }
 
-            $response = "$sql";
+            $response = "";
 
             if(!$results)
                 $response .= "<h2 class='subhead desc'>You currently have no " . strtolower($progressShort) . " assigned tickets.</h2 class='subhead'>";
