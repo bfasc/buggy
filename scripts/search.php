@@ -163,7 +163,7 @@
                 <p class='info'><a class='label'>Priority : </a><a>$priorityString</a></p>
                 <p class='info'><a class='label'>Assignees: </a><a>$developerString</a></p>
                 <p class='info'><a class='label'>Progress: </a><a>$status</a></p>
-                <div class='button-wrap'><a href='ticket?$id' class='button'>View Ticket Page</a>
+                <div class='button-wrap'><a href='ticket/$id' class='button'>View Ticket Page</a>
                 ";
 
             if(getUserInfo($_SESSION['userID'], "accountType") == "management")
