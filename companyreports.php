@@ -6,9 +6,16 @@ if(isset($_POST['projectID']) && !empty($_POST['projectID'])) {
     $projectID = $_POST['projectID'];
     $projectName = getProjectInfo($projectID, "projectName");
     $totalTickets = getTotalTickets($projectID);
-    $totalOpenTickets = (getTotalOpenTickets($projectID) / $totalTickets) * 100;
+    if($totalTickets != 0) {
+        $totalOpenTickets = (getTotalOpenTickets($projectID) / $totalTickets) * 100;
+        $totalCompletedTickets = (getTotalCompletedTickets($projectID) / $totalTickets) * 100;
+    } else {
+        $totalOpenTickets = 0;
+        $totalCompletedTickets = 0;
+    }
+
     $totalUnapprovedTickets = getTotalUnapprovedTickets($projectID);
-    $totalCompletedTickets = (getTotalCompletedTickets($projectID) / $totalTickets) * 100;
+
     $totalEmployees = getEmployeeCount($projectID);
 }
 ?>
