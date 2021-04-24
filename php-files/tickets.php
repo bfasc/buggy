@@ -41,8 +41,8 @@ function fetchTickets($userID, $progressShort) {
         if($where != "") {
             $sql = "SELECT * FROM ticketinfo WHERE (status = $progress) AND ($where)";
             $stmt = $db->prepare($sql);
-            $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            //$stmt->execute();
+            //$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             //create array of all tickets assigned to you
             $yourTickets = [];
