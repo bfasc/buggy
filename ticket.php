@@ -27,6 +27,7 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
         if($response != "")
             print("<h1>$response</h1>");
         else {
+            $id = $_GET['ticket'];
             $associatedProjectID = getTicketInfo($id, "associatedProjectID");
             $associatedProject = getProjectInfo($associatedProjectID, "projectName");
             ?>
@@ -36,7 +37,7 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
                 </div>
             </div>
             <?php
-            $id = $_GET['ticket'];
+
             $title = getTicketInfo($id, "name");
             $description = getTicketInfo($id, "description");
             $priority = getTicketInfo($id, "priority");
