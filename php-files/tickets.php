@@ -71,6 +71,7 @@ function fetchTickets($userID, $progressShort) {
                 $status = $ticket['status'];
                 $associatedBugID = $ticket['associatedBugID'];
                 $associatedProjectID = $ticket['associatedProjectID'];
+                $associatedProject = getProjectInfo($associatedProjectID, "projectName");
                 $lastEditedDate = $ticket['lastEditedDate'];
                 $approvalDate = $ticket['approvalDate'];
                 $assignedDevelopers = $ticket['assignedDevelopers'];
@@ -95,7 +96,7 @@ function fetchTickets($userID, $progressShort) {
 
                 $response .= "
                 <div class='ticket'>
-                    <p class='name'>#$id : $title</p>
+                    <p class='name'>#$id : $title - $associatedProject</p>
                     <p class='info'><a class='label'>Priority : </a><a>$priorityString</a></p>
                     <p class='info'><a class='label'>Assignees: </a><a>$developerString</a></p>
                     <p class='info'><a class='label'>Progress: </a><a>$status</a>
