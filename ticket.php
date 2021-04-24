@@ -27,8 +27,10 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
         if($response != "")
             print("<h1>$response</h1>");
         else {
+            $associatedProjectID = getTicketInfo($id, "associatedProjectID");
+            $associatedProject = getProjectInfo($associatedProjectID, "projectName");
             ?>
-            <h2 class='subhead'>Viewing Ticket : <?php echo $ticketTitle; ?></h2>
+            <h2 class='subhead'>Viewing Ticket : <?php print("$ticketTitle - $associatedProject"); ?></h2>
             <div class="cd-popup" role="alert">
                 <div class="cd-popup-container">
                 </div>
@@ -40,7 +42,7 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
             $priority = getTicketInfo($id, "priority");
             $status = getTicketInfo($id, "status");
             $associatedBugID = getTicketInfo($id, "associatedBugID");
-            $associatedProjectID = getTicketInfo($id, "associatedProjectID");
+
             $lastEditedDate = getTicketInfo($id, "lastEditedDate");
             $approvalDate = getTicketInfo($id, "approvalDate");
             $assignedDevelopers = getTicketInfo($id, "assignedDevelopers");
