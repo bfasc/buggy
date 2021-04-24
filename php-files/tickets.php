@@ -56,7 +56,7 @@ function fetchTickets($userID, $progressShort) {
                 }
             }
 
-            $response = "";
+            $response = "$sql";
 
             if(!$results)
                 $response .= "<h2 class='subhead desc'>You currently have no " . strtolower($progressShort) . " assigned tickets.</h2 class='subhead'>";
