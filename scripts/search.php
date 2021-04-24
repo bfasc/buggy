@@ -105,14 +105,16 @@
         else {
             //search all available projects
             $projectString = "";
+            $count = 0;
             if($whereCount > 0) $where .= " AND ";
             $where .= "(";
-            foreach($availableProjects as $key => $projectID) {
+            foreach($availableProjects as $projectID) {
                 $where .= "associatedProjectID = $projectID";
-                if($key != count($availableProjects)-1)
+                if($count != count($availableProjects)-1)
                     $where .= " OR ";
                 else
                     $where .= ")";
+                $count++;
             }
         }
 
