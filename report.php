@@ -70,7 +70,7 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
             if ($response != NULL) {
                 print("<p class='error-response'>$response</p>");
                 if ($responseDetails != NULL)
-                    print("<p class='error-response details'>$response</p>");
+                    print("<p class='error-response details'>$responseDetails</p>");
             }
             if($broken == FALSE) {
             ?>

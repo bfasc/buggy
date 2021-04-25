@@ -225,6 +225,10 @@ footer {
         text-transform: uppercase;
     }
 }
+.error-response.details {
+    font-size: 18px;
+    color: $red;
+}
 .main {
     position: relative;
     padding-left: 275px;
