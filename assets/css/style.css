@@ -219,7 +219,8 @@ footer {
 
 .error-response.details {
   font-size: 18px;
-  color: #E75858; }
+  color: #E75858;
+  padding: 20px 100px; }
 
 .main {
   position: relative;
