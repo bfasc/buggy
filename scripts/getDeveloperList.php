@@ -38,7 +38,7 @@
                 $assignedProjects = getUserInfo($developerID, "assignedProjects");
                 $assignedProjects = explode(",", $assignedProjects);
 
-                
+
                 $firstName = getUserInfo($developerID, "firstName");
                 $lastName = getUserInfo($developerID, "lastName");
                 //if developer is assigned to corresponding project, make them selected

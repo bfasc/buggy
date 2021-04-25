@@ -25,7 +25,7 @@ if(array_search(getTicketInfo($_GET['ticket'], "associatedProjectID"), getAllPro
     <div class="main" id="ticket">
         <?php printHeader($_SESSION['userID']);
         if($response != "")
-            print("<h1>$response</h1>");
+            print("<p class='error-response'>$response</p>");
         else {
             $id = $_GET['ticket'];
             $associatedProjectID = getTicketInfo($id, "associatedProjectID");

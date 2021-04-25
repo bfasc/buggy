@@ -39,7 +39,7 @@
 <body>
     <?php printSidebar("notloggedin", "signin"); ?>
     <div class="main">
-        <?php print $response; ?>
+        <?php if($response != "") print "<p class='error-response'>$response</p>"; ?>
         <div class="forms">
             <h1>Sign In</h1>
             <p>Sign in to your Buggy account</p>

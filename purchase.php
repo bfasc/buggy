@@ -39,7 +39,7 @@ if(isset($_POST['continue_submit'])) {
 <body>
     <?php printSidebar("notloggedin", "purchase"); ?>
     <div class="main">
-        <?php if($response) print("<h1>$response</h1>");
+        <?php if($response) print("<p class='error-response'>$response</p>");
             if($success) {
                 ?>
                 <h1>Thank you for your purchase!</h1>

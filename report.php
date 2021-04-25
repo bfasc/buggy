@@ -68,9 +68,9 @@ printHead("Report a bug for $projectName | Buggy - Let's Code Together");
             <?php
             // PRINT RESPONSE MSG
             if ($response != NULL) {
-                print("<h2 class='subhead'>$response</h2 class='subhead'>");
+                print("<p class='error-response'>$response</p>");
                 if ($responseDetails != NULL)
-                    print("<p>$responseDetails</p>");
+                    print("<p class='error-response details'>$response</p>");
             }
             if($broken == FALSE) {
             ?>

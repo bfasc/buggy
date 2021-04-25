@@ -104,11 +104,11 @@ printHead("Create a Project | Buggy - Let's Code Together");
                             </label>
                             <input type="text" id="link">
                         </div>
-                        <div class="field-wrap">
+                        <!-- <div class="field-wrap">
                             <label>Your Project Image
                             </label>
                             <input type="file" name="projectImg">
-                        </div>
+                        </div> -->
                         <input type="submit" class="button button-block" value="Create Project">
                     </div>
                 </form>

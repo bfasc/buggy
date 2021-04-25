@@ -16,7 +16,7 @@
 <body>
     <?php printSidebar("notloggedin", "signin"); ?>
     <div class="main">
-        <?php print $response; ?>
+        <?php if($response != "") print "<p class='error-response'>$response</p>"; ?>
         <div class="forms">
             <h1>Password Reset</h1>
             <p>Reset Your Password</p>

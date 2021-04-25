@@ -41,7 +41,7 @@ if (isset($_POST['company_submit'])) {
 <body>
     <?php printSidebar("notloggedin", "signup"); ?>
     <div class="main">
-        <?php if ($response) print("<h1>$response</h1>");
+        <?php if ($response) print("<p class='error-response'>$response</p>");
         else {
             if ($success) {
         ?>

@@ -27,7 +27,7 @@ printHead("Projects | Buggy - Let's Code Together");
             $companyName = getCompanyInfo(getProjectInfo($projectID, "associatedCompany"), "companyName");
             $reportCode = getProjectInfo($projectID,"customLink");
             print("<div class='project'>");
-            print("<img src='assets/img/project-icons/$projectIcon'>");
+            //print("<img src='assets/img/project-icons/$projectIcon'>");
             print("<div class='info'>");
                 print("<h2 class='subhead'>PROJECT: $projectName</h2 class='subhead'>");
                 print("<h3>COMPANY: $companyName</h3>");

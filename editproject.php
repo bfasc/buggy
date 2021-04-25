@@ -125,11 +125,11 @@ if(isset($_GET['project']) && !empty($_GET['project'])) {
                             </label>
                             <input type="text" id="link">
                         </div>
-                        <div class="field-wrap">
+                        <!-- <div class="field-wrap">
                             <label>Your Project Image
                             </label>
                             <input type="file" name="projectImg">
-                        </div>
+                        </div> -->
                         <input type="submit" class="button button-block" value="Edit Project">
                     </div>
                 </form>
