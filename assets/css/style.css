@@ -1484,6 +1484,24 @@ table.reports {
       font-size: 18px; }
 
   .cd-popup-container {
-    max-height: 600px; } }
+    max-height: 600px; }
+
+  .project {
+    width: 100%;
+    flex-direction: column; }
+    .project .info, .project .button-wrap, .project .reportLink-wrap {
+      width: 100%; }
+
+  #acct-form, #company-form {
+    width: 100%; }
+
+  .copylink-wrap {
+    width: 100%; }
+
+  .employee {
+    width: 100%;
+    margin: 0; }
+    .employee h3, .employee .button {
+      width: 100%; } }
 
 /*# sourceMappingURL=style.css.map */
