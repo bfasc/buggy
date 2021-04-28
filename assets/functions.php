@@ -117,11 +117,89 @@ function printSidebar($type, $current)
             exit();
         }
     }
-    print("<div class='wrap'>");
-    print("<div class='sidebar $report'>");
     if(isset($_SESSION['userID']) && !empty($_SESSION['userID']))
         $unread = checkUnreadNotif($_SESSION['userID']);
     else $unread = FALSE;
+    print("<div class='wrap'>");
+    print("
+        <div class=\"mobilenav\">
+        <button id=\"hamburger-menu\" data-toggle=\"ham-navigation\" class=\"hamburger-menu-button\"><span class=\"hamburger-menu-button-open\">Menu</span></button>
+        <div id=\"ham-navigation\" class=\"ham-menu\">
+          <ul class=\"menu\">");
+          switch ($type) {
+              case "notloggedin":
+                  print("
+                              <li><a href='/index'>Home</a></li>
+                              <li><a href='/about'>About Us</a></li>
+                              <li><a href='/purchase'>Get Buggy</a></li>
+                              <li><a href='/signin'>Sign In</a></li>
+                              <li><a href='/signup'>Sign Up</a></li>
+                      ");
+                  break;
+              case "developer":
+                  print("
+                          <li><a href='/tickets'>Your Tickets</a></li>
+                          <li><a href='/projects'>Your Projects</a></li>
+                          <li><a href='/search'>Search All Tickets</a></li>
+                          <li><a href='/account'>Manage Account</a></li>
+                          <li><a href='/notifications'>Notifications");
+                  if($unread) print("<sup><i class='fas fa-exclamation-circle'></i></sup>");
+                  print("</a></li>
+                          <li><a href='/signout'>Sign Out</a></li>
+                  ");
+                  break;
+              case "management":
+                  print("
+                         <li><a href='/tickets'>Your Tickets</a></li>
+                          <li><a href='/projects'>Your Projects</a></li>
+                          <li><a href='/search'>Search Tickets</a></li>
+                          <li><a href='/account'>Manage Account</a></li>
+                          <li><a href='/company'>Manage Company</a></li>
+                          <li><a href='/employees'>Manage Employees</a></li>
+                          <li><a href='/approval'>Bug Approval</a></li>
+                          <li><a href='/notifications'>Notifications");
+                  if($unread) print("<sup><i class='fas fa-exclamation-circle'></i></sup>");
+                  print("</a></li>
+                          <li><a href='/signout'>Sign Out</a></li>
+                      ");
+                  break;
+              case "report":
+                  print("<a href='http://www.projectbuggy.tk'><img src='/assets/img/LOGO_MAIN.png'></a></li>");
+                  break;
+              default:
+                  print("<a>Sorry, there was an error in the sidebar.</a>");
+          }
+          print("
+          </ul>
+        </div>
+    </div>");
+    // mobilenav script
+    print("
+        <script>
+        var button = document.getElementById('hamburger-menu'),
+            span = button.getElementsByTagName('span')[0];
+
+        button.onclick =  function() {
+          span.classList.toggle('hamburger-menu-button-close');
+        };
+
+        $('#hamburger-menu').on('click', toggleOnClass);
+
+        function toggleOnClass(event) {
+          var toggleElementId = '#' + $(this).data('toggle'),
+          element = $(toggleElementId);
+
+          element.toggleClass('on');
+
+        }
+
+        // close hamburger menu after click a
+        $( '.menu li a' ).on('click', function(){
+          $('#hamburger-menu').click();
+        });
+        </script>
+    ");
+    print("<div class='sidebar $report'>");
     switch ($type) {
         case "notloggedin":
             print("
