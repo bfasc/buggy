@@ -1486,10 +1486,10 @@ table.reports {
   .cd-popup-container {
     max-height: 600px; }
 
-  .project {
+  .main#projects .project {
     width: 100%;
     flex-direction: column; }
-    .project .info, .project .button-wrap, .project .reportLink-wrap {
+    .main#projects .project .info, .main#projects .project .button-wrap, .main#projects .project .reportLink-wrap {
       width: 100%; }
 
   #acct-form, #company-form {
