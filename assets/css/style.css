@@ -1489,13 +1489,14 @@ table.reports {
   .main#projects .project {
     width: 100%;
     flex-direction: column; }
-    .main#projects .project .info, .main#projects .project .button-wrap, .main#projects .project .reportLink-wrap {
+    .main#projects .project .info, .main#projects .project .button-wrap, .main#projects .project #reportLink-wrap {
       width: 100%; }
 
-  #acct-form, #company-form {
-    width: 100%; }
+  #acct-form, #company #company-form {
+    width: 100%;
+    margin: 0; }
 
-  .copylink-wrap {
+  #company .copylink-wrap {
     width: 100%; }
 
   .employee {

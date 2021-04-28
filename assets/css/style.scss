@@ -1575,10 +1575,10 @@ text-align: center;
     .main#projects .project {
         width: 100%;
         flex-direction: column;
-        .info, .button-wrap, .reportLink-wrap {width: 100%;}
+        .info, .button-wrap, #reportLink-wrap {width: 100%;}
     }
-    #acct-form, #company-form {width: 100%;}
-    .copylink-wrap {width: 100%;}
+    #acct-form, #company #company-form {width: 100%; margin: 0;}
+    #company .copylink-wrap {width: 100%;}
     .employee {
         width: 100%;
         h3, .button {width: 100%;}
